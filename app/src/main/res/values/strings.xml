@@ -3,4 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="news">NEWS</string>
+    <string name="jobs">JOBS</string>
+    <string name="title">Title</string>
+    <string name="gray_bar">horizontal gray bar</string>
+    <string name="description">description</string>
 </resources>
