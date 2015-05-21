@@ -25,90 +25,90 @@ public class CompanyProfileActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_profile_bottom);
-        initializeVariables();
+        setContentView(R.layout.activity_company_profile);
+//        initializeVariables();
     }
-    private void initializeVariables(){
-        ViewPager v_pager = (ViewPager) findViewById(R.id.vpPager);
-        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
-        v_pager.setAdapter(adapterViewPager);
-        setViewPageIndicator(v_pager);
-    }
-    private void setViewPageIndicator(final ViewPager v_pager){
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService
-                (Context.LAYOUT_INFLATER_SERVICE);
-        final LinearLayout indicator = (LinearLayout) findViewById(R.id.view_page_indicator);
-        for (int i = 0; i < MyPagerAdapter.NUM_ITEMS; i++){
-            View bulb = inflater.inflate(R.layout.bulb, indicator, false);
-            indicator.addView(bulb);
-        }
-        lightUpBulb(0);
-        v_pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageSelected(int page) {
-                lightUpBulb(page);
-            }
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-            @Override
-            public void onPageScrollStateChanged(int arg0) {
-            }
-        });
-        ImageView next_page = (ImageView) findViewById(R.id.next_page);
-        next_page.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v_pager.setCurrentItem(v_pager.getCurrentItem() + 1, true);
-            }
-        });
-
-
-    }
-    private void lightUpBulb(int page){
-        final LinearLayout indicator = (LinearLayout) findViewById(R.id.view_page_indicator);
-        for (int i = 0; i < MyPagerAdapter.NUM_ITEMS; i++) {
-            ImageView bulb = (ImageView) indicator.getChildAt(i);
-            if (i == page) {
-                bulb.setImageResource(R.color.white);
-            }else{
-                bulb.setImageResource(R.color.light_gray);
-            }
-        }
-    }
-
-    private static class MyPagerAdapter extends FragmentPagerAdapter {
-        public static int NUM_ITEMS = 3;
-        public MyPagerAdapter(FragmentManager fragmentManager) {
-            super(fragmentManager);
-        }
-
-        // Returns total number of pages
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
-        }
-
-        // Returns the fragment to display for that page
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
-                    return ProductFragment.newInstance("title 1", "descadasd asd asd as d", position, NUM_ITEMS);
-                case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return ProductFragment.newInstance("title 2", "asdnasdjh kalsjhdkl asldha jkldf kldjs", position, NUM_ITEMS);
-                case 2: // Fragment # 1 - This will show SecondFragment
-                    return ProductFragment.newInstance("title 3", "jadhsfjl klakdsf kljashdf l", position, NUM_ITEMS);
-                default:
-                    return null;
-            }
-        }
-        // Returns the page title for the top indicator
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return "Page " + position;
-        }
-
-    }
+//    private void initializeVariables(){
+//        ViewPager v_pager = (ViewPager) findViewById(R.id.vpPager);
+//        adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
+//        v_pager.setAdapter(adapterViewPager);
+//        setViewPageIndicator(v_pager);
+//    }
+//    private void setViewPageIndicator(final ViewPager v_pager){
+//        LayoutInflater inflater = (LayoutInflater)context.getSystemService
+//                (Context.LAYOUT_INFLATER_SERVICE);
+//        final LinearLayout indicator = (LinearLayout) findViewById(R.id.view_page_indicator);
+//        for (int i = 0; i < MyPagerAdapter.NUM_ITEMS; i++){
+//            View bulb = inflater.inflate(R.layout.bulb, indicator, false);
+//            indicator.addView(bulb);
+//        }
+//        lightUpBulb(0);
+//        v_pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageSelected(int page) {
+//                lightUpBulb(page);
+//            }
+//            @Override
+//            public void onPageScrolled(int arg0, float arg1, int arg2) {
+//            }
+//            @Override
+//            public void onPageScrollStateChanged(int arg0) {
+//            }
+//        });
+//        ImageView next_page = (ImageView) findViewById(R.id.next_page);
+//        next_page.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                v_pager.setCurrentItem(v_pager.getCurrentItem() + 1, true);
+//            }
+//        });
+//
+//
+//    }
+//    private void lightUpBulb(int page){
+//        final LinearLayout indicator = (LinearLayout) findViewById(R.id.view_page_indicator);
+//        for (int i = 0; i < MyPagerAdapter.NUM_ITEMS; i++) {
+//            ImageView bulb = (ImageView) indicator.getChildAt(i);
+//            if (i == page) {
+//                bulb.setImageResource(R.color.white);
+//            }else{
+//                bulb.setImageResource(R.color.light_gray);
+//            }
+//        }
+//    }
+//
+//    private static class MyPagerAdapter extends FragmentPagerAdapter {
+//        public static int NUM_ITEMS = 3;
+//        public MyPagerAdapter(FragmentManager fragmentManager) {
+//            super(fragmentManager);
+//        }
+//
+//        // Returns total number of pages
+//        @Override
+//        public int getCount() {
+//            return NUM_ITEMS;
+//        }
+//
+//        // Returns the fragment to display for that page
+//        @Override
+//        public Fragment getItem(int position) {
+//            switch (position) {
+//                case 0: // Fragment # 0 - This will show FirstFragment
+//                    return ProductFragment.newInstance("title 1", "descadasd asd asd as d", position, NUM_ITEMS);
+//                case 1: // Fragment # 0 - This will show FirstFragment different title
+//                    return ProductFragment.newInstance("title 2", "asdnasdjh kalsjhdkl asldha jkldf kldjs", position, NUM_ITEMS);
+//                case 2: // Fragment # 1 - This will show SecondFragment
+//                    return ProductFragment.newInstance("title 3", "jadhsfjl klakdsf kljashdf l", position, NUM_ITEMS);
+//                default:
+//                    return null;
+//            }
+//        }
+//        // Returns the page title for the top indicator
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//            return "Page " + position;
+//        }
+//
+//    }
 
 }

@@ -107,7 +107,7 @@
                             android:textColor="@color/white"
                             android:layout_marginRight="10dp"
                             android:layout_marginEnd="10dp"
-
+                            android:textAllCaps="true"
                             />
 
                         <!-- These buttons will be replaced by API call -->
@@ -193,8 +193,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/founders"
-                                android:layout_margin="20dp"
+                                android:layout_margin="15dp"
                                 android:textAllCaps="true"
+                                android:textStyle="bold"
+                                android:textSize="12dp"
                                 />
 
                         </LinearLayout>
@@ -209,8 +211,11 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="RECENT INVESTORS"
-                                android:layout_margin="20dp"
+                                android:text="Recent Investors"
+                                android:textAllCaps="true"
+                                android:textStyle="bold"
+                                android:textSize="12dp"
+                                android:layout_margin="15dp"
                                 />
 
                         </LinearLayout>
@@ -235,13 +240,27 @@
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/border_top_bottom_right_grey"
+                            android:padding="15dp"
+                            android:orientation="vertical"
                             >
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="bye"
-                                android:layout_margin="20dp"
+                                android:text="Funding"
+                                android:textAllCaps="true"
+                                android:textStyle="bold"
+                                android:textSize="12dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/co_funding"
+                                android:text="$15M"
+                                android:textAllCaps="true"
+                                android:textSize="15dp"
+                                android:textColor="@color/app_green"
                                 />
 
                         </LinearLayout>
@@ -251,13 +270,27 @@
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/border_top_bottom_right_grey"
+                            android:orientation="vertical"
+                            android:padding="15dp"
                             >
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="maybe"
-                                android:layout_margin="20dp"
+                                android:text="Reach"
+                                android:textAllCaps="true"
+                                android:textStyle="bold"
+                                android:textSize="12dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/co_reach"
+                                android:text="63.5M"
+                                android:textAllCaps="true"
+                                android:textSize="15dp"
+                                android:textColor="@color/app_green"
                                 />
 
                         </LinearLayout>
@@ -267,13 +300,27 @@
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/border_top_bottom_grey"
+                            android:orientation="vertical"
+                            android:padding="15dp"
                             >
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="hello"
-                                android:layout_margin="20dp"
+                                android:text="Customers"
+                                android:textAllCaps="true"
+                                android:textStyle="bold"
+                                android:textSize="12dp"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/co_customers"
+                                android:text="63.5M"
+                                android:textAllCaps="true"
+                                android:textSize="15dp"
+                                android:textColor="@color/app_green"
                                 />
 
                         </LinearLayout>
@@ -281,7 +328,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
 
             </RelativeLayout>
 
