@@ -63,7 +63,6 @@ public class CompanyProfileActivity extends ActionBarActivity {
             }
         });
 
-
     }
     private void lightUpBulb(int page){
         final LinearLayout indicator = (LinearLayout) findViewById(R.id.view_page_indicator);
@@ -94,11 +93,11 @@ public class CompanyProfileActivity extends ActionBarActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return ProductFragment.newInstance("title 1", "descadasd asd asd as d", position, NUM_ITEMS);
+                    return ProductFragment.newInstance("title 1", "descadasd asd asd as d");
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return ProductFragment.newInstance("title 2", "asdnasdjh kalsjhdkl asldha jkldf kldjs", position, NUM_ITEMS);
+                    return ProductFragment.newInstance("title 2", "asdnasdjh kalsjhdkl asldha jkldf kldjs");
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return ProductFragment.newInstance("title 3", "jadhsfjl klakdsf kljashdf l", position, NUM_ITEMS);
+                    return ProductFragment.newInstance("title 3", "jadhsfjl klakdsf kljashdf l");
                 default:
                     return null;
             }
