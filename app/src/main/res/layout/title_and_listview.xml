@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
     <TextView
         android:layout_width="wrap_content"
@@ -16,21 +17,12 @@
         android:layout_marginEnd="15sp"
         android:layout_marginRight="15sp"
         />
-    <View
-        android:contentDescription="@string/gray_bar"
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:background="@color/light_gray"
-        android:layout_marginLeft="15sp"
-        android:layout_marginStart="15sp"
-        android:layout_marginEnd="15sp"
-        android:layout_marginRight="15sp"
-        android:layout_marginBottom="20dp"/>
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/list_feed"
-        android:layout_marginBottom="20dp">
-    </ListView>
+    <include layout="@layout/horizontal_bar"/>
+    <!--<ListView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/list_feed"-->
+        <!--android:layout_marginBottom="20dp">-->
+    <!--</ListView>-->
 
 </LinearLayout>

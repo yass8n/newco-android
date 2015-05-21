@@ -18,15 +18,8 @@ android {
         }
     }
 }
-repositories {
-    maven {
-        url "https://jitpack.io"
-    }
-}
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.makeramen:roundedimageview:2.0.1'
-    compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1@aar'
 }
