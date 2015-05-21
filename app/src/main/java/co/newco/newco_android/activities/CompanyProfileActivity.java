@@ -34,7 +34,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
         v_pager.setAdapter(adapterViewPager);
         setViewPageIndicator(v_pager);
     }
-    private void setViewPageIndicator(ViewPager v_pager){
+    private void setViewPageIndicator(final ViewPager v_pager){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
         final LinearLayout indicator = (LinearLayout) findViewById(R.id.view_page_indicator);
@@ -48,15 +48,21 @@ public class CompanyProfileActivity extends ActionBarActivity {
             public void onPageSelected(int page) {
                 lightUpBulb(page);
             }
-
             @Override
             public void onPageScrolled(int arg0, float arg1, int arg2) {
             }
-
             @Override
             public void onPageScrollStateChanged(int arg0) {
             }
         });
+        ImageView next_page = (ImageView) findViewById(R.id.next_page);
+        next_page.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v_pager.setCurrentItem(v_pager.getCurrentItem() + 1, true);
+            }
+        });
+
 
     }
     private void lightUpBulb(int page){
@@ -70,6 +76,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
             }
         }
     }
+
     private static class MyPagerAdapter extends FragmentPagerAdapter {
         public static int NUM_ITEMS = 3;
         public MyPagerAdapter(FragmentManager fragmentManager) {
