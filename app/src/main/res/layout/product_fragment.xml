@@ -8,25 +8,24 @@
         android:layout_height="wrap_content"
         android:id="@+id/title"
         android:text="@string/title"
-        android:textSize="25sp"
+        android:textSize="25dp"
         android:textColor="@color/white"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="15sp"
-        android:layout_marginStart="15sp"
-        android:layout_marginEnd="15sp"
-        android:layout_marginRight="15sp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:contentDescription="@string/description"
         android:text="@string/description"
-        android:textSize="12sp"
-        android:layout_marginLeft="15sp"
-        android:layout_marginStart="15sp"
-        android:layout_marginEnd="15sp"
-        android:layout_marginRight="15sp"
+        android:textSize="16dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
         android:id="@+id/description"/>
-
 </LinearLayout>

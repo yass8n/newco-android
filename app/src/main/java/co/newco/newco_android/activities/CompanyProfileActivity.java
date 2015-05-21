@@ -1,13 +1,18 @@
 package co.newco.newco_android.activities;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.ProductFragment;
@@ -15,6 +20,7 @@ import co.newco.newco_android.fragments.ProductFragment;
 
 public class CompanyProfileActivity extends ActionBarActivity {
     FragmentPagerAdapter adapterViewPager;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,35 +28,50 @@ public class CompanyProfileActivity extends ActionBarActivity {
         setContentView(R.layout.activity_company_profile_bottom);
         initializeVariables();
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_company_profile, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
     private void initializeVariables(){
-        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        ViewPager v_pager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
-        vpPager.setAdapter(adapterViewPager);
+        v_pager.setAdapter(adapterViewPager);
+        setViewPageIndicator(v_pager);
     }
-    public static class MyPagerAdapter extends FragmentPagerAdapter {
-        private static int NUM_ITEMS = 3;
+    private void setViewPageIndicator(ViewPager v_pager){
+        LayoutInflater inflater = (LayoutInflater)context.getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
+        final LinearLayout indicator = (LinearLayout) findViewById(R.id.view_page_indicator);
+        for (int i = 0; i < MyPagerAdapter.NUM_ITEMS; i++){
+            View bulb = inflater.inflate(R.layout.bulb, indicator, false);
+            indicator.addView(bulb);
+        }
+        lightUpBulb(0);
+        v_pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int page) {
+                lightUpBulb(page);
+            }
+
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
+
+    }
+    private void lightUpBulb(int page){
+        final LinearLayout indicator = (LinearLayout) findViewById(R.id.view_page_indicator);
+        for (int i = 0; i < MyPagerAdapter.NUM_ITEMS; i++) {
+            ImageView bulb = (ImageView) indicator.getChildAt(i);
+            if (i == page) {
+                bulb.setImageResource(R.color.white);
+            }else{
+                bulb.setImageResource(R.color.light_gray);
+            }
+        }
+    }
+    private static class MyPagerAdapter extends FragmentPagerAdapter {
+        public static int NUM_ITEMS = 3;
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
         }
@@ -66,11 +87,11 @@ public class CompanyProfileActivity extends ActionBarActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return ProductFragment.newInstance("title 1", "descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn ");
+                    return ProductFragment.newInstance("title 1", "descadasd asd asd as d", position, NUM_ITEMS);
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return ProductFragment.newInstance("title 2", "asdnasdjh kalsjhdkl asldha jkldf kldjs");
+                    return ProductFragment.newInstance("title 2", "asdnasdjh kalsjhdkl asldha jkldf kldjs", position, NUM_ITEMS);
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return ProductFragment.newInstance("title 3", "jadhsfjl klakdsf kljashdf l");
+                    return ProductFragment.newInstance("title 3", "jadhsfjl klakdsf kljashdf l", position, NUM_ITEMS);
                 default:
                     return null;
             }
