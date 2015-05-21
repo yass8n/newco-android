@@ -19,31 +19,10 @@ public class CompanyProfileActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_profile_bottom);
+        setContentView(R.layout.activity_company_profile);
         initializeVariables();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_company_profile, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
     private void initializeVariables(){
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
@@ -66,7 +45,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return ProductFragment.newInstance("title 1", "descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn descadasd asd asd as d asd as d asdnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn nnnnnnnnnnnnnnn n mn mn mn ");
+                    return ProductFragment.newInstance("title 1", "");
                 case 1: // Fragment # 0 - This will show FirstFragment different title
                     return ProductFragment.newInstance("title 2", "asdnasdjh kalsjhdkl asldha jkldf kldjs");
                 case 2: // Fragment # 1 - This will show SecondFragment
