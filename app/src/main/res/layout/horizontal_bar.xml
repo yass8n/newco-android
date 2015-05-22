@@ -2,7 +2,7 @@
     <View
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:contentDescription="@string/gray_bar"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="1dip"
         android:background="@color/gray"
         android:layout_marginLeft="15dp"
