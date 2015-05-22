@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="app_green">#80AF47</color>
-    <color name="light_gray">#adafb0</color>
+    <color name="gray">#adafb0</color>
+    <color name="light_gray">#cecfd0</color>
     <color name="black">#000000</color>
+    <color name="light_black">#27282c</color>
     <color name="white">#fff</color>
-    <color name="dark_blue">#363b3f</color>
+    <color name="dark_gray">#363b3f</color>
+    <color name="alert_orange">#f69333</color>
 </resources>

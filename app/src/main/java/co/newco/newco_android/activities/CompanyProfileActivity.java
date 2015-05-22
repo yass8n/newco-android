@@ -90,7 +90,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
             if (i == page) {
                 bulb.setImageResource(R.color.white);
             }else{
-                bulb.setImageResource(R.color.light_gray);
+                bulb.setImageResource(R.color.gray);
             }
         }
     }
