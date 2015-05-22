@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="20dp">
 
-    <TextView
+    <co.newco.newco_android.objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/news_title"
@@ -20,7 +21,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         />
-    <TextView
+    <co.newco.newco_android.objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="fill"
@@ -34,7 +35,7 @@
         android:layout_marginRight="15dp"
         android:layout_marginTop="8dp"
         />
-    <TextView
+    <co.newco.newco_android.objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="fill"

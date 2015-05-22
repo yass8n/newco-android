@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.ProductFragment;
@@ -29,10 +31,25 @@ public class CompanyProfileActivity extends ActionBarActivity {
 //        initializeVariables();
     }
     private void initializeVariables(){
+        initializeInvestors();
+        initializeJobs();
+        initializeNews();
         ViewPager v_pager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         v_pager.setAdapter(adapterViewPager);
         setViewPageIndicator(v_pager);
+    }
+    private void initializeInvestors(){
+        View investors_feed = findViewById(R.id.investors_feed);
+        ListView investors_list = (ListView) investors_feed.findViewById(R.id.list_feed);
+    }
+    private void initializeJobs(){
+        View jobs_feed = findViewById(R.id.jobs_feed);
+        ListView jobs_list = (ListView) jobs_feed.findViewById(R.id.list_feed);
+    }
+    private void initializeNews(){
+        View news_feed = findViewById(R.id.news_feed);
+        ListView investors_list = (ListView) news_feed.findViewById(R.id.list_feed);
     }
     private void setViewPageIndicator(final ViewPager v_pager){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService
@@ -48,14 +65,16 @@ public class CompanyProfileActivity extends ActionBarActivity {
             public void onPageSelected(int page) {
                 lightUpBulb(page);
             }
+
             @Override
             public void onPageScrolled(int arg0, float arg1, int arg2) {
             }
+
             @Override
             public void onPageScrollStateChanged(int arg0) {
             }
         });
-        ImageView next_page = (ImageView) findViewById(R.id.next_page);
+        RelativeLayout next_page = (RelativeLayout) findViewById(R.id.next_page);
         next_page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
