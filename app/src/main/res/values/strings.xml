@@ -8,6 +8,6 @@
     <string name="title">Title</string>
     <string name="gray_bar">horizontal gray bar</string>
     <string name="description">description</string>
-    <string name="snapshots">SNAPSHOTS</string>
-    <string name="founders">FOUNDERS</string>
+    <string name="snapshots">Snapshots</string>
+    <string name="founders">Founders</string>
 </resources>

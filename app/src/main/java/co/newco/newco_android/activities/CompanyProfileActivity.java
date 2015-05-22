@@ -27,8 +27,8 @@ public class CompanyProfileActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_profile_bottom);
-        initializeVariables();
+        setContentView(R.layout.activity_company_profile);
+//        initializeVariables();
     }
     private void initializeVariables(){
         initializeInvestors();
@@ -97,6 +97,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
 
     private static class MyPagerAdapter extends FragmentPagerAdapter {
         public static int NUM_ITEMS = 3;
+
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
         }
@@ -121,12 +122,12 @@ public class CompanyProfileActivity extends ActionBarActivity {
                     return null;
             }
         }
+
         // Returns the page title for the top indicator
         @Override
         public CharSequence getPageTitle(int position) {
             return "Page " + position;
         }
-
     }
 
 }
