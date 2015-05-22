@@ -7,10 +7,10 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/round_container">
         <co.newco.newco_android.objects.fTextView
@@ -36,11 +36,11 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
         android:id="@+id/money_container"
         android:layout_below="@+id/round_container">
         <co.newco.newco_android.objects.fTextView
@@ -66,8 +66,8 @@
                 android:id="@+id/money_bar"
                 android:src="@android:drawable/bottom_bar"
                 android:background="@color/app_green"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:textColor="@color/gray"
                 />
         </LinearLayout>
@@ -75,16 +75,16 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:paddingBottom="30dp"
         android:layout_below="@+id/money_container"
         android:id="@+id/investors_container">
         <LinearLayout
-            android:paddingLeft="15dp"
-            android:paddingStart="15dp"
+            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
             android:layout_marginBottom="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,10 +120,10 @@
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:background="@color/light_gray"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"/>
 

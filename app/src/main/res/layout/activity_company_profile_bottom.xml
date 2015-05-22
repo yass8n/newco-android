@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:paddingBottom="15dp"
+            android:paddingBottom="20dp"
             android:layout_gravity="center">
             <co.newco.newco_android.objects.fTextView
                 android:layout_width="wrap_content"
@@ -53,8 +53,8 @@
                 android:layout_height="wrap_content">
             </android.support.v4.view.ViewPager>
             <LinearLayout
-                android:paddingLeft="15dp"
-                android:paddingStart="15dp"
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
@@ -72,8 +72,8 @@
                 android:layout_alignParentBottom="true"
                 >
                 <ImageView
-                    android:layout_marginEnd="15dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
                     android:layout_width="15dp"
                     android:layout_height="15dp"
