@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginBottom="15dp"
+            android:paddingBottom="15dp"
             android:layout_gravity="center">
             <co.newco.newco_android.objects.fTextView
                 android:layout_width="wrap_content"
@@ -24,7 +24,6 @@
                 android:id="@+id/funding"
                 android:textColor="@color/black"
                 android:text="TOTAL FUNDING"
-
                 android:textSize="15dp"/>
             <co.newco.newco_android.objects.fTextView
                 android:layout_width="wrap_content"
