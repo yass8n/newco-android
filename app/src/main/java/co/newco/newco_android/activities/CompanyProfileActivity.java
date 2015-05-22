@@ -39,8 +39,8 @@ public class CompanyProfileActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_profile_bottom);
-        initializeVariables();
+        setContentView(R.layout.activity_company_profile);
+//        initializeVariables();
     }
     private void initializeVariables(){
         context = this;

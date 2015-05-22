@@ -49,7 +49,7 @@ public class fTextView extends TextView {
                 setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/ProximaNova-Reg.otf"));
                 break;
             case 1:
-                setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/proximanova-Bold.otf"));
+                setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/ProximaNova-Bold.otf"));
                 break;
             case 2:
                 setTypeface(Typeface.createFromAsset(getContext().getAssets(), "fonts/ProximaNova-Light.otf"));

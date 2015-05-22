@@ -11,4 +11,11 @@
     <string name="snapshots">Snapshots</string>
     <string name="founders">Founders</string>
     <string name="session_title">Session Title</string>
+    <string name="recent_investors">Recent Investors</string>
+    <string name="Funding">Funding</string>
+    <string name="reach">Reach</string>
+    <string name="customers">Customers</string>
+    <string name="sessions">Sessions</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
 </resources>
