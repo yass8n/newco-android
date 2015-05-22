@@ -187,17 +187,31 @@
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/border_top_bottom_right_grey"
+                            android:padding="15dp"
+                            android:orientation="vertical"
                             >
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/founders"
-                                android:layout_margin="15dp"
                                 android:textAllCaps="true"
                                 android:textStyle="bold"
                                 android:textSize="12dp"
                                 />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                >
+
+                                <include layout="@layout/profile_picture"/>
+                                <include layout="@layout/profile_picture"/>
+                                <include layout="@layout/profile_picture"/>
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -206,6 +220,8 @@
                             android:layout_width="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/border_top_bottom_grey"
+                            android:padding="15dp"
+                            android:orientation="vertical"
                             >
 
                             <TextView
@@ -215,8 +231,20 @@
                                 android:textAllCaps="true"
                                 android:textStyle="bold"
                                 android:textSize="12dp"
-                                android:layout_margin="15dp"
                                 />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                >
+
+                                <include layout="@layout/profile_picture"/>
+                                <include layout="@layout/profile_picture"/>
+                                <include layout="@layout/profile_picture"/>
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
