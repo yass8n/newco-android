@@ -59,7 +59,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
             TextView money;
         }
         View investors_feed = findViewById(R.id.investors_feed);
-        ((TextView) investors_feed.findViewById(R.id.list_title)).setText("Jobs");
+        ((TextView) investors_feed.findViewById(R.id.list_title)).setText("Investors");
         final ListView investors_list = (ListView) investors_feed.findViewById(R.id.list_feed);
         final ArrayList<Investor> investors = new ArrayList<>();
         for (int i = 0; i < 3; i ++){
@@ -113,17 +113,11 @@ public class CompanyProfileActivity extends ActionBarActivity {
         lightUpBulb(0);
         v_pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageSelected(int page) {
-                lightUpBulb(page);
-            }
-
+            public void onPageSelected(int page) {lightUpBulb(page);}
             @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-
+            public void onPageScrolled(int arg0, float arg1, int arg2) {}
             @Override
-            public void onPageScrollStateChanged(int arg0) {
-            }
+            public void onPageScrollStateChanged(int arg0) {}
         });
         RelativeLayout next_page = (RelativeLayout) findViewById(R.id.next_page);
         next_page.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +126,6 @@ public class CompanyProfileActivity extends ActionBarActivity {
                 v_pager.setCurrentItem(v_pager.getCurrentItem() + 1, true);
             }
         });
-
     }
     private void lightUpBulb(int page){
         final LinearLayout indicator = (LinearLayout) findViewById(R.id.view_page_indicator);
