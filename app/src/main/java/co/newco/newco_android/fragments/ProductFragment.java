@@ -1,14 +1,22 @@
 package co.newco.newco_android.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import co.newco.newco_android.R;
+import co.newco.newco_android.activities.CompanyProfileActivity;
+import co.newco.newco_android.objects.Global;
+import co.newco.newco_android.objects.OnSwipeTouchListener;
 
 /**
  * Created by yass8n on 5/20/15.
@@ -17,6 +25,8 @@ public class ProductFragment extends Fragment {
     // Store instance variables
     private String title;
     private String description;
+    private float x1,x2;
+    static final int MIN_DISTANCE = 150;
 
     // newInstance constructor for creating fragment with arguments
     public static ProductFragment newInstance(String title, String description) {
@@ -42,9 +52,22 @@ public class ProductFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.product_fragment, container, false);
         TextView view_title = (TextView) view.findViewById(R.id.title);
-        TextView view_description = (TextView) view.findViewById(R.id.description);
         view_title.setText(title);
+        final TextView view_description = (TextView) view.findViewById(R.id.description);
         view_description.setText(description);
+        view_description.setMovementMethod(new ScrollingMovementMethod());
+//        view_description.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
+//            @Override
+//            public void onSwipeLeft() {
+//                Global.log("LEFT");
+//            }
+//
+//            @Override
+//            public void onSwipeRight() {
+//                Global.log("RIGHT");
+//            }
+//        });
         return view;
     }
+
 }
