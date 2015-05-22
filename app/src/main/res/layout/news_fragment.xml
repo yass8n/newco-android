@@ -13,7 +13,7 @@
         android:layout_gravity="fill"
         android:text="This is awesome! This is awesome! This is awesome! This is awesome! This is awesome!"
         android:autoLink="web"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textColor="@color/app_green"
         android:gravity="start|center"
         android:layout_marginLeft="15dp"

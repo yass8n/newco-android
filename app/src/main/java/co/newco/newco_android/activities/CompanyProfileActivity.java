@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.ProductFragment;
 import co.newco.newco_android.models.Investor;
+import co.newco.newco_android.models.Job;
 import co.newco.newco_android.objects.CustomBaseAdapter;
 import co.newco.newco_android.objects.Global;
 
@@ -31,6 +32,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
     FragmentPagerAdapter adapterViewPager;
     private Context context;
     private static CustomBaseAdapter<Investor> investorAdapter;
+    private static CustomBaseAdapter<Job> jobAdapter;
     private LayoutInflater inflater;
 
 
@@ -47,6 +49,9 @@ public class CompanyProfileActivity extends ActionBarActivity {
         initializeInvestors();
         initializeJobs();
         initializeNews();
+        initializeViewPager();
+    }
+    private void initializeViewPager(){
         ViewPager v_pager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         v_pager.setAdapter(adapterViewPager);
@@ -95,8 +100,51 @@ public class CompanyProfileActivity extends ActionBarActivity {
         Global.setListViewHeightBasedOnChildren(investors_list);
     }
     private void initializeJobs(){
+        class JobViewHolder {
+            TextView title;
+            TextView duration;
+            TextView location;
+            TextView department;
+        }
         View jobs_feed = findViewById(R.id.jobs_feed);
-        ListView jobs_list = (ListView) jobs_feed.findViewById(R.id.list_feed);
+        ((TextView) jobs_feed.findViewById(R.id.list_title)).setText("Jobs");
+        final ListView jobs_list = (ListView) jobs_feed.findViewById(R.id.list_feed);
+        final ArrayList<Job> jobs = new ArrayList<>();
+        for (int i = 0; i < 3; i ++){
+            Job job = new Job();
+            job.department = "Hardware Engineer";
+            job.title = "Customer Experience Specialist";
+            job.duration = "Full Time";
+            job.location = "New York";
+            jobs.add(job);
+        }
+        jobAdapter = new CustomBaseAdapter<Job>(jobs) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = convertView;
+                final JobViewHolder view_holder = new JobViewHolder();
+                if (view == null) {
+                    view = inflater.inflate(R.layout.jobs_fragment, parent, false);
+                    setViewHolder(view, view_holder);
+                }
+                final JobViewHolder holder = (JobViewHolder) view.getTag();
+                final Job job = this.models.get(position);
+                holder.title.setText(job.title);
+                holder.department.setText(job.department);
+                holder.duration.setText(job.duration);
+                holder.location.setText(job.location);
+                return view;
+            }
+            private void setViewHolder(View view, JobViewHolder view_holder){
+                view_holder.title = (TextView) view.findViewById(R.id.title);
+                view_holder.duration = (TextView) view.findViewById(R.id.duration);
+                view_holder.location = (TextView) view.findViewById(R.id.location);
+                view_holder.department = (TextView) view.findViewById(R.id.department);
+                view.setTag(view_holder);
+            }
+        };
+        jobs_list.setAdapter(jobAdapter);
+        Global.setListViewHeightBasedOnChildren(jobs_list);
     }
     private void initializeNews(){
         View news_feed = findViewById(R.id.news_feed);

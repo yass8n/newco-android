@@ -9,5 +9,4 @@ public class Investor {
     public int money;
     public ArrayList<String> pictures = new ArrayList<>();
     public String round;
-
 }
