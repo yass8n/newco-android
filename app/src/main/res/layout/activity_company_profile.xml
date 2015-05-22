@@ -374,9 +374,9 @@
 
             </LinearLayout>
 
-            <include layout="@layout/title_and_listview"
+            <include layout="@layout/title_and_linearlayout"
                 android:id="@+id/jobs_feed"/>
-            <include layout="@layout/title_and_listview"
+            <include layout="@layout/title_and_linearlayout"
                 android:id="@+id/news_feed"/>
 
         </LinearLayout>

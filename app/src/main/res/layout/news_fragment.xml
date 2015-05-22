@@ -4,12 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="20dp">
+    android:paddingBottom="30dp">
 
     <co.newco.newco_android.objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/news_title"
+        android:id="@+id/title"
         android:layout_gravity="fill"
         android:text="This is awesome! This is awesome! This is awesome! This is awesome! This is awesome!"
         android:autoLink="web"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="fill"
-        android:id="@+id/news_date"
+        android:id="@+id/date"
         android:text="03/12/92"
         android:textSize="15dp"
         android:gravity="start|center"
@@ -34,12 +34,13 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="8dp"
+        android:textColor="@color/light_gray"
         />
     <co.newco.newco_android.objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="fill"
-        android:id="@+id/news_link"
+        android:id="@+id/link"
         android:text="USATODAY.COM"
         android:autoLink="web"
         android:textColorLink="@android:color/black"

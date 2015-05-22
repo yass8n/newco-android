@@ -2,6 +2,7 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_view"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,7 +10,7 @@
         android:orientation="vertical" android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="match_parent">
-        <include layout="@layout/title_and_listview"
+        <include layout="@layout/title_and_linearlayout"
             android:id="@+id/investors_feed"/>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
         <RelativeLayout
             android:id="@+id/page_swipe_container"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="300dp"
             android:background="@color/app_green">
 
             <android.support.v4.view.ViewPager
@@ -81,9 +82,9 @@
                     />
             </RelativeLayout>
         </RelativeLayout>
-        <include layout="@layout/title_and_listview"
+        <include layout="@layout/title_and_linearlayout"
             android:id="@+id/jobs_feed"/>
-        <include layout="@layout/title_and_listview"
+        <include layout="@layout/title_and_linearlayout"
             android:id="@+id/news_feed"/>
     </LinearLayout>
 </ScrollView>
