@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="typeface" format="enum">
+        <enum name="reg" value="0"/>
+        <enum name="bold" value="1"/>
+        <enum name="light" value="2"/>
+        <enum name="black" value="3"/>
+        <enum name="sbold" value="4"/>
+        <enum name="thin" value="5"/>
+        <enum name="xbold" value="6"/>
+    </attr>
+
+    <declare-styleable name="fTextView">
+        <attr name="typeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="fEditText">
+        <attr name="typeface"/>
+    </declare-styleable>
+</resources>

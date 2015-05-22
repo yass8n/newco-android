@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="20dp"
     >
 
-    <TextView
+    <co.newco.newco_android.objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/job_title"
@@ -25,7 +26,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
+        <co.newco.newco_android.objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
@@ -39,14 +40,14 @@
             android:layout_marginEnd="5sp"
             android:layout_marginRight="5sp"
             />
-        <TextView
+        <co.newco.newco_android.objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="10sp"
             android:layout_gravity="center"
             android:text="&#8226;"/>
-        <TextView
+        <co.newco.newco_android.objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
@@ -60,14 +61,14 @@
             android:layout_marginEnd="5sp"
             android:layout_marginRight="5sp"
             />
-        <TextView
+        <co.newco.newco_android.objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="10sp"
             android:layout_gravity="center"
             android:text="&#8226;"/>
-        <TextView
+        <co.newco.newco_android.objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"

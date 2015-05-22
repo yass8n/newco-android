@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -60,7 +61,7 @@
                         android:layout_marginEnd="20dp"
                         />
 
-                    <TextView
+                    <co.newco.newco_android.objects.fTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/co_quote"
@@ -98,7 +99,7 @@
                         android:layout_marginEnd="20dp"
                         >
 
-                        <TextView
+                        <co.newco.newco_android.objects.fTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/co_snapshots"
@@ -189,7 +190,7 @@
                             android:background="@drawable/border_top_bottom_right_grey"
                             >
 
-                            <TextView
+                            <co.newco.newco_android.objects.fTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/founders"
@@ -206,7 +207,7 @@
                             android:background="@drawable/border_top_bottom_grey"
                             >
 
-                            <TextView
+                            <co.newco.newco_android.objects.fTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="RECENT INVESTORS"
@@ -237,7 +238,7 @@
                             android:background="@drawable/border_top_bottom_right_grey"
                             >
 
-                            <TextView
+                            <co.newco.newco_android.objects.fTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="bye"
@@ -253,7 +254,7 @@
                             android:background="@drawable/border_top_bottom_right_grey"
                             >
 
-                            <TextView
+                            <co.newco.newco_android.objects.fTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="maybe"
@@ -269,7 +270,7 @@
                             android:background="@drawable/border_top_bottom_grey"
                             >
 
-                            <TextView
+                            <co.newco.newco_android.objects.fTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="hello"
