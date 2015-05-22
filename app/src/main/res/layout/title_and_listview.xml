@@ -23,8 +23,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/list_feed"
-        android:layout_marginBottom="20dp">
+        android:id="@+id/list_feed">
     </ListView>
 
 </LinearLayout>

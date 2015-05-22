@@ -11,26 +11,39 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.ProductFragment;
+import co.newco.newco_android.models.Investor;
+import co.newco.newco_android.objects.CustomBaseAdapter;
+import co.newco.newco_android.objects.Global;
 
 
 public class CompanyProfileActivity extends ActionBarActivity {
     FragmentPagerAdapter adapterViewPager;
-    private Context context = this;
+    private Context context;
+    private static CustomBaseAdapter<Investor> investorAdapter;
+    private LayoutInflater inflater;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_profile);
-//        initializeVariables();
+        setContentView(R.layout.activity_company_profile_bottom);
+        initializeVariables();
     }
     private void initializeVariables(){
+        context = this;
+        inflater = (LayoutInflater)context.getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
         initializeInvestors();
         initializeJobs();
         initializeNews();
@@ -40,8 +53,46 @@ public class CompanyProfileActivity extends ActionBarActivity {
         setViewPageIndicator(v_pager);
     }
     private void initializeInvestors(){
+        class InvestorViewHolder {
+            TextView round;
+            LinearLayout images;
+            TextView money;
+        }
         View investors_feed = findViewById(R.id.investors_feed);
-        ListView investors_list = (ListView) investors_feed.findViewById(R.id.list_feed);
+        ((TextView) investors_feed.findViewById(R.id.list_title)).setText("Jobs");
+        final ListView investors_list = (ListView) investors_feed.findViewById(R.id.list_feed);
+        final ArrayList<Investor> investors = new ArrayList<>();
+        for (int i = 0; i < 3; i ++){
+            Investor investor = new Investor();
+            investor.money = i;
+            investor.round = "SEED";
+            investor.pictures.add("URL");
+            investors.add(investor);
+        }
+        investorAdapter = new CustomBaseAdapter<Investor>(investors) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view = convertView;
+                final InvestorViewHolder view_holder = new InvestorViewHolder();
+                if (view == null) {
+                    view = inflater.inflate(R.layout.investors_fragment, parent, false);
+                    setViewHolder(view, view_holder);
+                }
+                final InvestorViewHolder holder = (InvestorViewHolder) view.getTag();
+                final Investor investor = this.models.get(position);
+                holder.round.setText(investor.round);
+                holder.money.setText("$" + Integer.toString(investor.money) + "M");
+                return view;
+            }
+            private void setViewHolder(View view, InvestorViewHolder view_holder){
+                view_holder.round = (TextView) view.findViewById(R.id.co_round);
+                view_holder.images = (LinearLayout) view.findViewById(R.id.co_investors);
+                view_holder.money = (TextView) view.findViewById(R.id.money);
+                view.setTag(view_holder);
+            }
+        };
+        investors_list.setAdapter(investorAdapter);
+        Global.setListViewHeightBasedOnChildren(investors_list);
     }
     private void initializeJobs(){
         View jobs_feed = findViewById(R.id.jobs_feed);
@@ -49,7 +100,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
     }
     private void initializeNews(){
         View news_feed = findViewById(R.id.news_feed);
-        ListView investors_list = (ListView) news_feed.findViewById(R.id.list_feed);
+        ListView news_list = (ListView) news_feed.findViewById(R.id.list_feed);
     }
     private void setViewPageIndicator(final ViewPager v_pager){
         LayoutInflater inflater = (LayoutInflater)context.getSystemService
