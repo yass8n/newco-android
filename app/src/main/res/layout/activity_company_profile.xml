@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     >
 
@@ -523,6 +524,95 @@
                 />
 
         </RelativeLayout>
+        <include layout="@layout/title_and_linearlayout"
+            android:id="@+id/investors_feed"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:layout_gravity="center">
+
+            <co.newco.newco_android.objects.fTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/funding"
+                android:textColor="@color/black"
+                android:text="TOTAL FUNDING"
+                android:textSize="15dp"/>
+
+            <co.newco.newco_android.objects.fTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rounds"
+                android:text="2 ROUNDS"
+                android:textColor="@color/gray"
+                android:textSize="12dp"/>
+
+            <co.newco.newco_android.objects.fTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/money"
+                android:text="$15M"
+                android:textColor="@color/app_green"
+                android:textSize="40dp"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/page_swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/app_green">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vpPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/app_green"
+                android:id="@+id/view_page_indicator"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true"
+                />
+
+            <RelativeLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/next_page"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                >
+
+                <ImageView
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_centerInParent="true"
+                    android:src="@android:drawable/arrow_up_float"
+                    />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <include layout="@layout/title_and_linearlayout"
+            android:id="@+id/jobs_feed"/>
+
+        <include layout="@layout/title_and_linearlayout"
+            android:id="@+id/news_feed"/>
 
     </LinearLayout>
 
