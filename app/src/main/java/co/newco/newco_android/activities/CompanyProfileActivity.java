@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.ProductFragment;
@@ -54,18 +56,28 @@ public class CompanyProfileActivity extends ActionBarActivity {
         context = this;
         inflater = (LayoutInflater)context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
-        initializeInvestors();
-        initializeJobs();
-        initializeNews();
-        initializeViewPager();
+        initSnapshotButtons();
+        initInvestors();
+        initJobs();
+        initNews();
+        initViewPager();
     }
-    private void initializeViewPager(){
+    private void initSnapshotButtons() {
+        LayoutInflater inflater = getLayoutInflater();
+        LinearLayout snapshots = (LinearLayout) findViewById(R.id.linear_snapshots);
+        for(int i = 0; i < 3; i++) {
+            Button button = (Button) inflater.inflate(R.layout.snapshot_button, snapshots, false);
+            button.setText("Websites");
+            snapshots.addView(button);
+        }
+    }
+    private void initViewPager(){
         ViewPager v_pager = (ViewPager) findViewById(R.id.vpPager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         v_pager.setAdapter(adapterViewPager);
         setViewPageIndicator(v_pager);
     }
-    private void initializeInvestors(){
+    private void initInvestors(){
         View investors_feed = findViewById(R.id.investors_feed);
         ((TextView) investors_feed.findViewById(R.id.list_title)).setText("Investors");
         final LinearLayout investors_list = (LinearLayout) investors_feed.findViewById(R.id.list_feed);
@@ -84,7 +96,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
             investors_list.addView(view);
         }
     }
-    private void initializeJobs(){
+    private void initJobs(){
         View jobs_feed = findViewById(R.id.jobs_feed);
         ((TextView) jobs_feed.findViewById(R.id.list_title)).setText("Jobs");
         final LinearLayout jobs_list = (LinearLayout) jobs_feed.findViewById(R.id.list_feed);
@@ -108,7 +120,7 @@ public class CompanyProfileActivity extends ActionBarActivity {
             jobs_list.addView(view);
         }
     }
-    private void initializeNews(){
+    private void initNews(){
         View news_feed = findViewById(R.id.news_feed);
         ((TextView) news_feed.findViewById(R.id.list_title)).setText("News");
         final LinearLayout news_list = (LinearLayout) news_feed.findViewById(R.id.list_feed);
