@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,19 +22,28 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.squareup.okhttp.Response;
+
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import co.newco.newco_android.Network.RestClient;
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.ProductFragment;
 import co.newco.newco_android.models.Investor;
 import co.newco.newco_android.models.Job;
 import co.newco.newco_android.models.News;
+import co.newco.newco_android.models.Session;
 import co.newco.newco_android.objects.CustomBaseAdapter;
 import co.newco.newco_android.objects.Global;
 import co.newco.newco_android.objects.OnSwipeTouchListener;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Retrofit;
 
 
 public class CompanyProfileActivity extends ActionBarActivity {
@@ -51,7 +61,31 @@ public class CompanyProfileActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_profile);
         initializeVariables();
+        /*******
+         *******
+         *
+         * This was added just to test retrofit
+         *
+         *******
+         *******/
+        Call<List<Session>> call = RestClient.get().listSessions("08d2f1d3e2dfe3a420b228ad73413cb7", "json");
+        call.enqueue(new Callback<List<Session>>() {
+            @Override
+            public void onResponse(retrofit.Response<List<Session>> response, Retrofit retrofit) {
+                Log.e(response.toString(), "t");
+                for (Session sess : response.body()) {
+                    Log.i(sess.getId(), " (" + sess.getName() + ")");
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Log.e("t", "test");
+                Log.e("Callback failure", t.getMessage());
+            }
+        });
     }
+
     private void initializeVariables(){
         context = this;
         inflater = (LayoutInflater)context.getSystemService
