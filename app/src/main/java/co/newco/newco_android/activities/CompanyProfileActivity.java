@@ -62,42 +62,6 @@ public class CompanyProfileActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_profile);
         initializeVariables();
-        /*******
-         *******
-         *
-         * This was added just to test retrofit
-         *
-         *******
-         *******/
-        RestClient restClient = RestClient.getInstance();
-        restClient.setRoot("http://newcobaybridgefestivals2015.sched.org");
-//        Call<List<Session>> call = restClient.get().listSessions();
-//        call.enqueue(new Callback<List<Session>>() {
-//            @Override
-//            public void onResponse(retrofit.Response<List<Session>> response, Retrofit retrofit) {
-//                Log.e(response.toString(), "t");
-//                for (Session sess : response.body()) {
-//                    Log.i(sess.getId(), " (" + (sess.getSpeakers() != null ? sess.getSpeakers().get(0).getName() : "none!") + ")");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Throwable t) {
-//                Log.e("Callback failure", t.getMessage());
-//            }
-//        });
-        Call<User> userCall = restClient.get().getUser("yaseenaniss");
-        userCall.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(retrofit.Response<User> response, Retrofit retrofit) {
-                Log.e("email", response.body().getEmail());
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-
-            }
-        });
     }
 
     private void initializeVariables(){
