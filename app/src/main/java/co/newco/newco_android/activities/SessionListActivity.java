@@ -1,81 +1,69 @@
 package co.newco.newco_android.activities;
 
+import android.app.Activity;
+import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
+import android.widget.ExpandableListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 
-import co.newco.newco_android.Network.RestClient;
+import co.newco.newco_android.AppController;
 import co.newco.newco_android.R;
 import co.newco.newco_android.models.Session;
-import co.newco.newco_android.models.User;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Retrofit;
+
 
 public class SessionListActivity extends ActionBarActivity {
-    private ListView sessionsList;
+    private AppController appController = AppController.getInstance();
+    private List<Session> sessions;
+    private Hashtable<String, ArrayList<Session>> sessionGroupDayHash;
+    private ExpandableListView sessionsList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_list);
-        sessionsList = (ListView) findViewById(R.id.sessionList);
-        /*******
-         *******
-         *
-         * This was added just to test retrofit
-         *
-         *******
-         *******/
-        RestClient restClient = RestClient.getInstance();
-        restClient.setRoot("http://newcobaybridgefestivals2015.sched.org");
-        Call<List<Session>> call = restClient.get().listSessions();
-        call.enqueue(new Callback<List<Session>>() {
+        final Activity activity = this;
+        sessionsList = (ExpandableListView) findViewById(R.id.sessionList);
+        sessionsList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
-            public void onResponse(retrofit.Response<List<Session>> response, Retrofit retrofit) {
-                Log.e(response.toString(), "t");
-                ArrayList<String> sessionsNames = new ArrayList<String>();
-                for (Session sess : response.body()) {
-                    Log.i(sess.getId(), " (" + (sess.getSpeakers() != null ? sess.getSpeakers().get(0).getName() : "none!") + ")");
-                    sessionsNames.add(sess.getName());
-                }
-                StableArrayAdapter adapter = new StableArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1, sessionsNames);
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                // Doing nothing
+                return true;
+            }
+        });
+
+        appController.getSessionData(new AppController.handleSessionResponse() {
+            @Override
+            public void handleSessionResponse() {
+                sessions = appController.getSessions();
+                sessionGroupDayHash = appController.getSessionGroupDayHash();
+                MyAdapter adapter = new MyAdapter(activity);
                 sessionsList.setAdapter(adapter);
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.e("Callback failure", t.getMessage());
+                for(int i=0; i < adapter.getGroupCount(); i++)
+                    sessionsList.expandGroup(i);
             }
         });
-        Call<User> userCall = restClient.get().getUser("yaseenaniss");
-        userCall.enqueue(new Callback<User>() {
-            @Override
-            public void onResponse(retrofit.Response<User> response, Retrofit retrofit) {
-                Log.e("email", response.body().getEmail());
-
-            }
-
-            @Override
-            public void onFailure(Throwable t) {
-                Log.e("Callback failure", t.getMessage());
-            }
-        });
-
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,29 +87,91 @@ public class SessionListActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class StableArrayAdapter extends ArrayAdapter<String> {
+    private class MyAdapter extends BaseExpandableListAdapter {
 
-        HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
 
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  List<String> objects) {
-            super(context, textViewResourceId, objects);
-            for (int i = 0; i < objects.size(); ++i) {
-                mIdMap.put(objects.get(i), i);
-            }
+        public LayoutInflater inflater;
+        public Activity activity;
+        private ArrayList<String> keys;
+
+        public MyAdapter(Activity act) {
+            activity = act;
+            inflater = act.getLayoutInflater();
+            keys = new ArrayList<>(sessionGroupDayHash.keySet());
         }
 
         @Override
-        public long getItemId(int position) {
-            String item = getItem(position);
-            return mIdMap.get(item);
+        public Object getChild(int groupPosition, int childPosition) {
+            return sessionGroupDayHash.get(keys.get(groupPosition)).get(childPosition);
+        }
+
+        @Override
+        public long getChildId(int groupPosition, int childPosition) {
+            return 0;
+        }
+
+        @Override
+        public View getChildView(int groupPosition, final int childPosition,
+                                 boolean isLastChild, View convertView, ViewGroup parent) {
+            final Session children = (Session) getChild(groupPosition, childPosition);
+            TextView text = null;
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.session_list_item, null);
+            }
+            text = (TextView) convertView.findViewById(R.id.textView);
+            text.setText(sessions.get(childPosition).getName());
+            return convertView;
+        }
+
+        @Override
+        public int getChildrenCount(int groupPosition) {
+            return sessionGroupDayHash.get(keys.get(groupPosition)).size();
+        }
+
+        @Override
+        public Object getGroup(int groupPosition) {
+            return sessionGroupDayHash.get(keys.get(groupPosition));
+        }
+
+        @Override
+        public int getGroupCount() {
+            return keys.size();
+        }
+
+        @Override
+        public void onGroupCollapsed(int groupPosition) {
+            super.onGroupCollapsed(groupPosition);
+        }
+
+        @Override
+        public void onGroupExpanded(int groupPosition) {
+            super.onGroupExpanded(groupPosition);
+        }
+
+        @Override
+        public long getGroupId(int groupPosition) {
+            return 0;
+        }
+
+        @Override
+        public View getGroupView(int groupPosition, boolean isExpanded,
+                                 View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.session_list_header, null);
+            }
+            TextView text = (TextView) convertView.findViewById(R.id.text);
+            text.setText(keys.get(groupPosition));
+            return convertView;
         }
 
         @Override
         public boolean hasStableIds() {
-            return true;
+            return false;
         }
 
+        @Override
+        public boolean isChildSelectable(int groupPosition, int childPosition) {
+            return false;
+        }
     }
-
 }
