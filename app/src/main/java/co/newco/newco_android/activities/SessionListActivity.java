@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +21,7 @@ import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -58,7 +63,7 @@ public class SessionListActivity extends ActionBarActivity {
                 sessionGroupDayHash = appController.getSessionGroupDayHash();
                 MyAdapter adapter = new MyAdapter(activity);
                 sessionsList.setAdapter(adapter);
-                for(int i=0; i < adapter.getGroupCount(); i++)
+                for (int i = 0; i < adapter.getGroupCount(); i++)
                     sessionsList.expandGroup(i);
             }
         });
@@ -113,13 +118,31 @@ public class SessionListActivity extends ActionBarActivity {
         @Override
         public View getChildView(int groupPosition, final int childPosition,
                                  boolean isLastChild, View convertView, ViewGroup parent) {
-            final Session children = (Session) getChild(groupPosition, childPosition);
-            TextView text = null;
+            Session sess = sessions.get(childPosition);
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.session_list_item, null);
             }
-            text = (TextView) convertView.findViewById(R.id.textView);
-            text.setText(sessions.get(childPosition).getName());
+
+
+            TextView sessionName = (TextView) convertView.findViewById(R.id.sessionName);
+            sessionName.setText(sess.getName());
+
+            TextView sessionTime = (TextView) convertView.findViewById(R.id.sessionTime);
+            sessionTime.setText(sess.getEvent_start_time() + " - " + sess.getEvent_end_time());
+
+            TextView sessionSpeaker = (TextView) convertView.findViewById(R.id.sessionSpeaker);
+            String speaker = sess.getTalkerPerson();
+            sessionSpeaker.setText(speaker);
+
+            TextView sessionName2 = (TextView) convertView.findViewById(R.id.sessionName2);
+            sessionName2.setText(sess.getName());
+
+            LinearLayout sessionItem = (LinearLayout) convertView.findViewById(R.id.sessionItem);
+            String colorFromEvent = sess.getSessionColor();
+
+            GradientDrawable background = (GradientDrawable) sessionItem.getBackground();
+            background.setColor(Color.parseColor(colorFromEvent));
+
             return convertView;
         }
 

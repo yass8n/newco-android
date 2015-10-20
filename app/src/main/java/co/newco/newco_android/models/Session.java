@@ -2,11 +2,12 @@ package co.newco.newco_android.models;
 
 import java.util.ArrayList;
 
+import co.newco.newco_android.AppController;
+
 /**
  * Created by jayd on 10/13/15.
  */
 public class Session{
-
     private String event_key;
     private String active;
     private String name;
@@ -55,6 +56,18 @@ public class Session{
     private String event_type_sort;
     private String seats_status;
     private String seats_title;
+
+    public String getSessionColor(){
+       return AppController.getInstance().getColorsHash().get(event_type.split(",")[0].trim());
+    }
+
+    public String getTalkerPerson(){
+        if(speakers != null && speakers.size() > 0) return speakers.get(0).getName();
+        if(artists != null && artists.size() > 0) return artists.get(0).getName();
+        if(volunteers != null && volunteers.size() > 0) return volunteers.get(0).getName();
+
+        return "";
+    }
 
     public String getEvent_key() {
         return event_key;
