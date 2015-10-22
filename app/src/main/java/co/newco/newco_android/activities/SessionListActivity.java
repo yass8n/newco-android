@@ -24,6 +24,7 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -141,10 +142,15 @@ public class SessionListActivity extends ActionBarActivity {
             TextView sessionVenue = (TextView) convertView.findViewById(R.id.sessionVenue);
             sessionVenue.setText(sess.getVenue());
 
-            LinearLayout sessionItem = (LinearLayout) convertView.findViewById(R.id.sessionItem);
+            TextView sessionSeats = (TextView) convertView.findViewById(R.id.sessionSeats);
+            sessionSeats.setText(sess.getSeats_title());
+            GradientDrawable background = (GradientDrawable) sessionSeats.getBackground();
+            background.setColor(Color.parseColor("#000000"));
+
+            RelativeLayout sessionItem = (RelativeLayout) convertView.findViewById(R.id.sessionItem);
             String colorFromEvent = sess.getSessionColor();
 
-            GradientDrawable background = (GradientDrawable) sessionItem.getBackground();
+            background = (GradientDrawable) sessionItem.getBackground();
             background.setColor(Color.parseColor(colorFromEvent));
 
             return convertView;

@@ -1,5 +1,7 @@
 package co.newco.newco_android.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 import co.newco.newco_android.AppController;
@@ -54,8 +56,8 @@ public class Session{
     private String lat;
     private String lon;
     private String event_type_sort;
-    private String seats_status;
-    private String seats_title;
+    @SerializedName("seats-status") private String seats_status;
+    @SerializedName("seats-title") private String seats_title;
 
     public String getSessionColor(){
        return AppController.getInstance().getColorsHash().get(event_type.split(",")[0].trim());

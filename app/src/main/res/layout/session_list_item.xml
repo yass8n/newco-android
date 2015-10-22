@@ -3,7 +3,7 @@
      android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout android:orientation="vertical" android:layout_width="match_parent"
+    <RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
         android:layout_marginLeft="30dp"
         android:layout_marginBottom="5dp"
@@ -12,7 +12,7 @@
         android:background="@drawable/layout_round_bg">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="195dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
@@ -23,20 +23,43 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="2dp"
-        android:paddingBottom="2dp" />
+        android:paddingBottom="2dp"
+        android:layout_toLeftOf="@+id/sessionSeats"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <TextView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/sessionSeats"
+            android:textSize="4pt"
+            android:background="@drawable/layout_round_bg"
+            android:autoText="false"
+            android:layout_alignBaseline="@+id/sessionName"
+            android:layout_alignBottom="@+id/sessionName"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:textStyle="bold" />
+
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/sessionTime"
         android:textColor="#000"
-        android:textSize="6pt"
+        android:textSize="5pt"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="2dp"
-        android:paddingBottom="2dp" />
+        android:paddingBottom="2dp"
+            android:layout_below="@+id/sessionName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/sessionSeats"
+            android:layout_toStartOf="@+id/sessionSeats" />
 
     <TextView
         android:layout_width="match_parent"
@@ -45,11 +68,15 @@
         android:text="Large Text"
         android:id="@+id/sessionSpeaker"
         android:textColor="#000"
-        android:textSize="6pt"
+        android:textSize="4pt"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="2dp"
-        android:paddingBottom="2dp" />
+        android:paddingBottom="2dp"
+        android:layout_below="@+id/sessionTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textIsSelectable="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -58,10 +85,15 @@
         android:text="Large Text"
         android:id="@+id/sessionVenue"
         android:textColor="#000"
-        android:textSize="6pt"
+        android:textSize="4pt"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingTop="2dp"
-        android:paddingBottom="2dp" />
-    </LinearLayout>
+        android:paddingBottom="2dp"
+        android:layout_below="@+id/sessionSpeaker"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textIsSelectable="false" />
+
+    </RelativeLayout>
 </RelativeLayout>
