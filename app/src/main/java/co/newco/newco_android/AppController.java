@@ -2,6 +2,7 @@ package co.newco.newco_android;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -140,6 +141,10 @@ public class AppController extends Application {
 
     public static synchronized AppController getInstance() {
         return mInstance;
+    }
+
+    public void Toast(String s) {
+        Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
 
     public static HashMap<String, String> COLOR_HASH = new HashMap<String, String>(){{

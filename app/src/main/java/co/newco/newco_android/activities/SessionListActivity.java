@@ -27,6 +27,8 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -34,6 +36,7 @@ import java.util.List;
 
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.R;
+import co.newco.newco_android.fragments.SliderListFragment;
 import co.newco.newco_android.models.Session;
 import co.newco.newco_android.models.Speaker;
 
@@ -43,6 +46,9 @@ public class SessionListActivity extends ActionBarActivity {
     private List<Session> sessions;
     private Hashtable<String, ArrayList<Session>> sessionGroupDayHash;
     private ExpandableListView sessionsList;
+
+    private SlidingMenu menu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +76,18 @@ public class SessionListActivity extends ActionBarActivity {
                     sessionsList.expandGroup(i);
             }
         });
-    }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_session_list, menu);
-        return true;
+        menu = new SlidingMenu(this);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        menu.setTouchmodeMarginThreshold(100);
+        menu.setBehindWidth(500);
+        menu.setFadeDegree(0.35f);
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        menu.setMenu(R.layout.menu_frame);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.menu_frame, new SliderListFragment())
+                .commit();
     }
 
     @Override
@@ -93,6 +103,26 @@ public class SessionListActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu notMyMenu) {
+        if (menu.isMenuShowing()) {
+            menu.showContent();
+        } else {
+            menu.toggle(true);
+        }
+        return false;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (menu.isMenuShowing()) {
+            menu.showContent();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     private class MyAdapter extends BaseExpandableListAdapter {
