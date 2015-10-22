@@ -18,7 +18,12 @@
         android:text="Large Text"
         android:id="@+id/sessionName"
         android:textColor="#000"
-        android:textSize="10pt" />
+        android:textSize="6pt"
+        android:textStyle="bold"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -27,7 +32,11 @@
         android:text="Large Text"
         android:id="@+id/sessionTime"
         android:textColor="#000"
-        android:textSize="8pt" />
+        android:textSize="6pt"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -36,15 +45,23 @@
         android:text="Large Text"
         android:id="@+id/sessionSpeaker"
         android:textColor="#000"
-        android:textSize="8pt" />
+        android:textSize="6pt"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/sessionName2"
+        android:id="@+id/sessionVenue"
         android:textColor="#000"
-        android:textSize="8pt" />
+        android:textSize="6pt"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp" />
     </LinearLayout>
 </RelativeLayout>

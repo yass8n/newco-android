@@ -34,6 +34,7 @@ import java.util.List;
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.R;
 import co.newco.newco_android.models.Session;
+import co.newco.newco_android.models.Speaker;
 
 
 public class SessionListActivity extends ActionBarActivity {
@@ -118,7 +119,7 @@ public class SessionListActivity extends ActionBarActivity {
         @Override
         public View getChildView(int groupPosition, final int childPosition,
                                  boolean isLastChild, View convertView, ViewGroup parent) {
-            Session sess = sessions.get(childPosition);
+            Session sess = (Session) getChild(groupPosition, childPosition);
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.session_list_item, null);
             }
@@ -131,11 +132,13 @@ public class SessionListActivity extends ActionBarActivity {
             sessionTime.setText(sess.getEvent_start_time() + " - " + sess.getEvent_end_time());
 
             TextView sessionSpeaker = (TextView) convertView.findViewById(R.id.sessionSpeaker);
-            String speaker = sess.getTalkerPerson();
-            sessionSpeaker.setText(speaker);
+            String speakers = "";
+            // comma seperate speakers
+            for(int i = 0; sess.getSpeakers() != null && i < sess.getSpeakers().size(); i++){speakers += sess.getSpeakers().get(i).getName() + (i+1 < sess.getSpeakers().size() ?  ", "  : "");};
+            sessionSpeaker.setText(speakers);
 
-            TextView sessionName2 = (TextView) convertView.findViewById(R.id.sessionName2);
-            sessionName2.setText(sess.getName());
+            TextView sessionVenue = (TextView) convertView.findViewById(R.id.sessionVenue);
+            sessionVenue.setText(sess.getVenue());
 
             LinearLayout sessionItem = (LinearLayout) convertView.findViewById(R.id.sessionItem);
             String colorFromEvent = sess.getSessionColor();

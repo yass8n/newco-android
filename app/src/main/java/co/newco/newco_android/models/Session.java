@@ -61,14 +61,6 @@ public class Session{
        return AppController.getInstance().getColorsHash().get(event_type.split(",")[0].trim());
     }
 
-    public String getTalkerPerson(){
-        if(speakers != null && speakers.size() > 0) return speakers.get(0).getName();
-        if(artists != null && artists.size() > 0) return artists.get(0).getName();
-        if(volunteers != null && volunteers.size() > 0) return volunteers.get(0).getName();
-
-        return "";
-    }
-
     public String getEvent_key() {
         return event_key;
     }

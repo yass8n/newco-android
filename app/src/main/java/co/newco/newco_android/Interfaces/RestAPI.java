@@ -2,16 +2,11 @@ package co.newco.newco_android.Interfaces;
 
 import java.util.List;
 
-import co.newco.newco_android.Network.Responses.SessionResponse;
 import co.newco.newco_android.models.Session;
 
 import co.newco.newco_android.models.User;
 import retrofit.Call;
-import retrofit.Callback;
-import retrofit.http.Body;
 import retrofit.http.GET;
-import retrofit.http.Headers;
-import retrofit.http.POST;
 import retrofit.http.Query;
 
 /**
