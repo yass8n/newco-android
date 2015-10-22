@@ -80,7 +80,7 @@ public class SessionListActivity extends ActionBarActivity {
         menu = new SlidingMenu(this);
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         menu.setTouchmodeMarginThreshold(100);
-        menu.setBehindWidth(500);
+        menu.setBehindWidth(800);
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.menu_frame);
