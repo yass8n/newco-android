@@ -56,6 +56,7 @@ public class SessionListActivity extends ActionBarActivity {
                 return true;
             }
         });
+        sessionsList.setGroupIndicator(null);
 
         appController.getSessionData(new AppController.handleSessionResponse() {
             @Override
@@ -186,7 +187,9 @@ public class SessionListActivity extends ActionBarActivity {
                 convertView = inflater.inflate(R.layout.session_list_header, null);
             }
             TextView text = (TextView) convertView.findViewById(R.id.text);
-            text.setText(keys.get(groupPosition));
+            Session firstSess = sessionGroupDayHash.get(keys.get(groupPosition)).get(0);
+
+            text.setText(firstSess.getEvent_start_weekday() + ", " + firstSess.getEvent_start_month() + " " + firstSess.getEvent_start_day());
             return convertView;
         }
 
