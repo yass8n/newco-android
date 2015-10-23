@@ -6,12 +6,14 @@ import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.Network.RestClient;
 import co.newco.newco_android.models.Session;
+import co.newco.newco_android.models.User;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -25,8 +27,10 @@ public class AppController extends Application {
     private static AppController mInstance;
     private String currentUrl = "http://newcobaybridgefestivals2015.sched.org";
     private List<Session> sessions = null;
+    private List<User> users = null;
     private Hashtable<String, ArrayList<Session>> sessionGroupHash = null;
     private Hashtable<String, String> colorsHash = null;
+    private List<User> attendees;
 
     public Hashtable<String, String> getColorsHash() {
         return colorsHash;
@@ -36,22 +40,18 @@ public class AppController extends Application {
         return sessionGroupDayHash;
     }
 
-    public void setSessionGroupDayHash(Hashtable<String, ArrayList<Session>> sessionGroupDayHash) {
-        this.sessionGroupDayHash = sessionGroupDayHash;
-    }
-
     private Hashtable<String, ArrayList<Session>> sessionGroupDayHash = null;
 
     public Hashtable<String, ArrayList<Session>> getSessionGroupHash() {
         return sessionGroupHash;
     }
 
-    public void setSessionGroupHash(Hashtable<String, ArrayList<Session>> sessionGroupHash) {
-        this.sessionGroupHash = sessionGroupHash;
+    public List<User> getAttendees() {
+        return attendees;
     }
 
-    public interface handleSessionResponse{
-        void handleSessionResponse();
+    public interface handleResponse{
+        void handleResponse();
     }
 
 
@@ -66,15 +66,37 @@ public class AppController extends Application {
         initSingletons();
     }
 
-    public void getSessionData(final handleSessionResponse sess){
+    public void getUsersData(final handleResponse callback){
+        if(users == null){
+            Call<List<User>> call = RestClient.getInstance().get().listUsers();
+            call.enqueue(new Callback<List<User>>() {
+                @Override
+                public void onResponse(Response<List<User>> response, Retrofit retrofit) {
+                    users = response.body();
+                    setupUserData();
+                    callback.handleResponse();
+                }
+                @Override
+                public void onFailure(Throwable t) {
+                    Log.e("getUsersData error", t.getMessage());
+
+                }
+            });
+        }
+        else{
+            callback.handleResponse();
+        }
+    }
+
+    public void getSessionData(final handleResponse callback){
         if(sessions == null) {
             Call<List<Session>> call = RestClient.getInstance().get().listSessions();
             call.enqueue(new Callback<List<Session>>() {
                 @Override
                 public void onResponse(Response<List<Session>> response, Retrofit retrofit) {
                     sessions = response.body();
-                    setupSessionData(sessions);
-                    sess.handleSessionResponse();
+                    setupSessionData();
+                    callback.handleResponse();
                 }
 
                 @Override
@@ -84,11 +106,11 @@ public class AppController extends Application {
             });
         }
         else{
-            sess.handleSessionResponse();
+            callback.handleResponse();
         }
     }
 
-    protected void setupSessionData(List<Session> sessions){
+    protected void setupSessionData(){
         sessionGroupHash = new Hashtable<>();
         sessionGroupDayHash = new Hashtable<>();
         colorsHash = new Hashtable<>();
@@ -118,6 +140,16 @@ public class AppController extends Application {
         }
     }
 
+    protected void setupUserData(){
+        attendees = new ArrayList<>();
+        for(User user : users){
+            List<String> userRole = new ArrayList<>(Arrays.asList(user.getRole().split(", ")));
+            if(userRole.contains("attendee")){
+                attendees.add(user);
+            }
+        }
+    }
+
     protected void initSingletons() {
         RestClient.getInstance().setRoot(currentUrl);
     }
@@ -126,8 +158,8 @@ public class AppController extends Application {
         return sessions;
     }
 
-    public void setSessions(List<Session> sessions) {
-        this.sessions = sessions;
+    public List<User> getUsers() {
+        return users;
     }
 
     public String getCurrentUrl() {
