@@ -44,6 +44,8 @@ import co.newco.newco_android.fragments.SliderListFragment;
 import co.newco.newco_android.models.Session;
 import co.newco.newco_android.models.Speaker;
 import co.newco.newco_android.models.User;
+import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
+import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 
 public class SessionListActivity extends ActionBarActivity {
@@ -51,7 +53,7 @@ public class SessionListActivity extends ActionBarActivity {
     private SessionData sessionData = SessionData.getInstance();
     private List<Session> sessions;
     private Hashtable<String, ArrayList<Session>> sessionGroupDayHash;
-    private ExpandableListView sessionsList;
+    private StickyListHeadersListView sessionsList;
 
     private SlidingMenu menu;
 
@@ -78,15 +80,15 @@ public class SessionListActivity extends ActionBarActivity {
             }
         });
 
-        sessionsList = (ExpandableListView) findViewById(R.id.sessionList);
-        sessionsList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                // Doing nothing
-                return true;
-            }
-        });
-        sessionsList.setGroupIndicator(null);
+        sessionsList = (StickyListHeadersListView) findViewById(R.id.sessionList);
+//        sessionsList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+//            @Override
+//            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+//                // Doing nothing
+//                return true;
+//            }
+//        });
+//        sessionsList.setGroupIndicator(null);
 
         sessionData.getSessionData(new SimpleResponsehandler() {
             @Override
@@ -94,10 +96,11 @@ public class SessionListActivity extends ActionBarActivity {
                 sessions = sessionData.getSessions();
                 sessionGroupDayHash = sessionData.getSessionGroupDayHash();
                 menu = appController.createSliderMenu(activity);
+
                 MyAdapter adapter = new MyAdapter(activity);
                 sessionsList.setAdapter(adapter);
-                for (int i = 0; i < adapter.getGroupCount(); i++)
-                    sessionsList.expandGroup(i);
+                //for (int i = 0; i < adapter.getGroupCount(); i++)
+                 //   sessionsList.expandGroup(i);
             }
         });
 
@@ -139,7 +142,7 @@ public class SessionListActivity extends ActionBarActivity {
         }
     }
 
-    private class MyAdapter extends BaseExpandableListAdapter {
+    private class MyAdapter extends BaseAdapter implements StickyListHeadersAdapter {
 
 
         public LayoutInflater inflater;
@@ -151,21 +154,25 @@ public class SessionListActivity extends ActionBarActivity {
             inflater = act.getLayoutInflater();
             keys = new ArrayList<>(sessionGroupDayHash.keySet());
         }
-
         @Override
-        public Object getChild(int groupPosition, int childPosition) {
-            return sessionGroupDayHash.get(keys.get(groupPosition)).get(childPosition);
+        public int getCount() {
+            return sessions.size();
         }
 
         @Override
-        public long getChildId(int groupPosition, int childPosition) {
-            return 0;
+        public Object getItem(int position) {
+            return sessions.get(position);
         }
 
         @Override
-        public View getChildView(int groupPosition, final int childPosition,
-                                 boolean isLastChild, View convertView, ViewGroup parent) {
-            Session sess = (Session) getChild(groupPosition, childPosition);
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            Session sess = (Session) getItem(position);
+
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.session_list_item, null);
             }
@@ -201,56 +208,21 @@ public class SessionListActivity extends ActionBarActivity {
         }
 
         @Override
-        public int getChildrenCount(int groupPosition) {
-            return sessionGroupDayHash.get(keys.get(groupPosition)).size();
-        }
-
-        @Override
-        public Object getGroup(int groupPosition) {
-            return sessionGroupDayHash.get(keys.get(groupPosition));
-        }
-
-        @Override
-        public int getGroupCount() {
-            return keys.size();
-        }
-
-        @Override
-        public void onGroupCollapsed(int groupPosition) {
-            super.onGroupCollapsed(groupPosition);
-        }
-
-        @Override
-        public void onGroupExpanded(int groupPosition) {
-            super.onGroupExpanded(groupPosition);
-        }
-
-        @Override
-        public long getGroupId(int groupPosition) {
-            return 0;
-        }
-
-        @Override
-        public View getGroupView(int groupPosition, boolean isExpanded,
-                                 View convertView, ViewGroup parent) {
+        public View getHeaderView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = inflater.inflate(R.layout.session_list_header, null);
             }
             TextView text = (TextView) convertView.findViewById(R.id.text);
-            Session firstSess = sessionGroupDayHash.get(keys.get(groupPosition)).get(0);
+            Session firstSess = sessions.get(position);
 
             text.setText(firstSess.getEvent_start_weekday() + ", " + firstSess.getEvent_start_month() + " " + firstSess.getEvent_start_day());
             return convertView;
         }
 
         @Override
-        public boolean hasStableIds() {
-            return false;
+        public long getHeaderId(int position) {
+            return sessions.get(position).getStart_date().hashCode();
         }
 
-        @Override
-        public boolean isChildSelectable(int groupPosition, int childPosition) {
-            return false;
-        }
     }
 }
