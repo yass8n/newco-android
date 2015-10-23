@@ -17,6 +17,70 @@ public class User {
     private String company;
     private String privacy_mode;
     private List<Ticket> tickets;
+    private String lastactive;
+    private String url;
+    private String about;
+    private String role;
+    private String phone;
+    private String avatar;
+    private String id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getLastactive() {
+        return lastactive;
+    }
+
+    public void setLastactive(String lastactive) {
+        this.lastactive = lastactive;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
 
     public String getUsername() {
         return username;

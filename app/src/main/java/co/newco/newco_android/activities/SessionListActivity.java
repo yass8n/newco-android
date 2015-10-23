@@ -3,6 +3,7 @@ package co.newco.newco_android.activities;
 import android.app.Activity;
 import android.app.ExpandableListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
@@ -39,6 +41,7 @@ import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.SliderListFragment;
 import co.newco.newco_android.models.Session;
 import co.newco.newco_android.models.Speaker;
+import co.newco.newco_android.models.User;
 
 
 public class SessionListActivity extends ActionBarActivity {
@@ -55,6 +58,23 @@ public class SessionListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_list);
         final Activity activity = this;
+
+
+        Button schedule = (Button) findViewById(R.id.btn_schedule);
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), SessionListActivity.class));
+            }
+        });
+        Button directory = (Button) findViewById(R.id.btn_directory);
+        directory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AttendeesListActivity.class));
+            }
+        });
+
         sessionsList = (ExpandableListView) findViewById(R.id.sessionList);
         sessionsList.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
@@ -65,9 +85,9 @@ public class SessionListActivity extends ActionBarActivity {
         });
         sessionsList.setGroupIndicator(null);
 
-        appController.getSessionData(new AppController.handleSessionResponse() {
+        appController.getSessionData(new AppController.handleResponse() {
             @Override
-            public void handleSessionResponse() {
+            public void handleResponse() {
                 sessions = appController.getSessions();
                 sessionGroupDayHash = appController.getSessionGroupDayHash();
                 MyAdapter adapter = new MyAdapter(activity);
@@ -79,7 +99,7 @@ public class SessionListActivity extends ActionBarActivity {
 
         menu = new SlidingMenu(this);
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-        menu.setTouchmodeMarginThreshold(100);
+        menu.setTouchmodeMarginThreshold(500);
         menu.setBehindWidth(800);
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);

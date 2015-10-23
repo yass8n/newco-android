@@ -17,4 +17,6 @@ public interface RestAPI {
     Call<List<Session>> listSessions();
     @GET("/api/user/get?by=username&fields=username,name,email,twitter_uid,fb_uid,position,location,company,privacy_mode")
     Call<User> getUser(@Query("term") String term);
+    @GET("/api/user/list?fields=username,name,email,twitter_uid,fb_uid,lastactive,position,location,company,sessions,url,about,privacy_mode,role,phone,avatar,id")
+    Call<List<User>> listUsers();
 }
