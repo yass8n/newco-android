@@ -37,6 +37,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.AppController;
+import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.SliderListFragment;
 import co.newco.newco_android.models.Session;
@@ -46,6 +47,7 @@ import co.newco.newco_android.models.User;
 
 public class SessionListActivity extends ActionBarActivity {
     private AppController appController = AppController.getInstance();
+    private SessionData sessionData = SessionData.getInstance();
     private List<Session> sessions;
     private Hashtable<String, ArrayList<Session>> sessionGroupDayHash;
     private ExpandableListView sessionsList;
@@ -57,7 +59,7 @@ public class SessionListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_list);
-        final Activity activity = this;
+        final ActionBarActivity activity = this;
 
 
         Button schedule = (Button) findViewById(R.id.btn_schedule);
@@ -85,11 +87,12 @@ public class SessionListActivity extends ActionBarActivity {
         });
         sessionsList.setGroupIndicator(null);
 
-        appController.getSessionData(new AppController.handleResponse() {
+        sessionData.getSessionData(new AppController.handleResponse() {
             @Override
             public void handleResponse() {
-                sessions = appController.getSessions();
-                sessionGroupDayHash = appController.getSessionGroupDayHash();
+                sessions = sessionData.getSessions();
+                sessionGroupDayHash = sessionData.getSessionGroupDayHash();
+                menu = appController.createSliderMenu(activity);
                 MyAdapter adapter = new MyAdapter(activity);
                 sessionsList.setAdapter(adapter);
                 for (int i = 0; i < adapter.getGroupCount(); i++)
@@ -97,17 +100,7 @@ public class SessionListActivity extends ActionBarActivity {
             }
         });
 
-        menu = new SlidingMenu(this);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-        menu.setTouchmodeMarginThreshold(500);
-        menu.setBehindWidth(800);
-        menu.setFadeDegree(0.35f);
-        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        menu.setMenu(R.layout.menu_frame);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.menu_frame, new SliderListFragment())
-                .commit();
+
     }
 
     @Override

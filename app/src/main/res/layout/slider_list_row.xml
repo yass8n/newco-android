@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="50dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="20dp"
+    android:layout_height="20dp"
     android:orientation="horizontal" >
+
+    <ImageButton
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:id="@+id/imageButton"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/simple_circle"
+        android:layout_centerVertical="true"
+        android:paddingLeft="0dp"
+        android:layout_marginLeft="10dp" />
 
     <TextView
         android:id="@+id/row_title"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.80"
         android:gravity="center_vertical"
         android:padding="10dp"
         android:text="Medium Text"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:textSize="12dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentBottom="false"
+        android:layout_toRightOf="@+id/imageButton"
+        android:layout_alignParentStart="false"
+        android:layout_centerVertical="true" />
 
-</LinearLayout>
+</RelativeLayout>

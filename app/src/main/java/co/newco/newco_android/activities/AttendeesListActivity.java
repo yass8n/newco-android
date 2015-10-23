@@ -21,12 +21,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.newco.newco_android.AppController;
+import co.newco.newco_android.Network.UserData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.SliderListFragment;
 import co.newco.newco_android.models.User;
 
 public class AttendeesListActivity extends ActionBarActivity {
     private AppController appController = AppController.getInstance();
+    private UserData userData = UserData.getInstance();
     private ListView attendeesListView;
     private SlidingMenu menu;
     private List<User> attendeesList;
@@ -38,10 +40,10 @@ public class AttendeesListActivity extends ActionBarActivity {
         final Activity activity = this;
         attendeesListView = (ListView) findViewById(R.id.attendeesList);
 
-        appController.getUsersData(new AppController.handleResponse() {
+        userData.getUsersData(new AppController.handleResponse() {
             @Override
             public void handleResponse() {
-                attendeesList = appController.getAttendees();
+                attendeesList = userData.getAttendees();
                 InteractiveArrayAdapter adapter = new InteractiveArrayAdapter(activity);
                 attendeesListView.setAdapter(adapter);
             }

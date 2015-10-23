@@ -3,6 +3,9 @@ package co.newco.newco_android.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -10,24 +13,26 @@ import android.view.View;
 import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import co.newco.newco_android.AppController;
+import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
+import co.newco.newco_android.models.Session;
 
 /**
  * Created by jayd on 10/22/15.
  */
 public class SliderListFragment extends ListFragment {
-    List<String> items;
+    List<String> cats;
     View headerView;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View list =  inflater.inflate(R.layout.slider_list, null);
-        items = new ArrayList<>();
-        for(int i = 0; i < 20; i++) items.add("item"+ Integer.toString(i));
         //headerView = getLayoutInflater(savedInstanceState).inflate(R.layout.slider_list_header_row, null);
         return list;
     }
@@ -35,10 +40,12 @@ public class SliderListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         SliderListAdapter adapter = new SliderListAdapter(getActivity());
-        for (int i = 0; i < items.size(); i++) {
-            adapter.add(new SliderItem(items.get(i), android.R.drawable.ic_menu_search));
+        //we assume we have this data
+        cats = new ArrayList<String>(SessionData.getInstance().getColorsHash().keySet());
+        Collections.sort(cats);
+        for (int i = 0; i < cats.size(); i++) {
+            adapter.add(new SliderItem(cats.get(i)));
         }
-
         //if(headerView != null) getListView().addHeaderView(headerView);
 
         setListAdapter(adapter);
@@ -46,10 +53,8 @@ public class SliderListFragment extends ListFragment {
 
     private class SliderItem {
         public String tag;
-        public int iconRes;
-        public SliderItem(String tag, int iconRes) {
+        public SliderItem(String tag) {
             this.tag = tag;
-            this.iconRes = iconRes;
         }
     }
 
@@ -66,6 +71,10 @@ public class SliderListFragment extends ListFragment {
             TextView title = (TextView) convertView.findViewById(R.id.row_title);
             title.setText(getItem(position).tag);
 
+            ImageView circle = (ImageView) convertView.findViewById(R.id.imageButton);
+            GradientDrawable background = (GradientDrawable) circle.getBackground();
+            background.setColor(Color.parseColor(SessionData.getInstance().getColorsHash().get(cats.get(position))));
+
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -73,7 +82,6 @@ public class SliderListFragment extends ListFragment {
                         default:
                             AppController.getInstance().Toast("Error: Out of switch range!");
                     }
-
                 }
             });
             return convertView;
