@@ -37,6 +37,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.AppController;
+import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.SliderListFragment;
@@ -87,7 +88,7 @@ public class SessionListActivity extends ActionBarActivity {
         });
         sessionsList.setGroupIndicator(null);
 
-        sessionData.getSessionData(new AppController.handleResponse() {
+        sessionData.getSessionData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
                 sessions = sessionData.getSessions();

@@ -24,10 +24,6 @@ public class RestClient {
     private RestAPI restApi;
     private String root;
 
-
-    protected RestClient() {
-    }
-
     public static RestClient getInstance(){
         if(instance == null) {
             instance = new RestClient();

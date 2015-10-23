@@ -49,17 +49,11 @@ public class AppController extends Application {
         return mInstance;
     }
 
-    public interface handleResponse{
-        void handleResponse();
-    }
-
     protected void initSingletons() {
         RestClient.getInstance().setRoot(currentUrl);
         SessionData.getInstance();
         UserData.getInstance();
     }
-
-
 
     public String getCurrentUrl() {
         return currentUrl;

@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import co.newco.newco_android.AppController;
+import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.models.User;
 import retrofit.Call;
 import retrofit.Callback;
@@ -37,7 +38,7 @@ public class UserData {
     }
 
 
-    public void getUsersData(final AppController.handleResponse callback){
+    public void getUsersData(final SimpleResponsehandler callback){
         if(users == null){
             Call<List<User>> call = RestClient.getInstance().get().listUsers();
             call.enqueue(new Callback<List<User>>() {

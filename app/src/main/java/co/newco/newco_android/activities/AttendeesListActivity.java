@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.newco.newco_android.AppController;
+import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Network.UserData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.SliderListFragment;
@@ -40,7 +41,7 @@ public class AttendeesListActivity extends ActionBarActivity {
         final Activity activity = this;
         attendeesListView = (ListView) findViewById(R.id.attendeesList);
 
-        userData.getUsersData(new AppController.handleResponse() {
+        userData.getUsersData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
                 attendeesList = userData.getAttendees();

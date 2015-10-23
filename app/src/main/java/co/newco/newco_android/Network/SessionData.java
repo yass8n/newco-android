@@ -8,6 +8,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.AppController;
+import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.models.Session;
 import co.newco.newco_android.models.User;
 import retrofit.Call;
@@ -52,7 +53,7 @@ public class SessionData {
     }
 
 
-    public void getSessionData(final AppController.handleResponse callback){
+    public void getSessionData(final SimpleResponsehandler callback){
         if(sessions == null) {
             Call<List<Session>> call = RestClient.getInstance().get().listSessions();
             call.enqueue(new Callback<List<Session>>() {
