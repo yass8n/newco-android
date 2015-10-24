@@ -16,6 +16,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -33,7 +35,10 @@ import co.newco.newco_android.models.Session;
  */
 public class SliderListFragment extends ListFragment {
     List<String> cats;
-    View headerView;
+    SlidingMenu menu;
+
+    public SliderListFragment() {}
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View list =  inflater.inflate(R.layout.slider_list, null);
         //headerView = getLayoutInflater(savedInstanceState).inflate(R.layout.slider_list_header_row, null);
@@ -56,6 +61,10 @@ public class SliderListFragment extends ListFragment {
         //if(headerView != null) getListView().addHeaderView(headerView);
 
         setListAdapter(adapter);
+    }
+
+    public void setMenu(SlidingMenu menu) {
+        this.menu = menu;
     }
 
     private class SliderItem {
@@ -87,6 +96,8 @@ public class SliderListFragment extends ListFragment {
                 public void onClick(View v) {
                     switch(position) {
                         default:
+                            //close
+                            menu.showContent();
                             AppController.getInstance().Toast("Session type:" + cats.get(position));
                             Intent intent = new Intent(getActivity(), SessionTypeListActivity.class);
                             intent.putExtra("sessionType", cats.get(position));

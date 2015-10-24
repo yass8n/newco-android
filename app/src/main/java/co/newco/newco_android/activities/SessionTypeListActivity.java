@@ -64,27 +64,25 @@ public class SessionTypeListActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_session_list);
+        setContentView(R.layout.activity_session_type_list);
         final ActionBarActivity activity = this;
         Intent intent = getIntent();
         sessionType = intent.getStringExtra("sessionType");
 
 
 
-        Button schedule = (Button) findViewById(R.id.btn_schedule);
-        schedule.setOnClickListener(new View.OnClickListener() {
+        Button back = (Button) findViewById(R.id.btn_back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SessionListActivity.class));
+                finish();
             }
         });
-        Button directory = (Button) findViewById(R.id.btn_directory);
-        directory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AttendeesListActivity.class));
-            }
-        });
+
+        TextView header = (TextView) findViewById(R.id.header);
+
+        header.setText(sessionType);
+
 
         sessionsList = (StickyListHeadersListView) findViewById(R.id.sessionList);
 

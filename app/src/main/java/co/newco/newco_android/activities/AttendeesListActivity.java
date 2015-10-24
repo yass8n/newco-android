@@ -22,46 +22,62 @@ import java.util.List;
 
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
+import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.Network.UserData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.SliderListFragment;
 import co.newco.newco_android.models.User;
+import retrofit.Call;
 
 public class AttendeesListActivity extends ActionBarActivity {
     private AppController appController = AppController.getInstance();
+    private SessionData sessionData = SessionData.getInstance();
     private UserData userData = UserData.getInstance();
     private ListView attendeesListView;
     private SlidingMenu menu;
     private List<User> attendeesList;
+    private List<Call> calls;
+    ActionBarActivity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendees_list);
-        final Activity activity = this;
+        activity = this;
+        calls = new ArrayList<>();
         attendeesListView = (ListView) findViewById(R.id.attendeesList);
 
-        userData.getUsersData(new SimpleResponsehandler() {
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        //cancel all pending calls so the fucking callback doesn't get called
+        // call call call
+        for(Call call : calls){
+            if(call != null) call.cancel();
+        }
+        calls = new ArrayList<>();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        calls.add(userData.getUsersData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
                 attendeesList = userData.getAttendees();
                 InteractiveArrayAdapter adapter = new InteractiveArrayAdapter(activity);
                 attendeesListView.setAdapter(adapter);
             }
-        });
+        }));
 
-
-        menu = new SlidingMenu(this);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-        menu.setTouchmodeMarginThreshold(500);
-        menu.setBehindWidth(800);
-        menu.setFadeDegree(0.35f);
-        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        menu.setMenu(R.layout.menu_frame);
-        getSupportFragmentManager()
-            .beginTransaction()
-            .replace(R.id.menu_frame, new SliderListFragment())
-            .commit();
+        calls.add(sessionData.getSessionData(new SimpleResponsehandler() {
+            @Override
+            public void handleResponse() {
+                appController.createSliderMenu(activity);
+            }
+        }));
     }
 
     @Override
@@ -70,6 +86,8 @@ public class AttendeesListActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_attendees_list, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -91,7 +109,7 @@ public class AttendeesListActivity extends ActionBarActivity {
         private final Activity context;
 
         public InteractiveArrayAdapter(Activity context) {
-            super(context, R.layout.slider_list_row, attendeesList);
+            super(context, R.layout.user_list_item, attendeesList);
             this.context = context;
         }
 
@@ -100,7 +118,7 @@ public class AttendeesListActivity extends ActionBarActivity {
             View view = null;
             if (convertView == null) {
                 LayoutInflater inflator = context.getLayoutInflater();
-                view = inflator.inflate(R.layout.slider_list_row, null);
+                view = inflator.inflate(R.layout.user_list_item, null);
             } else {
                 view = convertView;
             }

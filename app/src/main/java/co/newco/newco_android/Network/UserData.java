@@ -38,9 +38,10 @@ public class UserData {
     }
 
 
-    public void getUsersData(final SimpleResponsehandler callback){
+    public Call getUsersData(final SimpleResponsehandler callback){
+        Call<List<User>> call = null;
         if(users == null){
-            Call<List<User>> call = RestClient.getInstance().get().listUsers();
+            call = RestClient.getInstance().get().listUsers();
             call.enqueue(new Callback<List<User>>() {
                 @Override
                 public void onResponse(Response<List<User>> response, Retrofit retrofit) {
@@ -58,6 +59,7 @@ public class UserData {
         else{
             callback.handleResponse();
         }
+        return call;
     }
 
     protected void setupUserData(){

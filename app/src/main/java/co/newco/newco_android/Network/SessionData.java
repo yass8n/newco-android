@@ -53,9 +53,10 @@ public class SessionData {
     }
 
 
-    public void getSessionData(final SimpleResponsehandler callback){
+    public Call getSessionData(final SimpleResponsehandler callback){
+        Call<List<Session>> call = null;
         if(sessions == null) {
-            Call<List<Session>> call = RestClient.getInstance().get().listSessions();
+            call = RestClient.getInstance().get().listSessions();
             call.enqueue(new Callback<List<Session>>() {
                 @Override
                 public void onResponse(Response<List<Session>> response, Retrofit retrofit) {
@@ -73,6 +74,7 @@ public class SessionData {
         else{
             callback.handleResponse();
         }
+        return call;
     }
 
     protected void setupSessionData(){

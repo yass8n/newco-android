@@ -72,9 +72,11 @@ public class AppController extends Application {
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(activity, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.menu_frame);
+        SliderListFragment sl = new SliderListFragment();
+        sl.setMenu(menu);
         activity.getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.menu_frame, new SliderListFragment())
+                .replace(R.id.menu_frame, sl)
                 .commit();
         return menu;
     }
@@ -82,9 +84,5 @@ public class AppController extends Application {
     public void Toast(String s) {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
     }
-
-
-
-
 }
 

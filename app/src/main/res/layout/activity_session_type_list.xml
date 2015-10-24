@@ -12,6 +12,22 @@
         android:layout_height="50dp"
         android:id="@+id/relativeLayout">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:id="@+id/header"
+            android:layout_toRightOf="@+id/btn_back"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:textColor="#000"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:layout_alignBottom="@+id/btn_back" />
+
         <Button
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
@@ -20,7 +36,8 @@
             android:id="@+id/btn_back"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true" />
 
 
     </RelativeLayout>

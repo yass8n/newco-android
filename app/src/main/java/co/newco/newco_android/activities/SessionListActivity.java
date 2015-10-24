@@ -1,39 +1,17 @@
 package co.newco.newco_android.activities;
 
-import android.app.Activity;
-import android.app.ExpandableListActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.database.DataSetObserver;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.Adapters.SessionListAdapter;
@@ -45,6 +23,7 @@ import co.newco.newco_android.fragments.SliderListFragment;
 import co.newco.newco_android.models.Session;
 import co.newco.newco_android.models.Speaker;
 import co.newco.newco_android.models.User;
+import retrofit.Call;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
@@ -54,6 +33,9 @@ public class SessionListActivity extends ActionBarActivity {
     private SessionData sessionData = SessionData.getInstance();
     private List<Session> sessions;
     private StickyListHeadersListView sessionsList;
+    private List<Call> calls;
+    private ActionBarActivity activity;
+    ImageButton btnMenu;
 
     private SlidingMenu menu;
 
@@ -62,8 +44,8 @@ public class SessionListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_list);
-        final ActionBarActivity activity = this;
-
+        activity = this;
+        calls = new ArrayList<>();
 
         Button schedule = (Button) findViewById(R.id.btn_schedule);
         schedule.setOnClickListener(new View.OnClickListener() {
@@ -79,20 +61,42 @@ public class SessionListActivity extends ActionBarActivity {
                 startActivity(new Intent(getApplicationContext(), AttendeesListActivity.class));
             }
         });
-
+        btnMenu = (ImageButton) findViewById(R.id.btn_menu);
         sessionsList = (StickyListHeadersListView) findViewById(R.id.sessionList);
-        sessionData.getSessionData(new SimpleResponsehandler() {
+    }
+    @Override
+    public void onPause() {
+        super.onPause();
+        //cancel all pending calls so the fucking callback doesn't get called
+        // call call call
+        for(Call call : calls){
+            if(call != null) call.cancel();
+        }
+        calls = new ArrayList<>();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        calls.add(sessionData.getSessionData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
                 sessions = sessionData.getSessions();
                 menu = appController.createSliderMenu(activity);
-
+                btnMenu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (menu.isMenuShowing()) {
+                            menu.showContent();
+                        } else {
+                            menu.toggle(true);
+                        }
+                    }
+                });
                 SessionListAdapter adapter = new SessionListAdapter(activity, sessions);
                 sessionsList.setAdapter(adapter);
             }
-        });
-
-
+        }));
     }
 
     @Override
