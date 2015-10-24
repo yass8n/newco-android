@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import co.newco.newco_android.AppController;
@@ -44,7 +45,11 @@ public class SliderListFragment extends ListFragment {
         SliderListAdapter adapter = new SliderListAdapter(getActivity());
         //we assume we have this data
         cats = new ArrayList<String>(SessionData.getInstance().getColorsHash().keySet());
-        Collections.sort(cats);
+        Collections.sort(cats, new Comparator<String>() {
+            @Override
+            public int compare(String lhs, String rhs) {
+                return lhs.compareToIgnoreCase(rhs);            }
+        });
         for (int i = 0; i < cats.size(); i++) {
             adapter.add(new SliderItem(cats.get(i)));
         }
