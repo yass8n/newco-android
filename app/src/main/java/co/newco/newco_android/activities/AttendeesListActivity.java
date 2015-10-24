@@ -38,6 +38,7 @@ public class AttendeesListActivity extends ActionBarActivity {
     private List<User> attendeesList;
     private List<Call> calls;
     ActionBarActivity activity;
+    TextView loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class AttendeesListActivity extends ActionBarActivity {
         activity = this;
         calls = new ArrayList<>();
         attendeesListView = (ListView) findViewById(R.id.attendeesList);
+        loading = (TextView) findViewById(R.id.loading);
 
     }
 
@@ -69,6 +71,7 @@ public class AttendeesListActivity extends ActionBarActivity {
                 attendeesList = userData.getAttendees();
                 InteractiveArrayAdapter adapter = new InteractiveArrayAdapter(activity);
                 attendeesListView.setAdapter(adapter);
+                loading.setVisibility(View.GONE);
             }
         }));
 

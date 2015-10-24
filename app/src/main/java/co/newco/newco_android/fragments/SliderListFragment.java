@@ -98,7 +98,7 @@ public class SliderListFragment extends ListFragment {
                         default:
                             //close
                             menu.showContent();
-                            AppController.getInstance().Toast("Session type:" + cats.get(position));
+                            AppController.getInstance().Toast("Session type:" + "\""+cats.get(position)+"\"");
                             Intent intent = new Intent(getActivity(), SessionTypeListActivity.class);
                             intent.putExtra("sessionType", cats.get(position));
                             startActivity(intent);

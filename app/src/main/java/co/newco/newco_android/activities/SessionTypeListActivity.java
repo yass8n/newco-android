@@ -94,7 +94,7 @@ public class SessionTypeListActivity extends ActionBarActivity {
 
                 ArrayList<Session> filteredSessions = new ArrayList<Session>();
                 for(Session sess : sessions){
-                    List<String> types = Arrays.asList(sess.getEvent_type().split(","));
+                    List<String> types = Arrays.asList(sess.getEvent_type().split(", "));
                     if(types.contains(sessionType)){
                         filteredSessions.add(sess);
                     }

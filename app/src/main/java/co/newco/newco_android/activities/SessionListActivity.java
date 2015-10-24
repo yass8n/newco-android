@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
@@ -36,6 +37,7 @@ public class SessionListActivity extends ActionBarActivity {
     private List<Call> calls;
     private ActionBarActivity activity;
     ImageButton btnMenu;
+    TextView loading;
 
     private SlidingMenu menu;
 
@@ -46,6 +48,8 @@ public class SessionListActivity extends ActionBarActivity {
         setContentView(R.layout.activity_session_list);
         activity = this;
         calls = new ArrayList<>();
+
+        loading = (TextView) findViewById(R.id.loading);
 
         Button schedule = (Button) findViewById(R.id.btn_schedule);
         schedule.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +85,7 @@ public class SessionListActivity extends ActionBarActivity {
         calls.add(sessionData.getSessionData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
+
                 sessions = sessionData.getSessions();
                 menu = appController.createSliderMenu(activity);
                 btnMenu.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +100,7 @@ public class SessionListActivity extends ActionBarActivity {
                 });
                 SessionListAdapter adapter = new SessionListAdapter(activity, sessions);
                 sessionsList.setAdapter(adapter);
+                loading.setVisibility(View.GONE);
             }
         }));
     }
