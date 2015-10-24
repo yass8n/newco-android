@@ -31,7 +31,9 @@ import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
@@ -49,11 +51,12 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 
-public class SessionListActivity extends ActionBarActivity {
+public class SessionTypeListActivity extends ActionBarActivity {
     private AppController appController = AppController.getInstance();
     private SessionData sessionData = SessionData.getInstance();
     private List<Session> sessions;
     private StickyListHeadersListView sessionsList;
+    private String sessionType;
 
     private SlidingMenu menu;
 
@@ -63,6 +66,9 @@ public class SessionListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_list);
         final ActionBarActivity activity = this;
+        Intent intent = getIntent();
+        sessionType = intent.getStringExtra("sessionType");
+
 
 
         Button schedule = (Button) findViewById(R.id.btn_schedule);
@@ -81,13 +87,22 @@ public class SessionListActivity extends ActionBarActivity {
         });
 
         sessionsList = (StickyListHeadersListView) findViewById(R.id.sessionList);
+
         sessionData.getSessionData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
                 sessions = sessionData.getSessions();
                 menu = appController.createSliderMenu(activity);
 
-                SessionListAdapter adapter = new SessionListAdapter(activity, sessions);
+                ArrayList<Session> filteredSessions = new ArrayList<Session>();
+                for(Session sess : sessions){
+                    List<String> types = Arrays.asList(sess.getEvent_type().split(","));
+                    if(types.contains(sessionType)){
+                        filteredSessions.add(sess);
+                    }
+                }
+
+                SessionListAdapter adapter = new SessionListAdapter(activity, filteredSessions);
                 sessionsList.setAdapter(adapter);
             }
         });

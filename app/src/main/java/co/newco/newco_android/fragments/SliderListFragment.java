@@ -23,6 +23,8 @@ import java.util.List;
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
+import co.newco.newco_android.activities.AttendeesListActivity;
+import co.newco.newco_android.activities.SessionTypeListActivity;
 import co.newco.newco_android.models.Session;
 
 /**
@@ -80,7 +82,10 @@ public class SliderListFragment extends ListFragment {
                 public void onClick(View v) {
                     switch(position) {
                         default:
-                            AppController.getInstance().Toast("Error: Out of switch range!");
+                            AppController.getInstance().Toast("Session type:" + cats.get(position));
+                            Intent intent = new Intent(getActivity(), SessionTypeListActivity.class);
+                            intent.putExtra("sessionType", cats.get(position));
+                            startActivity(intent);
                     }
                 }
             });

@@ -21,4 +21,5 @@
     <string name="view_all">View All</string>
     <string name="title_activity_session_list">SessionListActivity</string>
     <string name="title_activity_attendees_list">AttendeesListActivity</string>
+    <string name="title_activity_session_type_list">SessionTypeListActivity</string>
 </resources>
