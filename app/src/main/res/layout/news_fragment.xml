@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:paddingBottom="30dp">
 
-    <co.newco.newco_android.objects.fTextView
+    <co.newco.newco_android.Objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title"
@@ -21,7 +21,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         />
-    <co.newco.newco_android.objects.fTextView
+    <co.newco.newco_android.Objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="fill"
@@ -36,7 +36,7 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/light_gray"
         />
-    <co.newco.newco_android.objects.fTextView
+    <co.newco.newco_android.Objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/link"

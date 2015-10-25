@@ -1,4 +1,4 @@
-package co.newco.newco_android.activities;
+package co.newco.newco_android.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -20,12 +20,8 @@ import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
-import co.newco.newco_android.fragments.SliderListFragment;
-import co.newco.newco_android.models.Session;
-import co.newco.newco_android.models.Speaker;
-import co.newco.newco_android.models.User;
+import co.newco.newco_android.Models.Session;
 import retrofit.Call;
-import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 
@@ -62,7 +58,7 @@ public class SessionListActivity extends ActionBarActivity {
         directory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AttendeesListActivity.class));
+                startActivity(new Intent(getApplicationContext(), DirectoryActivity.class));
             }
         });
         btnMenu = (ImageButton) findViewById(R.id.btn_menu);

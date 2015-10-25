@@ -7,7 +7,7 @@
     android:paddingBottom="20dp"
     >
 
-    <co.newco.newco_android.objects.fTextView
+    <co.newco.newco_android.Objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title"
@@ -26,7 +26,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <co.newco.newco_android.objects.fTextView
+        <co.newco.newco_android.Objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
@@ -40,14 +40,14 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             />
-        <co.newco.newco_android.objects.fTextView
+        <co.newco.newco_android.Objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="10dp"
             android:layout_gravity="center"
             android:text="&#8226;"/>
-        <co.newco.newco_android.objects.fTextView
+        <co.newco.newco_android.Objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"
@@ -61,14 +61,14 @@
             android:layout_marginEnd="5dp"
             android:layout_marginRight="5dp"
             />
-        <co.newco.newco_android.objects.fTextView
+        <co.newco.newco_android.Objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="10dp"
             android:layout_gravity="center"
             android:text="&#8226;"/>
-        <co.newco.newco_android.objects.fTextView
+        <co.newco.newco_android.Objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="fill"

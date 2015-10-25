@@ -10,14 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
-import co.newco.newco_android.models.Session;
+import co.newco.newco_android.Models.Session;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**

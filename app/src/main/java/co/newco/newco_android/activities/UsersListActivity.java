@@ -1,17 +1,15 @@
-package co.newco.newco_android.activities;
+package co.newco.newco_android.Activities;
 
 import android.app.Activity;
-import android.database.DataSetObserver;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,30 +23,31 @@ import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.Network.UserData;
 import co.newco.newco_android.R;
-import co.newco.newco_android.fragments.SliderListFragment;
-import co.newco.newco_android.models.User;
+import co.newco.newco_android.Models.User;
 import retrofit.Call;
 
-public class AttendeesListActivity extends ActionBarActivity {
+public class UsersListActivity extends ActionBarActivity {
     private AppController appController = AppController.getInstance();
     private SessionData sessionData = SessionData.getInstance();
     private UserData userData = UserData.getInstance();
-    private ListView attendeesListView;
+    private ListView usersListView;
     private SlidingMenu menu;
-    private List<User> attendeesList;
+    private List<User> usersList;
     private List<Call> calls;
     ActionBarActivity activity;
     TextView loading;
+    String role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_attendees_list);
+        setContentView(R.layout.activity_users_list);
         activity = this;
+        Intent intent = getIntent();
+        role = intent.getStringExtra("role");
         calls = new ArrayList<>();
-        attendeesListView = (ListView) findViewById(R.id.attendeesList);
+        usersListView = (ListView) findViewById(R.id.attendeesList);
         loading = (TextView) findViewById(R.id.loading);
-
     }
 
     @Override
@@ -65,13 +64,40 @@ public class AttendeesListActivity extends ActionBarActivity {
     @Override
     public void onResume() {
         super.onResume();
+        usersList = new ArrayList<User>();
+
         calls.add(userData.getUsersData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
-                attendeesList = userData.getAttendees();
-                InteractiveArrayAdapter adapter = new InteractiveArrayAdapter(activity);
-                attendeesListView.setAdapter(adapter);
-                loading.setVisibility(View.GONE);
+                switch (role){
+                    case "speaker":
+                        usersList = userData.getSpeakers();
+                        break;
+                    case "volunteer":
+                        usersList = userData.getVolunteers();
+                        break;
+                    case "attendee":
+                        usersList = userData.getAttendees();
+                        break;
+                    }
+
+                //BLARGH this is dumb and I hate it
+                if(role.compareTo("company") == 0) {
+                    calls.add(UserData.getInstance().buildCompanyData(new SimpleResponsehandler() {
+                        @Override
+                        public void handleResponse() {
+                            usersList = userData.getCompanies();
+                            InteractiveArrayAdapter adapter = new InteractiveArrayAdapter(activity);
+                            usersListView.setAdapter(adapter);
+                            loading.setVisibility(View.GONE);
+                        }
+                    }));
+                }
+                else{
+                    InteractiveArrayAdapter adapter = new InteractiveArrayAdapter(activity);
+                    usersListView.setAdapter(adapter);
+                    loading.setVisibility(View.GONE);
+                }
             }
         }));
 
@@ -112,7 +138,7 @@ public class AttendeesListActivity extends ActionBarActivity {
         private final Activity context;
 
         public InteractiveArrayAdapter(Activity context) {
-            super(context, R.layout.user_list_item, attendeesList);
+            super(context, R.layout.user_list_item, usersList);
             this.context = context;
         }
 
@@ -127,7 +153,7 @@ public class AttendeesListActivity extends ActionBarActivity {
             }
 
             TextView text = (TextView) view.findViewById(R.id.row_title);
-            text.setText(attendeesList.get(position).getName() + " - " + attendeesList.get(position).getRole());
+            text.setText(usersList.get(position).getName() + " - " + usersList.get(position).getRole());
             return view;
         }
     }

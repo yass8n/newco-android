@@ -1,41 +1,18 @@
-package co.newco.newco_android.activities;
+package co.newco.newco_android.Activities;
 
-import android.app.Activity;
-import android.app.ExpandableListActivity;
-import android.content.Context;
 import android.content.Intent;
-import android.database.DataSetObserver;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ExpandableListView;
-import android.widget.LinearLayout;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.Adapters.SessionListAdapter;
@@ -43,11 +20,7 @@ import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
-import co.newco.newco_android.fragments.SliderListFragment;
-import co.newco.newco_android.models.Session;
-import co.newco.newco_android.models.Speaker;
-import co.newco.newco_android.models.User;
-import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
+import co.newco.newco_android.Models.Session;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 

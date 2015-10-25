@@ -13,7 +13,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/round_container">
-        <co.newco.newco_android.objects.fTextView
+        <co.newco.newco_android.Objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/co_round"
@@ -21,7 +21,7 @@
             android:textSize="15dp"
             android:textColor="@color/black"
             />
-        <co.newco.newco_android.objects.fTextView
+        <co.newco.newco_android.Objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/date"
@@ -43,7 +43,7 @@
         android:layout_marginBottom="20dp"
         android:id="@+id/money_container"
         android:layout_below="@+id/round_container">
-        <co.newco.newco_android.objects.fTextView
+        <co.newco.newco_android.Objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/money"
@@ -93,7 +93,7 @@
             android:orientation="horizontal"
             android:layout_centerHorizontal="true"
             />
-        <co.newco.newco_android.objects.fTextView
+        <co.newco.newco_android.Objects.fTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/view_all"

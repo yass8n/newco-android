@@ -1,12 +1,10 @@
-package co.newco.newco_android.objects;
+package co.newco.newco_android.Objects;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;

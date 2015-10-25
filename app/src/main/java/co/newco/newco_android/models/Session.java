@@ -1,10 +1,9 @@
-package co.newco.newco_android.models;
+package co.newco.newco_android.Models;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-import co.newco.newco_android.AppController;
 import co.newco.newco_android.Network.SessionData;
 
 /**

@@ -5,12 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -26,9 +24,7 @@ import java.util.List;
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
-import co.newco.newco_android.activities.AttendeesListActivity;
-import co.newco.newco_android.activities.SessionTypeListActivity;
-import co.newco.newco_android.models.Session;
+import co.newco.newco_android.Activities.SessionTypeListActivity;
 
 /**
  * Created by jayd on 10/22/15.

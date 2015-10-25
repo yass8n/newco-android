@@ -1,22 +1,14 @@
 package co.newco.newco_android.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import co.newco.newco_android.R;
-import co.newco.newco_android.activities.CompanyProfileActivity;
-import co.newco.newco_android.objects.Global;
-import co.newco.newco_android.objects.OnSwipeTouchListener;
 
 /**
  * Created by yass8n on 5/20/15.

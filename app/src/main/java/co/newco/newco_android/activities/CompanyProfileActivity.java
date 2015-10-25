@@ -1,4 +1,4 @@
-package co.newco.newco_android.activities;
+package co.newco.newco_android.Activities;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -7,44 +7,22 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.squareup.okhttp.Response;
-
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
-import co.newco.newco_android.Network.RestClient;
 import co.newco.newco_android.R;
 import co.newco.newco_android.fragments.ProductFragment;
-import co.newco.newco_android.models.Investor;
-import co.newco.newco_android.models.Job;
-import co.newco.newco_android.models.News;
-import co.newco.newco_android.models.Session;
-import co.newco.newco_android.models.User;
-import co.newco.newco_android.objects.CustomBaseAdapter;
-import co.newco.newco_android.objects.Global;
-import co.newco.newco_android.objects.OnSwipeTouchListener;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Retrofit;
+import co.newco.newco_android.Models.Investor;
+import co.newco.newco_android.Models.Job;
+import co.newco.newco_android.Models.News;
+import co.newco.newco_android.Objects.CustomBaseAdapter;
 
 
 public class CompanyProfileActivity extends ActionBarActivity {

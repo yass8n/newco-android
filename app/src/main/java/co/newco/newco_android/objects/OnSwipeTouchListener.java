@@ -1,15 +1,10 @@
-package co.newco.newco_android.objects;
+package co.newco.newco_android.Objects;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Typeface;
-import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
-import co.newco.newco_android.R;
 /**
  * Detects left and right swipes across a view.
  */

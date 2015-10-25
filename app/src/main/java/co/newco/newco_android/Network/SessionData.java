@@ -7,10 +7,8 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
-import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
-import co.newco.newco_android.models.Session;
-import co.newco.newco_android.models.User;
+import co.newco.newco_android.Models.Session;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;

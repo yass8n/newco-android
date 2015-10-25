@@ -1,4 +1,4 @@
-package co.newco.newco_android.objects;
+package co.newco.newco_android.Objects;
 
 /**
  * Created by yass8n on 5/22/15.

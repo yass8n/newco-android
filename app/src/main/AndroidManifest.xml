@@ -11,23 +11,27 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.CompanyProfileActivity"
-            android:label="@string/app_name"></activity>
+            android:name=".Activities.CompanyProfileActivity"
+            android:label="@string/app_name" />
         <activity
-            android:name=".activities.SessionListActivity"
+            android:name=".Activities.SessionListActivity"
             android:label="@string/title_activity_session_list">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                techic
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.AttendeesListActivity"
-            android:label="@string/title_activity_attendees_list"></activity>
+            android:name=".Activities.UsersListActivity"
+            android:label="@string/title_activity_attendees_list" />
         <activity
-            android:name=".activities.SessionTypeListActivity"
-            android:label="@string/title_activity_session_type_list"></activity>
+            android:name=".Activities.SessionTypeListActivity"
+            android:label="@string/title_activity_session_type_list" />
+        <activity
+            android:name=".Activities.DirectoryActivity"
+            android:label="@string/title_activity_directory"></activity>
     </application>
 
 </manifest>

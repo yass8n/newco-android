@@ -2,29 +2,14 @@ package co.newco.newco_android;
 
 import android.app.Application;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
-
 import co.newco.newco_android.Network.RestClient;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.Network.UserData;
-import co.newco.newco_android.activities.SessionListActivity;
 import co.newco.newco_android.fragments.SliderListFragment;
-import co.newco.newco_android.models.Session;
-import co.newco.newco_android.models.User;
-import retrofit.Call;
-import retrofit.Callback;
-import retrofit.Response;
-import retrofit.Retrofit;
 
 /**
  * Created by jayd on 10/17/15.

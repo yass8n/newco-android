@@ -1,4 +1,4 @@
-package co.newco.newco_android.models;
+package co.newco.newco_android.Models;
 
 /**
  * Created by yass8n on 5/22/15.

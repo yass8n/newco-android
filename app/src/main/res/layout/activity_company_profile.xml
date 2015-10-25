@@ -58,7 +58,7 @@
                     android:layout_marginEnd="20dp"
                     />
 
-                <co.newco.newco_android.objects.fTextView
+                <co.newco.newco_android.Objects.fTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/co_quote"
@@ -93,7 +93,7 @@
                     android:layout_marginEnd="20dp"
                     >
 
-                    <co.newco.newco_android.objects.fTextView
+                    <co.newco.newco_android.Objects.fTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/co_snapshots"
@@ -142,7 +142,7 @@
                         android:orientation="vertical"
                         >
 
-                        <co.newco.newco_android.objects.fTextView
+                        <co.newco.newco_android.Objects.fTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/founders"
@@ -175,7 +175,7 @@
                         android:orientation="vertical"
                         >
 
-                        <co.newco.newco_android.objects.fTextView
+                        <co.newco.newco_android.Objects.fTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/recent_investors"
@@ -223,7 +223,7 @@
                         android:orientation="vertical"
                         >
 
-                        <co.newco.newco_android.objects.fTextView
+                        <co.newco.newco_android.Objects.fTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/Funding"
@@ -232,7 +232,7 @@
                             android:textSize="12dp"
                             />
 
-                        <co.newco.newco_android.objects.fTextView
+                        <co.newco.newco_android.Objects.fTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/co_funding"
@@ -253,7 +253,7 @@
                         android:padding="15dp"
                         >
 
-                        <co.newco.newco_android.objects.fTextView
+                        <co.newco.newco_android.Objects.fTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/reach"
@@ -262,7 +262,7 @@
                             android:textSize="12dp"
                             />
 
-                        <co.newco.newco_android.objects.fTextView
+                        <co.newco.newco_android.Objects.fTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/co_reach"
@@ -283,7 +283,7 @@
                         android:padding="15dp"
                         >
 
-                        <co.newco.newco_android.objects.fTextView
+                        <co.newco.newco_android.Objects.fTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/customers"
@@ -292,7 +292,7 @@
                             android:textSize="12dp"
                             />
 
-                        <co.newco.newco_android.objects.fTextView
+                        <co.newco.newco_android.Objects.fTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/co_customers"
@@ -318,7 +318,7 @@
             android:padding="20dp"
             >
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="25dp"
@@ -335,7 +335,7 @@
                 android:layout_margin="0dp"
                 />
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAllCaps="true"
@@ -345,7 +345,7 @@
                 custom:typeface="sbold"
                 />
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/co_session_title"
@@ -355,7 +355,7 @@
                 android:textSize="17dp"
                 />
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAllCaps="true"
@@ -365,7 +365,7 @@
                 custom:typeface="sbold"
                 />
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/co_session_date"
@@ -375,7 +375,7 @@
                 android:textSize="17dp"
                 />
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAllCaps="true"
@@ -385,7 +385,7 @@
                 custom:typeface="sbold"
                 />
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/co_session_time"
@@ -407,7 +407,7 @@
                 android:orientation="horizontal"
                 >
 
-                <co.newco.newco_android.objects.fTextView
+                <co.newco.newco_android.Objects.fTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAllCaps="true"
@@ -418,7 +418,7 @@
                     android:layout_marginRight="15dp"
                     />
 
-                <co.newco.newco_android.objects.fTextView
+                <co.newco.newco_android.Objects.fTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:minWidth="100dp"
@@ -490,7 +490,7 @@
             android:paddingBottom="20dp"
             android:layout_gravity="center">
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/funding"
@@ -498,7 +498,7 @@
                 android:text="TOTAL FUNDING"
                 android:textSize="15dp"/>
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rounds"
@@ -506,7 +506,7 @@
                 android:textColor="@color/gray"
                 android:textSize="12dp"/>
 
-            <co.newco.newco_android.objects.fTextView
+            <co.newco.newco_android.Objects.fTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/money"

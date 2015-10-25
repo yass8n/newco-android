@@ -4,7 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <co.newco.newco_android.objects.fTextView
+    <co.newco.newco_android.Objects.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/title"
@@ -12,7 +12,7 @@
         android:textSize="25dp"
         android:textColor="@color/white"
         android:layout_margin="20dp" />
-    <co.newco.newco_android.objects.scrollablefTextView
+    <co.newco.newco_android.Objects.scrollablefTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"

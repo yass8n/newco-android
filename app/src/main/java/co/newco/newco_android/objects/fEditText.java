@@ -1,4 +1,4 @@
-package co.newco.newco_android.objects;
+package co.newco.newco_android.Objects;
 
 import android.content.Context;
 import android.content.res.TypedArray;
