@@ -9,7 +9,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import co.newco.newco_android.Network.RestClient;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.Network.UserData;
-import co.newco.newco_android.fragments.SliderListFragment;
+import co.newco.newco_android.Fragments.SliderListFragment;
 
 /**
  * Created by jayd on 10/17/15.

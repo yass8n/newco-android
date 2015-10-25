@@ -18,7 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import co.newco.newco_android.R;
-import co.newco.newco_android.fragments.ProductFragment;
+import co.newco.newco_android.Fragments.ProductFragment;
 import co.newco.newco_android.Models.Investor;
 import co.newco.newco_android.Models.Job;
 import co.newco.newco_android.Models.News;

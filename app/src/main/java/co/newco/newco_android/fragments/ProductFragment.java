@@ -1,4 +1,4 @@
-package co.newco.newco_android.fragments;
+package co.newco.newco_android.Fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

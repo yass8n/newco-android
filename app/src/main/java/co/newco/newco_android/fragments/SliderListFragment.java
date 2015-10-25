@@ -1,4 +1,4 @@
-package co.newco.newco_android.fragments;
+package co.newco.newco_android.Fragments;
 
 
 import android.content.Context;
