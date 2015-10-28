@@ -60,7 +60,7 @@ public class Session{
     @SerializedName("seats-title") private String seats_title;
 
     public String getSessionColor(){
-       return SessionData.getInstance().getColorsHash().get(event_type.split(",")[0].trim());
+       return SessionData.getInstance().getColorsHash().get(event_type.split(", ")[0].trim());
     }
 
     public String getEvent_key() {

@@ -94,7 +94,7 @@ public class SessionListActivity extends ActionBarActivity {
                         }
                     }
                 });
-                SessionListAdapter adapter = new SessionListAdapter(activity, sessions);
+                SessionListAdapter adapter = new SessionListAdapter(activity, sessions, null);
                 sessionsList.setAdapter(adapter);
                 loading.setVisibility(View.GONE);
             }

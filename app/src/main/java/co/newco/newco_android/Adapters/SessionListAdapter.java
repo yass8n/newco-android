@@ -25,13 +25,14 @@ public class SessionListAdapter extends BaseAdapter implements StickyListHeaders
 
     private LayoutInflater inflater;
     private Activity activity;
-    private SessionData sessionData;
     private List<Session> sessions;
+    private String sessType;
 
-    public SessionListAdapter(Activity act, List<Session> sess) {
+    public SessionListAdapter(Activity act, List<Session> sess, String st) {
         activity = act;
         inflater = act.getLayoutInflater();
         sessions = sess;
+        sessType = st;
     }
     @Override
     public int getCount() {
@@ -78,7 +79,7 @@ public class SessionListAdapter extends BaseAdapter implements StickyListHeaders
         background.setColor(Color.parseColor("#000000"));
 
         RelativeLayout sessionItem = (RelativeLayout) convertView.findViewById(R.id.sessionItem);
-        String colorFromEvent = sess.getSessionColor();
+        String colorFromEvent = sessType == null ? sess.getSessionColor() : SessionData.getInstance().getColorsHash().get(sessType);
 
         background = (GradientDrawable) sessionItem.getBackground();
         background.setColor(Color.parseColor(colorFromEvent));
