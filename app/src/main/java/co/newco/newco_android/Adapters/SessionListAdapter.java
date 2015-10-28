@@ -1,6 +1,7 @@
 package co.newco.newco_android.Adapters;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import co.newco.newco_android.Activities.SessionInfoActivity;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.Models.Session;
@@ -83,6 +85,14 @@ public class SessionListAdapter extends BaseAdapter implements StickyListHeaders
 
         background = (GradientDrawable) sessionItem.getBackground();
         background.setColor(Color.parseColor(colorFromEvent));
+
+        sessionItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, SessionInfoActivity.class);
+                activity.startActivity(intent);
+            }
+        });
 
         return convertView;
     }

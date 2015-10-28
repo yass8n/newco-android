@@ -31,7 +31,10 @@
             android:label="@string/title_activity_session_type_list" />
         <activity
             android:name=".Activities.DirectoryActivity"
-            android:label="@string/title_activity_directory"></activity>
+            android:label="@string/title_activity_directory" />
+        <activity
+            android:name=".Activities.SessionInfoActivity"
+            android:label="@string/title_activity_session_info"></activity>
     </application>
 
 </manifest>
