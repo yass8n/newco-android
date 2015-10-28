@@ -102,9 +102,6 @@ public class SessionInfoActivity extends ActionBarActivity {
             name.setTextColor(Color.parseColor("#000000"));
             presenters.addView(name);
         }
-
-
-
     }
 
     private void setHeader() {

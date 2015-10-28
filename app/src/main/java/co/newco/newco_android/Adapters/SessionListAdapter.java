@@ -52,7 +52,7 @@ public class SessionListAdapter extends BaseAdapter implements StickyListHeaders
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         Session sess = (Session) getItem(position);
 
         if (convertView == null) {
@@ -90,6 +90,7 @@ public class SessionListAdapter extends BaseAdapter implements StickyListHeaders
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, SessionInfoActivity.class);
+                intent.putExtra("sessionId", position);
                 activity.startActivity(intent);
             }
         });

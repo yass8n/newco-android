@@ -64,6 +64,7 @@ public class SessionListActivity extends ActionBarActivity {
         btnMenu = (ImageButton) findViewById(R.id.btn_menu);
         sessionsList = (StickyListHeadersListView) findViewById(R.id.sessionList);
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -81,7 +82,6 @@ public class SessionListActivity extends ActionBarActivity {
         calls.add(sessionData.getSessionData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
-
                 sessions = sessionData.getSessions();
                 menu = appController.createSliderMenu(activity);
                 btnMenu.setOnClickListener(new View.OnClickListener() {
