@@ -24,4 +24,5 @@
     <string name="title_activity_session_type_list">SessionTypeListActivity</string>
     <string name="title_activity_directory">DirectoryActivity</string>
     <string name="title_activity_session_info">sessionInfoActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
 </resources>

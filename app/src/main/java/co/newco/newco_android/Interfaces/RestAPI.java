@@ -19,4 +19,6 @@ public interface RestAPI {
     Call<User> getUser(@Query("term") String term);
     @GET("/api/user/list?fields=username,name,email,twitter_uid,fb_uid,lastactive,position,location,company,sessions,url,about,privacy_mode,role,phone,avatar,id")
     Call<List<User>> listUsers();
+    @GET("/api/auth/login")
+    Call<String> login(@Query("username") String username, @Query("password") String password);
 }

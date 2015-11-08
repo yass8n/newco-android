@@ -27,6 +27,7 @@ public class UserData {
     private List<User> attendees;
     private List<User> volunteers;
     private List<User> companies = null;
+    private String currentUserKey = null;
 
     public List<User> getCompanies() {
         return companies;
@@ -41,6 +42,9 @@ public class UserData {
         return volunteers;
     }
 
+    public String getCurrentUserKey() {
+        return currentUserKey;
+    }
 
     public static UserData getInstance(){
         if(instance == null) {
@@ -82,6 +86,11 @@ public class UserData {
                 });
 
                 callback.handleResponse();
+            }
+
+            @Override
+            public void handleError(Throwable t) {
+                return;
             }
         });
         return call;
@@ -128,5 +137,27 @@ public class UserData {
                 volunteers.add(user);
             }
         }
+    }
+
+    public Call userLogin(String username, String password, final SimpleResponsehandler callback){
+        Call<String> call = null;
+        if(currentUserKey == null){
+            call = RestClient.getInstance().get().login(username, password);
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Response<String> response, Retrofit retrofit) {
+                    currentUserKey = response.body();
+                    callback.handleResponse();
+                }
+                @Override
+                public void onFailure(Throwable t) {
+                    callback.handleError(t);
+                }
+            });
+        }
+        else{
+            callback.handleResponse();
+        }
+        return call;
     }
 }

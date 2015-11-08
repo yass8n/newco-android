@@ -5,5 +5,6 @@ package co.newco.newco_android.Interfaces;
  */
 public interface SimpleResponsehandler {
     void handleResponse();
+    void handleError(Throwable t);
 }
 

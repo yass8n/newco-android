@@ -91,6 +91,11 @@ public class UsersListActivity extends ActionBarActivity {
                             usersListView.setAdapter(adapter);
                             loading.setVisibility(View.GONE);
                         }
+
+                        @Override
+                        public void handleError(Throwable t) {
+                            return;
+                        }
                     }));
                 }
                 else{
@@ -99,12 +104,22 @@ public class UsersListActivity extends ActionBarActivity {
                     loading.setVisibility(View.GONE);
                 }
             }
+
+            @Override
+            public void handleError(Throwable t) {
+                return;
+            }
         }));
 
         calls.add(sessionData.getSessionData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
                 appController.createSliderMenu(activity);
+            }
+
+            @Override
+            public void handleError(Throwable t) {
+                return;
             }
         }));
     }

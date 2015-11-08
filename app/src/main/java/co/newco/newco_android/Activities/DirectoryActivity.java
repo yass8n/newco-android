@@ -103,6 +103,11 @@ public class DirectoryActivity extends ActionBarActivity {
                     }
                 });
             }
+
+            @Override
+            public void handleError(Throwable t) {
+                return;
+            }
         }));
     }
 }

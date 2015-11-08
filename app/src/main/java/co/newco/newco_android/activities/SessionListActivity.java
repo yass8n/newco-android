@@ -61,6 +61,15 @@ public class SessionListActivity extends ActionBarActivity {
                 startActivity(new Intent(getApplicationContext(), DirectoryActivity.class));
             }
         });
+
+        Button login = (Button) findViewById(R.id.btn_login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            }
+        });
+
         btnMenu = (ImageButton) findViewById(R.id.btn_menu);
         sessionsList = (StickyListHeadersListView) findViewById(R.id.sessionList);
     }
@@ -97,6 +106,11 @@ public class SessionListActivity extends ActionBarActivity {
                 SessionListAdapter adapter = new SessionListAdapter(activity, sessions, null);
                 sessionsList.setAdapter(adapter);
                 loading.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void handleError(Throwable t) {
+                return;
             }
         }));
     }

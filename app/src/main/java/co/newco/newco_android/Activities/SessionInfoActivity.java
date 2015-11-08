@@ -12,7 +12,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.newco.newco_android.Adapters.SessionListAdapter;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Models.Session;
 import co.newco.newco_android.Models.Speaker;
@@ -71,6 +70,11 @@ public class SessionInfoActivity extends ActionBarActivity {
                 session = sessionData.getSessions().get(sessionId);
                 setHeader();
                 setContent();
+            }
+
+            @Override
+            public void handleError(Throwable t) {
+                return;
             }
         }));
     }

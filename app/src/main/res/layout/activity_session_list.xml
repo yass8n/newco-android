@@ -44,6 +44,16 @@
             android:layout_toRightOf="@+id/btn_menu"
             android:layout_toEndOf="@+id/btn_menu" />
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="login"
+            android:id="@+id/btn_login"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
     </RelativeLayout>
 
     <se.emilsjolander.stickylistheaders.StickyListHeadersListView
