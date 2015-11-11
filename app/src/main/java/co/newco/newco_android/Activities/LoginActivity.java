@@ -47,10 +47,11 @@ public class LoginActivity extends ActionBarActivity {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
 
-        calls.add(currentUserData.userLogin(username, password, new SimpleResponsehandler() {
+        calls.addAll(currentUserData.userLogin(username, password, new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
                 AppController.getInstance().Toast(currentUserData.getCurrentUserKey());
+                AppController.getInstance().Toast(currentUserData.getCurrentUser().getUsername());
                 startActivity(new Intent(getApplicationContext(), SessionListActivity.class));
             }
 

@@ -27,4 +27,7 @@ public interface RestAPI {
 
     @GET("/api/going/add")
     Call<String> signupForSession(@Query("session") String userkey, @Query("sessions") String sessionId);
+
+    @GET("/api/user/get?by=email&fields=username,name,email,twitter_uid,fb_uid,position,location,company,privacy_mode")
+    Call<User> getUserInfo(@Query("term") String email);
 }

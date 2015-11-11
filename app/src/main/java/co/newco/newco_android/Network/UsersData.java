@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
@@ -28,6 +29,18 @@ public class UsersData {
     private List<User> volunteers;
     private List<User> companies = null;
     private String currentUserKey = null;
+
+    public Hashtable<String, User> getUserByUsername() {
+        return userByUsername;
+    }
+
+    private Hashtable<String, User> userByUsername = null;
+
+    public Hashtable<String, User> getUserByEmail() {
+        return userByEmail;
+    }
+
+    private Hashtable<String, User> userByEmail = null;
 
     public List<User> getCompanies() {
         return companies;
@@ -124,8 +137,10 @@ public class UsersData {
         attendees = new ArrayList<>();
         speakers = new ArrayList<>();
         volunteers = new ArrayList<>();
+        userByUsername = new Hashtable<>();
 
         for(User user : users){
+            // put user in correct list for user role
             List<String> userRole = new ArrayList<>(Arrays.asList(user.getRole().split(", ")));
             if(userRole.contains("attendee")){
                 attendees.add(user);
@@ -136,6 +151,10 @@ public class UsersData {
             if(userRole.contains("volunteer")){
                 volunteers.add(user);
             }
+
+            // create hashtable for easy lookup
+            userByUsername.put(user.getUsername(), user);
+            userByEmail.put(user.getEmail(), user);
         }
     }
 
