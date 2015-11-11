@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -12,10 +13,14 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
+import co.newco.newco_android.Interfaces.StringResponseHandler;
 import co.newco.newco_android.Models.Session;
 import co.newco.newco_android.Models.Speaker;
+import co.newco.newco_android.Network.CurrentUserData;
 import co.newco.newco_android.Network.SessionData;
+import co.newco.newco_android.Network.UsersData;
 import co.newco.newco_android.R;
 import retrofit.Call;
 
@@ -23,9 +28,11 @@ public class SessionInfoActivity extends ActionBarActivity {
     ActionBarActivity activity;
     List<Call> calls;
     SessionData sessionData = SessionData.getInstance();
+    CurrentUserData currentUserData = CurrentUserData.getInstance();
     Integer sessionId;
     Session session;
     TextView header;
+    Button btnSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +54,11 @@ public class SessionInfoActivity extends ActionBarActivity {
         });
 
         header = (TextView) findViewById(R.id.header);
+
+        btnSignup = (Button) findViewById(R.id.btn_signup);
+        if(currentUserData.getCurrentUserKey() != null){
+            btnSignup.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -70,6 +82,7 @@ public class SessionInfoActivity extends ActionBarActivity {
                 session = sessionData.getSessions().get(sessionId);
                 setHeader();
                 setContent();
+                setSignup();
             }
 
             @Override
@@ -77,6 +90,24 @@ public class SessionInfoActivity extends ActionBarActivity {
                 return;
             }
         }));
+    }
+
+    private void setSignup() {
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calls.add(currentUserData.signupForSession(session.getId(), new StringResponseHandler() {
+                    @Override
+                    public void handleResponse(String res) {
+                        AppController.getInstance().Toast(res);
+                    }
+
+                    @Override
+                    public void handleError(Throwable t) {
+                    }
+                }));
+            }
+        });
     }
 
     private void setContent() {

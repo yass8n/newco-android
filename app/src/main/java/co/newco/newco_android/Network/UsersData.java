@@ -20,8 +20,8 @@ import retrofit.Retrofit;
 /**
  * Created by jayd on 10/23/15.
  */
-public class UserData {
-    private static UserData instance = null;
+public class UsersData {
+    private static UsersData instance = null;
     private List<User> users = null;
     private List<User> speakers;
     private List<User> attendees;
@@ -46,9 +46,9 @@ public class UserData {
         return currentUserKey;
     }
 
-    public static UserData getInstance(){
+    public static UsersData getInstance(){
         if(instance == null) {
-            instance = new UserData();
+            instance = new UsersData();
         }
         return instance;
     }
@@ -139,25 +139,5 @@ public class UserData {
         }
     }
 
-    public Call userLogin(String username, String password, final SimpleResponsehandler callback){
-        Call<String> call = null;
-        if(currentUserKey == null){
-            call = RestClient.getInstance().get().login(username, password);
-            call.enqueue(new Callback<String>() {
-                @Override
-                public void onResponse(Response<String> response, Retrofit retrofit) {
-                    currentUserKey = response.body();
-                    callback.handleResponse();
-                }
-                @Override
-                public void onFailure(Throwable t) {
-                    callback.handleError(t);
-                }
-            });
-        }
-        else{
-            callback.handleResponse();
-        }
-        return call;
-    }
+
 }

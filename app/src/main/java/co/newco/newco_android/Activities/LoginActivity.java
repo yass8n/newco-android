@@ -13,7 +13,8 @@ import java.util.List;
 
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
-import co.newco.newco_android.Network.UserData;
+import co.newco.newco_android.Network.CurrentUserData;
+import co.newco.newco_android.Network.UsersData;
 import co.newco.newco_android.R;
 import retrofit.Call;
 
@@ -22,13 +23,13 @@ public class LoginActivity extends ActionBarActivity {
     private EditText etUsername;
     private EditText etPassword;
     private Button btnSubmit;
-    private UserData userData;
+    private CurrentUserData currentUserData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         calls = new ArrayList<>();
-        userData = UserData.getInstance();
+        currentUserData = CurrentUserData.getInstance();
 
         etUsername = (EditText) findViewById(R.id.username);
         etPassword = (EditText) findViewById(R.id.password);
@@ -45,10 +46,11 @@ public class LoginActivity extends ActionBarActivity {
     private void login() {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
-        calls.add(userData.userLogin(username, password, new SimpleResponsehandler() {
+
+        calls.add(currentUserData.userLogin(username, password, new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
-                AppController.getInstance().Toast(userData.getCurrentUserKey());
+                AppController.getInstance().Toast(currentUserData.getCurrentUserKey());
                 startActivity(new Intent(getApplicationContext(), SessionListActivity.class));
             }
 

@@ -21,7 +21,7 @@ import java.util.List;
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Network.SessionData;
-import co.newco.newco_android.Network.UserData;
+import co.newco.newco_android.Network.UsersData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.Models.User;
 import retrofit.Call;
@@ -29,7 +29,7 @@ import retrofit.Call;
 public class UsersListActivity extends ActionBarActivity {
     private AppController appController = AppController.getInstance();
     private SessionData sessionData = SessionData.getInstance();
-    private UserData userData = UserData.getInstance();
+    private UsersData usersData = UsersData.getInstance();
     private ListView usersListView;
     private SlidingMenu menu;
     private List<User> usersList;
@@ -66,27 +66,27 @@ public class UsersListActivity extends ActionBarActivity {
         super.onResume();
         usersList = new ArrayList<User>();
 
-        calls.add(userData.getUsersData(new SimpleResponsehandler() {
+        calls.add(usersData.getUsersData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
                 switch (role){
                     case "speaker":
-                        usersList = userData.getSpeakers();
+                        usersList = usersData.getSpeakers();
                         break;
                     case "volunteer":
-                        usersList = userData.getVolunteers();
+                        usersList = usersData.getVolunteers();
                         break;
                     case "attendee":
-                        usersList = userData.getAttendees();
+                        usersList = usersData.getAttendees();
                         break;
                     }
 
                 //BLARGH this is dumb and I hate it
                 if(role.compareTo("company") == 0) {
-                    calls.add(UserData.getInstance().buildCompanyData(new SimpleResponsehandler() {
+                    calls.add(UsersData.getInstance().buildCompanyData(new SimpleResponsehandler() {
                         @Override
                         public void handleResponse() {
-                            usersList = userData.getCompanies();
+                            usersList = usersData.getCompanies();
                             InteractiveArrayAdapter adapter = new InteractiveArrayAdapter(activity);
                             usersListView.setAdapter(adapter);
                             loading.setVisibility(View.GONE);

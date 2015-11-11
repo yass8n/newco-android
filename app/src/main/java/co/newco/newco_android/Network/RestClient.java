@@ -49,7 +49,7 @@ public class RestClient {
             public Response intercept(Chain chain) throws IOException {
                 HttpUrl url = chain.request().httpUrl().newBuilder()
                         .addQueryParameter("api_key", API_KEY)
-                        .addQueryParameter("format","json")
+                        .addQueryParameter("format", "json")
                         .build();
                 Request request = chain.request().newBuilder().url(url).build();
 
@@ -72,6 +72,7 @@ public class RestClient {
 */
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(root)
+                .addConverterFactory(new ToStringConverterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

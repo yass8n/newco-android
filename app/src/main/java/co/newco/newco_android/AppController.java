@@ -8,7 +8,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import co.newco.newco_android.Network.RestClient;
 import co.newco.newco_android.Network.SessionData;
-import co.newco.newco_android.Network.UserData;
+import co.newco.newco_android.Network.UsersData;
 import co.newco.newco_android.Fragments.SliderListFragment;
 
 /**
@@ -37,7 +37,7 @@ public class AppController extends Application {
     protected void initSingletons() {
         RestClient.getInstance().setRoot(currentUrl);
         SessionData.getInstance();
-        UserData.getInstance();
+        UsersData.getInstance();
     }
 
     public String getCurrentUrl() {

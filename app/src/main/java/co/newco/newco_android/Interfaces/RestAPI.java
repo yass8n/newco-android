@@ -15,10 +15,16 @@ import retrofit.http.Query;
 public interface RestAPI {
     @GET("/api/session/export")
     Call<List<Session>> listSessions();
+
     @GET("/api/user/get?by=username&fields=username,name,email,twitter_uid,fb_uid,position,location,company,privacy_mode")
     Call<User> getUser(@Query("term") String term);
+
     @GET("/api/user/list?fields=username,name,email,twitter_uid,fb_uid,lastactive,position,location,company,sessions,url,about,privacy_mode,role,phone,avatar,id")
     Call<List<User>> listUsers();
+
     @GET("/api/auth/login")
     Call<String> login(@Query("username") String username, @Query("password") String password);
+
+    @GET("/api/going/add")
+    Call<String> signupForSession(@Query("session") String userkey, @Query("sessions") String sessionId);
 }
