@@ -52,9 +52,10 @@ public class LoginActivity extends ActionBarActivity {
             public void handleResponse() {
                 AppController.getInstance().Toast(currentUserData.getCurrentUserKey());
                 AppController.getInstance().Toast(currentUserData.getCurrentUser().getUsername());
-                startActivity(new Intent(getApplicationContext(), SessionListActivity.class));
+                if (currentUserData.getCurrentUserKey() != null) {
+                    startActivity(new Intent(getApplicationContext(), SessionListActivity.class));
+                }
             }
-
             @Override
             public void handleError(Throwable t) {
                 AppController.getInstance().Toast("Something went wrong, please try again.");

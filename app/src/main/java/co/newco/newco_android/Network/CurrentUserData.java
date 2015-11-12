@@ -42,7 +42,7 @@ public class CurrentUserData {
     }
 
     public ArrayList<Call> userLogin(final String email, String password, final SimpleResponsehandler callback){
-        ArrayList<Call> calls = new ArrayList<>();
+        final ArrayList<Call> calls = new ArrayList<>();
         if(currentUserKey == null){
             calls.add(RestClient.getInstance().get().login(email, password));
             calls.add(RestClient.getInstance().get().getUserInfo(email));
@@ -50,6 +50,18 @@ public class CurrentUserData {
                 @Override
                 public void onResponse(Response<String> response, Retrofit retrofit) {
                     currentUserKey = response.body();
+                    calls.get(1).enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Response<User> response, Retrofit retrofit) {
+                            currentUser = response.body();
+                            callback.handleResponse();
+                        }
+                        @Override
+                        public void onFailure(Throwable t) {
+                            callback.handleError(t);
+                            Log.e("getSessionData error", t.getMessage());
+                        }
+                    });
                 }
 
                 @Override
@@ -58,18 +70,7 @@ public class CurrentUserData {
                     Log.e("getSessionData error", t.getMessage());
                 }
             });
-            calls.get(1).enqueue(new Callback<User>() {
-                @Override
-                public void onResponse(Response<User> response, Retrofit retrofit) {
-                    currentUser = response.body();
-                    callback.handleResponse();
-                }
-                @Override
-                public void onFailure(Throwable t) {
-                    callback.handleError(t);
-                    Log.e("getSessionData error", t.getMessage());
-                }
-            });
+
         }
         else{
             callback.handleResponse();
