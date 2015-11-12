@@ -37,7 +37,10 @@
             android:label="@string/title_activity_session_info" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".Activities.UserInfoActivity"
+            android:label="@string/title_activity_user_info"></activity>
     </application>
 
 </manifest>

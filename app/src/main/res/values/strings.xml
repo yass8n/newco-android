@@ -25,4 +25,5 @@
     <string name="title_activity_directory">DirectoryActivity</string>
     <string name="title_activity_session_info">sessionInfoActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_user_info">UserInfoActivity</string>
 </resources>

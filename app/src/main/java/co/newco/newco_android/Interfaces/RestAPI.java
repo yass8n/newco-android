@@ -30,4 +30,7 @@ public interface RestAPI {
 
     @GET("/api/user/get?by=email&fields=username,name,email,twitter_uid,fb_uid,position,location,company,privacy_mode")
     Call<User> getUserInfo(@Query("term") String email);
+
+    @GET("/api/going/list")
+    Call<List<String>> getUserSessIds(@Query("session") String session, @Query("username") String username);
 }

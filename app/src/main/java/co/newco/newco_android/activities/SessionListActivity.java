@@ -18,6 +18,7 @@ import java.util.List;
 import co.newco.newco_android.Adapters.SessionListAdapter;
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
+import co.newco.newco_android.Network.CurrentUserData;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.Models.Session;
@@ -28,6 +29,7 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 public class SessionListActivity extends ActionBarActivity {
     private AppController appController = AppController.getInstance();
     private SessionData sessionData = SessionData.getInstance();
+    private CurrentUserData currentUserData = CurrentUserData.getInstance();
     private List<Session> sessions;
     private StickyListHeadersListView sessionsList;
     private List<Call> calls;
@@ -66,7 +68,14 @@ public class SessionListActivity extends ActionBarActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                if(currentUserData.getCurrentUser() == null) {
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
+                    intent.putExtra("username", currentUserData.getCurrentUser().getUsername());
+                    startActivity(intent);
+                }
             }
         });
 

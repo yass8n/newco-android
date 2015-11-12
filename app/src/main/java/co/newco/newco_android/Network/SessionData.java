@@ -24,6 +24,7 @@ public class SessionData {
     private Hashtable<String, ArrayList<Session>> sessionGroupHash = null;
     private Hashtable<String, String> colorsHash = null;
     private Hashtable<String, ArrayList<Session>> sessionGroupDayHash = null;
+    private Hashtable<String, Session> sessionByKey = null;
 
     public static SessionData getInstance(){
         if(instance == null) {
@@ -75,10 +76,15 @@ public class SessionData {
         return call;
     }
 
+    public Hashtable<String, Session> getSessionByKey() {
+        return sessionByKey;
+    }
+
     protected void setupSessionData(){
         sessionGroupHash = new Hashtable<>();
         sessionGroupDayHash = new Hashtable<>();
         colorsHash = new Hashtable<>();
+        sessionByKey = new Hashtable<>();
 
         int colorsCount = 0;
         for(Session sess : sessions){
@@ -102,6 +108,8 @@ public class SessionData {
             }
             sessionGroupHash.get(sess.getEvent_start()).add(sess);
             sessionGroupDayHash.get(sess.getStart_date()).add(sess);
+            sessionByKey.put(sess.getEvent_key(), sess);
+
         }
     }
 

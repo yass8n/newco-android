@@ -25,6 +25,8 @@ public class User {
     private String phone;
     private String avatar;
     private String id;
+    //ignored by gson
+    private transient List<Session> sessions;
 
     public String getId() {
         return id;
@@ -161,6 +163,14 @@ public class User {
 
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
+    }
+
+    public List<Session> getSessions(){
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions){
+        this.sessions = sessions;
     }
 
     // update object

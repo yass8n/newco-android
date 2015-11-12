@@ -138,6 +138,7 @@ public class UsersData {
         speakers = new ArrayList<>();
         volunteers = new ArrayList<>();
         userByUsername = new Hashtable<>();
+        userByEmail = new Hashtable<>();
 
         for(User user : users){
             // put user in correct list for user role
@@ -158,5 +159,61 @@ public class UsersData {
         }
     }
 
+    // this method has a terrible triple nested callback, sorry about that
+    public ArrayList<Call> getUserSessIds(final String username, final SimpleResponsehandler callback) {
+        final ArrayList<Call> calls = new ArrayList<>();
+        // theoretically, if we're calling this then we should already have called the user data, but maybe not
+        calls.add(getUsersData(new SimpleResponsehandler() {
+            @Override
+            public void handleResponse() {
+                final User user = userByUsername.get(username);
+                if (user.getSessions() == null) {
+                    // thus begins callback hell
+                    calls.add(SessionData.getInstance().getSessionData(new SimpleResponsehandler() {
+                        @Override
+                        public void handleResponse() {
+                            //callback hell lol
+                            calls.add(RestClient.getInstance().get().getUserSessIds(CurrentUserData.getInstance().getCurrentUserKey(), username));
+                            calls.get(1).enqueue(new Callback() {
+                                @Override
+                                public void onResponse(Response response, Retrofit retrofit) {
+                                    List<Session> sessions = new ArrayList<>();
+                                    List<String> sessIds = (List<String>) response.body();
+                                    Hashtable<String, Session> sessionByKey = SessionData.getInstance().getSessionByKey();
+                                    for(String sess : sessIds){
+                                        sessions.add(sessionByKey.get(sess));
+                                    }
+                                    user.setSessions(sessions);
+                                    callback.handleResponse();
+                                }
 
+                                @Override
+                                public void onFailure(Throwable t) {
+                                    callback.handleError(t);
+                                    Log.e("getUserSessionData error", t.getMessage());
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void handleError(Throwable t) {
+                            callback.handleError(t);
+                            Log.e("getSessionData error", t.getMessage());
+                        }
+                    }));
+                }
+                else{
+                    callback.handleResponse();
+                }
+            }
+            @Override
+            public void handleError(Throwable t) {
+                callback.handleError(t);
+                Log.e("getSessionData error", t.getMessage());
+            }
+        }));
+
+
+        return calls;
+    }
 }
