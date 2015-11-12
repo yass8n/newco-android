@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Interfaces.StringResponseHandler;
 import co.newco.newco_android.Models.User;
@@ -50,6 +51,7 @@ public class CurrentUserData {
                 @Override
                 public void onResponse(Response<String> response, Retrofit retrofit) {
                     currentUserKey = response.body();
+                    //callback hell lol
                     calls.get(1).enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Response<User> response, Retrofit retrofit) {
@@ -79,7 +81,8 @@ public class CurrentUserData {
     }
     public Call signupForSession(String sessionid, final StringResponseHandler callback){
         Call<String> call = null;
-        call = RestClient.getInstance().get().signupForSession(sessionid, currentUserKey);
+        call = RestClient.getInstance().get().signupForSession(currentUserKey, sessionid);
+        AppController.getInstance().Toast(currentUserKey);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Response<String> response, Retrofit retrofit) {
