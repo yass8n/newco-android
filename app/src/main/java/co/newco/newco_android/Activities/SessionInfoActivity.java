@@ -16,6 +16,7 @@ import java.util.List;
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Interfaces.StringResponseHandler;
+import co.newco.newco_android.Models.Artist;
 import co.newco.newco_android.Models.Session;
 import co.newco.newco_android.Models.Speaker;
 import co.newco.newco_android.Models.User;
@@ -155,6 +156,15 @@ public class SessionInfoActivity extends ActionBarActivity {
 
         TextView addr = (TextView) findViewById(R.id.sessionAddr);
         addr.setText(session.getAddress());
+
+        LinearLayout companies = (LinearLayout) findViewById(R.id.sessionHostCompanies);
+
+        for(Artist artist : session.getArtists()){
+            TextView name = new TextView(activity);
+            name.setText(artist.getName());
+            name.setTextColor(Color.parseColor("#000000"));
+            companies.addView(name);
+        }
 
         LinearLayout presenters = (LinearLayout) findViewById(R.id.sessionPresentersList);
 
