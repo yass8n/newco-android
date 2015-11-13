@@ -83,7 +83,7 @@ public class SessionInfoActivity extends ActionBarActivity {
             public void handleResponse() {
                 session = sessionData.getSessions().get(sessionId);
 
-                setHeader();
+                header.setText(session.getName());
                 setContent();
                 setSignup();
 
@@ -174,9 +174,9 @@ public class SessionInfoActivity extends ActionBarActivity {
             name.setTextColor(Color.parseColor("#000000"));
             presenters.addView(name);
         }
+
+        TextView desc = (TextView) findViewById(R.id.sessionDescription);
+        desc.setText(session.getDescription());
     }
 
-    private void setHeader() {
-        header.setText(session.getName());
-    }
 }
