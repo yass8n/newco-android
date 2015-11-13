@@ -33,4 +33,7 @@ public interface RestAPI {
 
     @GET("/api/going/list")
     Call<List<String>> getUserSessIds(@Query("session") String session, @Query("username") String username);
+
+    @GET("/api/session/seats?type=all&by=id&fields=avatar,name,username")
+    Call<List<User>> getUsersAttendingSession(@Query("id") String id);
 }

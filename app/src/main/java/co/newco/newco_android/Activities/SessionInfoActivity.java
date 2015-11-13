@@ -18,6 +18,7 @@ import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Interfaces.StringResponseHandler;
 import co.newco.newco_android.Models.Session;
 import co.newco.newco_android.Models.Speaker;
+import co.newco.newco_android.Models.User;
 import co.newco.newco_android.Network.CurrentUserData;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.Network.UsersData;
@@ -80,9 +81,22 @@ public class SessionInfoActivity extends ActionBarActivity {
             @Override
             public void handleResponse() {
                 session = sessionData.getSessions().get(sessionId);
+
                 setHeader();
                 setContent();
                 setSignup();
+
+                calls.addAll(sessionData.getUsersAttendingSession(session.getId(), new SimpleResponsehandler() {
+                    @Override
+                    public void handleResponse() {
+                        setAttendees();
+                    }
+
+                    @Override
+                    public void handleError(Throwable t) {
+                        Log.e("Error", t.getMessage());
+                    }
+                }));
             }
 
             @Override
@@ -90,6 +104,19 @@ public class SessionInfoActivity extends ActionBarActivity {
                 return;
             }
         }));
+
+    }
+
+    private void setAttendees() {
+        LinearLayout attendees = (LinearLayout) findViewById(R.id.sessionAttendeesList);
+        List<User> attendeesList = session.getAttendees();
+        for(int i = 0; i < Math.min(attendeesList.size(), 10); i++){
+            User user = attendeesList.get(i);
+            TextView name = new TextView(activity);
+            name.setText(user.getName());
+            name.setTextColor(Color.parseColor("#000000"));
+            attendees.addView(name);
+        }
     }
 
     private void setSignup() {

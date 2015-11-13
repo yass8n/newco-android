@@ -3,6 +3,7 @@ package co.newco.newco_android.Models;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import co.newco.newco_android.Network.SessionData;
 
@@ -58,6 +59,16 @@ public class Session{
     private String event_type_sort;
     @SerializedName("seats-status") private String seats_status;
     @SerializedName("seats-title") private String seats_title;
+
+    public List<User> getAttendees() {
+        return attendees;
+    }
+
+    public void setAttendees(List<User> attendees) {
+        this.attendees = attendees;
+    }
+
+    private transient List<User> attendees;
 
     public String getSessionColor(){
        return SessionData.getInstance().getColorsHash().get(event_type.split(", ")[0].trim());

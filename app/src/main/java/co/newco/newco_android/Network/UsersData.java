@@ -159,6 +159,8 @@ public class UsersData {
         }
     }
 
+
+
     // this method has a terrible triple nested callback, sorry about that
     public ArrayList<Call> getUserSessIds(final String username, final SimpleResponsehandler callback) {
         final ArrayList<Call> calls = new ArrayList<>();

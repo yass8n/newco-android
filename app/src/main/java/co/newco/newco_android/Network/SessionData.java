@@ -9,6 +9,7 @@ import java.util.List;
 
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Models.Session;
+import co.newco.newco_android.Models.User;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -25,6 +26,12 @@ public class SessionData {
     private Hashtable<String, String> colorsHash = null;
     private Hashtable<String, ArrayList<Session>> sessionGroupDayHash = null;
     private Hashtable<String, Session> sessionByKey = null;
+
+    public Hashtable<String, Session> getSessionById() {
+        return sessionById;
+    }
+
+    private Hashtable<String, Session> sessionById = null;
 
     public static SessionData getInstance(){
         if(instance == null) {
@@ -85,6 +92,7 @@ public class SessionData {
         sessionGroupDayHash = new Hashtable<>();
         colorsHash = new Hashtable<>();
         sessionByKey = new Hashtable<>();
+        sessionById = new Hashtable<>();
 
         int colorsCount = 0;
         for(Session sess : sessions){
@@ -109,10 +117,48 @@ public class SessionData {
             sessionGroupHash.get(sess.getEvent_start()).add(sess);
             sessionGroupDayHash.get(sess.getStart_date()).add(sess);
             sessionByKey.put(sess.getEvent_key(), sess);
+            sessionById.put(sess.getId(), sess);
 
         }
     }
+    public ArrayList<Call> getUsersAttendingSession(final String session, final SimpleResponsehandler callback){
+        final ArrayList<Call> calls = new ArrayList<>();
+        calls.add(SessionData.getInstance().getSessionData(new SimpleResponsehandler() {
+            @Override
+            public void handleResponse() {
+                final Session sess = SessionData.getInstance().getSessionById().get(session);
+                if(sess.getAttendees() == null) {
+                    Call call = RestClient.getInstance().get().getUsersAttendingSession(session);
+                    calls.add(call);
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onResponse(Response response, Retrofit retrofit) {
+                            List<User> attendees = (List<User>) response.body();
+                            sess.setAttendees(attendees);
+                            callback.handleResponse();
+                        }
 
+                        @Override
+                        public void onFailure(Throwable t) {
+                            callback.handleError(t);
+                            Log.e("usrsAttendSess error", t.getMessage());
+
+                        }
+                    });
+                }
+                else{
+                    callback.handleResponse();
+                }
+            }
+
+            @Override
+            public void handleError(Throwable t) {
+
+            }
+        }));
+
+        return calls;
+    }
     public static HashMap<String, String> COLOR_HASH = new HashMap<String, String>(){{
         put("red", "#F3827F");
         put("green", "#9EDF7D");
