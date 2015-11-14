@@ -63,10 +63,11 @@ public class UserInfoActivity extends ActionBarActivity {
     @Override
     public void onResume(){
         super.onResume();
-        calls.addAll(usersData.getUserSessIds(username, new SimpleResponsehandler() {
+        calls.addAll(usersData.getUserSessions(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
                 sessions = usersData.getUserByUsername().get(username).getSessions();
+                sessions = sessions == null ? new ArrayList<Session>() : sessions;
                 SessionListAdapter adapter = new SessionListAdapter(activity, sessions, null);
                 sessionsList.setAdapter(adapter);
             }

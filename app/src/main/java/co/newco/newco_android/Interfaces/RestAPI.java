@@ -5,6 +5,7 @@ import java.util.List;
 import co.newco.newco_android.Models.Session;
 
 import co.newco.newco_android.Models.User;
+import co.newco.newco_android.Models.UserSession;
 import retrofit.Call;
 import retrofit.http.GET;
 import retrofit.http.Query;
@@ -33,6 +34,9 @@ public interface RestAPI {
 
     @GET("/api/going/list")
     Call<List<String>> getUserSessIds(@Query("session") String session, @Query("username") String username);
+
+    @GET("/api/user/sessions")
+    Call<List<UserSession>> getUserSessions();
 
     @GET("/api/session/seats?type=all&by=id&fields=avatar,name,username")
     Call<List<User>> getUsersAttendingSession(@Query("id") String id);

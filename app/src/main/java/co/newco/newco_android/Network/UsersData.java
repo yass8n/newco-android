@@ -13,6 +13,7 @@ import java.util.List;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Models.Session;
 import co.newco.newco_android.Models.User;
+import co.newco.newco_android.Models.UserSession;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
@@ -28,7 +29,6 @@ public class UsersData {
     private List<User> attendees;
     private List<User> volunteers;
     private List<User> companies = null;
-    private String currentUserKey = null;
 
     public Hashtable<String, User> getUserByUsername() {
         return userByUsername;
@@ -53,10 +53,6 @@ public class UsersData {
 
     public List<User> getVolunteers() {
         return volunteers;
-    }
-
-    public String getCurrentUserKey() {
-        return currentUserKey;
     }
 
     public static UsersData getInstance(){
@@ -159,7 +155,62 @@ public class UsersData {
         }
     }
 
+    public ArrayList<Call> getUserSessions(final SimpleResponsehandler callback){
+        final ArrayList<Call> calls = new ArrayList<>();
+        // theoretically, if we're calling this then we should already have called the user data, but maybe not
+        calls.add(getUsersData(new SimpleResponsehandler() {
+            @Override
+            public void handleResponse() {
+                if (users.get(0).getSessions() == null) {
+                    // thus begins callback hell
+                    calls.add(SessionData.getInstance().getSessionData(new SimpleResponsehandler() {
+                        @Override
+                        public void handleResponse() {
+                            //callback hell lol
+                            Call call = RestClient.getInstance().get().getUserSessions();
+                            calls.add(call);
+                            call.enqueue(new Callback() {
+                                @Override
+                                public void onResponse(Response response, Retrofit retrofit) {
+                                    List<UserSession> userSessions = (List<UserSession>) response.body();
+                                    Hashtable<String, Session> sessionByKey = SessionData.getInstance().getSessionByKey();
+                                    for (UserSession sess : userSessions) {
+                                        User user = userByUsername.get(sess.getUsername());
+                                        if(user.getSessions() == null) user.setSessions(new ArrayList<Session>());
+                                        user.getSessions().add(sessionByKey.get(sess.getEvent_key()));
+                                    }
+                                    callback.handleResponse();
+                                }
 
+                                @Override
+                                public void onFailure(Throwable t) {
+                                    callback.handleError(t);
+                                    Log.e("getUserSessData error", t.getMessage());
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void handleError(Throwable t) {
+                            callback.handleError(t);
+                            Log.e("getSessionData error", t.getMessage());
+                        }
+                    }));
+                }
+                else{
+                    callback.handleResponse();
+                }
+            }
+            @Override
+            public void handleError(Throwable t) {
+                callback.handleError(t);
+                Log.e("getSessionData error", t.getMessage());
+            }
+        }));
+
+
+        return calls;
+    }
 
     // this method has a terrible triple nested callback, sorry about that
     public ArrayList<Call> getUserSessIds(final String username, final SimpleResponsehandler callback) {
@@ -175,14 +226,15 @@ public class UsersData {
                         @Override
                         public void handleResponse() {
                             //callback hell lol
-                            calls.add(RestClient.getInstance().get().getUserSessIds(CurrentUserData.getInstance().getCurrentUserKey(), username));
-                            calls.get(1).enqueue(new Callback() {
+                            Call call = RestClient.getInstance().get().getUserSessIds(CurrentUserData.getInstance().getCurrentUserKey(), username);
+                            calls.add(call);
+                            call.enqueue(new Callback() {
                                 @Override
                                 public void onResponse(Response response, Retrofit retrofit) {
                                     List<Session> sessions = new ArrayList<>();
                                     List<String> sessIds = (List<String>) response.body();
                                     Hashtable<String, Session> sessionByKey = SessionData.getInstance().getSessionByKey();
-                                    for(String sess : sessIds){
+                                    for (String sess : sessIds) {
                                         sessions.add(sessionByKey.get(sess));
                                     }
                                     user.setSessions(sessions);
@@ -192,7 +244,7 @@ public class UsersData {
                                 @Override
                                 public void onFailure(Throwable t) {
                                     callback.handleError(t);
-                                    Log.e("getUserSessionData error", t.getMessage());
+                                    Log.e("getUserSessData error", t.getMessage());
                                 }
                             });
                         }

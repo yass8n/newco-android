@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -48,6 +49,15 @@ public class UsersListActivity extends ActionBarActivity {
         calls = new ArrayList<>();
         usersListView = (ListView) findViewById(R.id.attendeesList);
         loading = (TextView) findViewById(R.id.loading);
+
+        usersListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), UserInfoActivity.class);
+                intent.putExtra("username", usersList.get(position).getUsername());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -169,6 +179,7 @@ public class UsersListActivity extends ActionBarActivity {
 
             TextView text = (TextView) view.findViewById(R.id.row_title);
             text.setText(usersList.get(position).getName() + " - " + usersList.get(position).getRole());
+
             return view;
         }
     }
