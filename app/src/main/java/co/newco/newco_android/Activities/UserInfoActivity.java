@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 import co.newco.newco_android.Adapters.SessionListAdapter;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Models.Session;
+import co.newco.newco_android.Models.User;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.Network.UsersData;
 import co.newco.newco_android.R;
@@ -25,6 +27,7 @@ public class UserInfoActivity extends ActionBarActivity {
     private ActionBarActivity activity;
     private List<Call> calls;
     private String username;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,9 @@ public class UserInfoActivity extends ActionBarActivity {
         calls.addAll(usersData.getUserSessions(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
-                sessions = usersData.getUserByUsername().get(username).getSessions();
+                user = usersData.getUserByUsername().get(username);
+                setContent();
+                sessions = user.getSessions();
                 sessions = sessions == null ? new ArrayList<Session>() : sessions;
                 SessionListAdapter adapter = new SessionListAdapter(activity, sessions, null);
                 sessionsList.setAdapter(adapter);
@@ -77,6 +82,14 @@ public class UserInfoActivity extends ActionBarActivity {
 
             }
         }));
+    }
+
+    private void setContent() {
+        TextView name = (TextView) findViewById(R.id.name);
+        String company = user.getCompany() == null || user.getCompany().length() < 1 ? "" : " @ " + user.getCompany();
+        name.setText(user.getName() + company);
+        TextView description = (TextView) findViewById(R.id.description);
+        description.setText(user.getAbout());
     }
 
 }
