@@ -29,10 +29,10 @@ public interface RestAPI {
     @GET("/api/going/add")
     Call<String> signupForSession(@Query("session") String userkey, @Query("sessions") String sessionId);
 
-    @GET("/api/user/get?by=email&fields=username,name,email,twitter_uid,fb_uid,position,location,company,privacy_mode")
+    @GET("/api/user/get?by=email&fields=id,username,name,email,twitter_uid,fb_uid,position,location,company,privacy_mode,url,about")
     Call<User> getUserInfo(@Query("term") String email);
 
-    @GET("/api/going/list")
+    @GET("/api/going/list?fields=username,name,email,twitter_uid,fb_uid,position,location,company,privacy_mode,url,about,avatar,id")
     Call<List<String>> getUserSessIds(@Query("session") String session, @Query("username") String username);
 
     @GET("/api/user/sessions")

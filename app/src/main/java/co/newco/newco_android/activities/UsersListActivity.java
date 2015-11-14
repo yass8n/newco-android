@@ -93,7 +93,7 @@ public class UsersListActivity extends ActionBarActivity {
 
                 //BLARGH this is dumb and I hate it
                 if(role.compareTo("company") == 0) {
-                    calls.add(UsersData.getInstance().buildCompanyData(new SimpleResponsehandler() {
+                    calls.addAll(UsersData.getInstance().buildCompanyData(new SimpleResponsehandler() {
                         @Override
                         public void handleResponse() {
                             usersList = usersData.getCompanies();

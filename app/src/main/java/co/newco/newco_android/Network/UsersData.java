@@ -11,6 +11,7 @@ import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
+import co.newco.newco_android.Models.Artist;
 import co.newco.newco_android.Models.Session;
 import co.newco.newco_android.Models.User;
 import co.newco.newco_android.Models.UserSession;
@@ -70,39 +71,53 @@ public class UsersData {
         return users;
     }
 
-    public Call buildCompanyData(final SimpleResponsehandler callback){
+    public List<Call> buildCompanyData(final SimpleResponsehandler callback){
+        final List<Call> calls = new ArrayList<>();
         companies = new ArrayList<>();
 
-        Call<List<Session>> call = SessionData.getInstance().getSessionData(new SimpleResponsehandler() {
+        calls.add(SessionData.getInstance().getSessionData(new SimpleResponsehandler() {
             @Override
             public void handleResponse() {
-                List<Session> sessions = SessionData.getInstance().getSessions();
-                HashMap<String, Boolean> sessionsHash = new HashMap<String, Boolean>();
-                for(Session sess : sessions){
-                    String uname = "";
-                    if(sess.getArtists() != null) uname = sess.getArtists().get(0).getUsername();
-                    else continue;
-                    sessionsHash.put(uname, true);
-                }
-                for(User u : users){
-                    if(sessionsHash.containsKey(u.getUsername())) companies.add(u);
-                }
-                Collections.sort(companies, new Comparator<User>() {
+                calls.add(UsersData.getInstance().getUsersData(new SimpleResponsehandler() {
                     @Override
-                    public int compare(User lhs, User rhs) {
-                       return lhs.getName().compareToIgnoreCase(rhs.getName());
-                    }
-                });
+                    public void handleResponse() {
+                        List<Session> sessions = SessionData.getInstance().getSessions();
+                        for (Session sess : sessions) {
+                            if (sess.getArtists() != null) {
+                                for (Artist artist : sess.getArtists()) {
+                                    User user = userByUsername.get(artist.getUsername());
+                                    if(user.getSessions() == null) user.setSessions(new ArrayList<Session>());
+                                    user.getSessions().add(sess);
+                                    if (!companies.contains(user)) {
+                                        companies.add(user);
+                                    }
+                                }
+                            }
+                        }
 
-                callback.handleResponse();
+                        Collections.sort(companies, new Comparator<User>() {
+                            @Override
+                            public int compare(User lhs, User rhs) {
+                                return lhs.getName().compareToIgnoreCase(rhs.getName());
+                            }
+                        });
+                        callback.handleResponse();
+
+                    }
+
+                    @Override
+                    public void handleError(Throwable t) {
+                        callback.handleError(t);
+                    }
+                }));
             }
 
             @Override
             public void handleError(Throwable t) {
                 return;
             }
-        });
-        return call;
+        }));
+        return calls;
     }
 
     public Call getUsersData(final SimpleResponsehandler callback){
