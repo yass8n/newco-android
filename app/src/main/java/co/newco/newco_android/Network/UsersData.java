@@ -179,6 +179,18 @@ public class UsersData {
                                         if(user.getSessions() == null) user.setSessions(new ArrayList<Session>());
                                         user.getSessions().add(sessionByKey.get(sess.getEvent_key()));
                                     }
+                                    for(User user : users){
+                                        // apparently this is a pointer assignsment, woohoo!
+                                        List<Session> sessions = user.getSessions();
+                                        if(sessions != null) {
+                                            Collections.sort(sessions, new Comparator<Session>() {
+                                                @Override
+                                                public int compare(Session lhs, Session rhs) {
+                                                    return lhs.getStart_time_ts().compareTo(rhs.getStart_time_ts());
+                                                }
+                                            });
+                                        }
+                                    }
                                     callback.handleResponse();
                                 }
 

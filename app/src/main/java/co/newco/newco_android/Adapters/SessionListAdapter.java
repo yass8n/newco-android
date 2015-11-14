@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.List;
 
 import co.newco.newco_android.Activities.SessionInfoActivity;
