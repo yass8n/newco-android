@@ -73,51 +73,60 @@ public class UsersData {
 
     public List<Call> buildCompanyData(final SimpleResponsehandler callback){
         final List<Call> calls = new ArrayList<>();
-        companies = new ArrayList<>();
-
-        calls.add(SessionData.getInstance().getSessionData(new SimpleResponsehandler() {
-            @Override
-            public void handleResponse() {
-                calls.add(UsersData.getInstance().getUsersData(new SimpleResponsehandler() {
-                    @Override
-                    public void handleResponse() {
-                        List<Session> sessions = SessionData.getInstance().getSessions();
-                        for (Session sess : sessions) {
-                            if (sess.getArtists() != null) {
-                                for (Artist artist : sess.getArtists()) {
-                                    User user = userByUsername.get(artist.getUsername());
-                                    if(user.getSessions() == null) user.setSessions(new ArrayList<Session>());
-                                    user.getSessions().add(sess);
-                                    if (!companies.contains(user)) {
-                                        companies.add(user);
+        if(companies == null) {
+            companies = new ArrayList<>();
+            calls.add(SessionData.getInstance().getSessionData(new SimpleResponsehandler() {
+                @Override
+                public void handleResponse() {
+                    calls.add(UsersData.getInstance().getUsersData(new SimpleResponsehandler() {
+                        @Override
+                        public void handleResponse() {
+                            List<Session> sessions = SessionData.getInstance().getSessions();
+                            for (Session sess : sessions) {
+                                if (sess.getArtists() != null) {
+                                    for (Artist artist : sess.getArtists()) {
+                                        User user = userByUsername.get(artist.getUsername());
+                                        if (user.getSessions() == null)
+                                            user.setSessions(new ArrayList<Session>());
+                                        user.getSessions().add(sess);
+                                        if (user.getSessions().size() > 1) {
+                                            Log.e("yep", "woo");
+                                        }
+                                        if (!companies.contains(user)) {
+                                            companies.add(user);
+                                        }
                                     }
                                 }
                             }
+
+                            Collections.sort(companies, new Comparator<User>() {
+                                @Override
+                                public int compare(User lhs, User rhs) {
+                                    return lhs.getName().compareToIgnoreCase(rhs.getName());
+                                }
+                            });
+                            callback.handleResponse();
+
                         }
 
-                        Collections.sort(companies, new Comparator<User>() {
-                            @Override
-                            public int compare(User lhs, User rhs) {
-                                return lhs.getName().compareToIgnoreCase(rhs.getName());
-                            }
-                        });
-                        callback.handleResponse();
+                        @Override
+                        public void handleError(Throwable t) {
+                            callback.handleError(t);
+                        }
+                    }));
+                }
 
-                    }
-
-                    @Override
-                    public void handleError(Throwable t) {
-                        callback.handleError(t);
-                    }
-                }));
-            }
-
-            @Override
-            public void handleError(Throwable t) {
-                return;
-            }
-        }));
+                @Override
+                public void handleError(Throwable t) {
+                    return;
+                }
+            }));
+        }
+        else{
+            callback.handleResponse();
+        }
         return calls;
+
     }
 
     public Call getUsersData(final SimpleResponsehandler callback){
