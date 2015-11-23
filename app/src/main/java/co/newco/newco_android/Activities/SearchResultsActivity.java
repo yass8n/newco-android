@@ -29,22 +29,20 @@ public class SearchResultsActivity extends ActionBarActivity {
         query = intent.getStringExtra("query");
     }
 
-}
-
 
     @Override
     public void onPause() {
         super.onPause();
         //cancel all pending calls so the fucking callback doesn't get called
         // call call call
-        for(Call call : calls){
-            if(call != null) call.cancel();
+        for (Call call : calls) {
+            if (call != null) call.cancel();
         }
         calls = new ArrayList<>();
     }
 
     @Override
-    public void onResume(){
+    public void onResume() {
         super.onResume();
         calls.add(sessionData.getSessionData(new SimpleResponsehandler() {
             @Override
@@ -58,3 +56,4 @@ public class SearchResultsActivity extends ActionBarActivity {
             }
         }));
     }
+}
