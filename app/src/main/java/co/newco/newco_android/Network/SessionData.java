@@ -28,6 +28,11 @@ public class SessionData {
     private Hashtable<String, String> colorsHash = null;
     private Hashtable<String, ArrayList<Session>> sessionGroupDayHash = null;
     private Hashtable<String, Session> sessionByKey = null;
+    private Hashtable<String, ArrayList<Session>> venueByName;
+
+    public Hashtable<String, ArrayList<Session>> getVenueByName() {
+        return venueByName;
+    }
 
     public Hashtable<String, Session> getSessionById() {
         return sessionById;
@@ -95,6 +100,8 @@ public class SessionData {
         colorsHash = new Hashtable<>();
         sessionByKey = new Hashtable<>();
         sessionById = new Hashtable<>();
+        venueByName = new Hashtable<>();
+
         //let's sort them
         Collections.sort(sessions, new Comparator<Session>() {
             @Override
@@ -111,6 +118,10 @@ public class SessionData {
                 sessionGroupDayHash.put(sess.getStart_date(), new ArrayList<Session>());
             }
 
+            if(!venueByName.containsKey(sess.getVenue())){
+                venueByName.put(sess.getVenue(), new ArrayList<Session>());
+            }
+
 
             if(sess.getEvent_type() != null) {
                 String[] event_types = sess.getEvent_type().split(",");
@@ -124,6 +135,7 @@ public class SessionData {
             }
             sessionGroupHash.get(sess.getEvent_start()).add(sess);
             sessionGroupDayHash.get(sess.getStart_date()).add(sess);
+            venueByName.get(sess.getVenue()).add(sess);
             sessionByKey.put(sess.getEvent_key(), sess);
             sessionById.put(sess.getId(), sess);
 

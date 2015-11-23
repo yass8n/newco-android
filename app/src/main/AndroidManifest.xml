@@ -40,7 +40,13 @@
             android:label="@string/title_activity_login" />
         <activity
             android:name=".Activities.UserInfoActivity"
-            android:label="@string/title_activity_user_info"></activity>
+            android:label="@string/title_activity_user_info" />
+        <activity
+            android:name=".Activities.VenueInfoActivity"
+            android:label="@string/title_activity_venue_info" />
+        <activity
+            android:name=".Activities.VenuesListActivity"
+            android:label="@string/title_activity_venues_list"></activity>
     </application>
 
 </manifest>

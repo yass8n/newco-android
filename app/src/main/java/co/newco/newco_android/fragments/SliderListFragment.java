@@ -21,6 +21,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import co.newco.newco_android.Activities.UserInfoActivity;
+import co.newco.newco_android.Activities.VenueInfoActivity;
+import co.newco.newco_android.Activities.VenuesListActivity;
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.Network.SessionData;
 import co.newco.newco_android.R;
@@ -44,6 +47,10 @@ public class SliderListFragment extends ListFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         SliderListAdapter adapter = new SliderListAdapter(getActivity());
+
+        //add venues button
+        adapter.add(new SliderItem("Venues"));
+
         //we assume we have this data
         cats = new ArrayList<String>(SessionData.getInstance().getColorsHash().keySet());
         Collections.sort(cats, new Comparator<String>() {
@@ -90,13 +97,20 @@ public class SliderListFragment extends ListFragment {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent;
                     switch(position) {
+                        case 0:
+                            intent = new Intent(getActivity(), VenuesListActivity.class);
+                            startActivity(intent);
+                            break;
                         default:
+                            // kind of hacky, but offset needed for ever item before the actual categories list
+                            int pos = position + 1;
                             //close
                             menu.showContent();
-                            AppController.getInstance().Toast("Session type:" + "\""+cats.get(position)+"\"");
-                            Intent intent = new Intent(getActivity(), SessionTypeListActivity.class);
-                            intent.putExtra("sessionType", cats.get(position));
+                            AppController.getInstance().Toast("Session type:" + "\"" + cats.get(position + 1) + "\"");
+                            intent = new Intent(getActivity(), SessionTypeListActivity.class);
+                            intent.putExtra("sessionType", cats.get(position+1));
                             startActivity(intent);
                     }
                 }
