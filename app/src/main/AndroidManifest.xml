@@ -46,7 +46,10 @@
             android:label="@string/title_activity_venue_info" />
         <activity
             android:name=".Activities.VenuesListActivity"
-            android:label="@string/title_activity_venues_list"></activity>
+            android:label="@string/title_activity_venues_list" />
+        <activity
+            android:name=".Activities.SearchResultsActivity"
+            android:label="@string/title_activity_search_results"></activity>
     </application>
 
 </manifest>

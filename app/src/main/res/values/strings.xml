@@ -28,4 +28,5 @@
     <string name="title_activity_user_info">UserInfoActivity</string>
     <string name="title_activity_venue_info">VenueInfoActivity</string>
     <string name="title_activity_venues_list">VenuesListActivity</string>
+    <string name="title_activity_search_results">SearchResultsActivity</string>
 </resources>
