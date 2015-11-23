@@ -89,14 +89,16 @@ public class SliderListFragment extends ListFragment {
             }
             TextView title = (TextView) convertView.findViewById(R.id.row_title);
             title.setText(getItem(position).tag);
-
-            ImageView circle = (ImageView) convertView.findViewById(R.id.imageButton);
-            GradientDrawable background = (GradientDrawable) circle.getBackground();
-            background.setColor(Color.parseColor(SessionData.getInstance().getColorsHash().get(cats.get(position))));
+            if(position > 0) {
+                ImageView circle = (ImageView) convertView.findViewById(R.id.imageButton);
+                GradientDrawable background = (GradientDrawable) circle.getBackground();
+                background.setColor(Color.parseColor(SessionData.getInstance().getColorsHash().get(cats.get(position))));
+            }
 
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    menu.toggle();
                     Intent intent;
                     switch(position) {
                         case 0:
@@ -105,12 +107,12 @@ public class SliderListFragment extends ListFragment {
                             break;
                         default:
                             // kind of hacky, but offset needed for ever item before the actual categories list
-                            int pos = position + 1;
+                            int pos = position - 1;
                             //close
                             menu.showContent();
-                            AppController.getInstance().Toast("Session type:" + "\"" + cats.get(position + 1) + "\"");
+                            AppController.getInstance().Toast("Session type:" + "\"" + cats.get(pos) + "\"");
                             intent = new Intent(getActivity(), SessionTypeListActivity.class);
-                            intent.putExtra("sessionType", cats.get(position+1));
+                            intent.putExtra("sessionType", cats.get(pos));
                             startActivity(intent);
                     }
                 }

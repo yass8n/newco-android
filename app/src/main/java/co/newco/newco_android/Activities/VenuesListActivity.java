@@ -1,12 +1,14 @@
 package co.newco.newco_android.Activities;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,7 +26,7 @@ import retrofit.Call;
 public class VenuesListActivity extends ActionBarActivity {
     private ActionBarActivity activity;
     private List<Call> calls;
-    private SessionData sessionData = new SessionData();
+    private SessionData sessionData = SessionData.getInstance();
     private List<String> venues;
     private TextView loading;
     private ListView listView;
@@ -38,6 +40,14 @@ public class VenuesListActivity extends ActionBarActivity {
         loading = (TextView) findViewById(R.id.loading);
         calls = new ArrayList<>();
 
+        Button back = (Button) findViewById(R.id.btn_back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -78,7 +88,7 @@ public class VenuesListActivity extends ActionBarActivity {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             View view = null;
             if (convertView == null) {
                 LayoutInflater inflator = context.getLayoutInflater();
@@ -89,7 +99,14 @@ public class VenuesListActivity extends ActionBarActivity {
 
             TextView text = (TextView) view.findViewById(R.id.row_title);
             text.setText(venues.get(position));
-
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), VenueInfoActivity.class);
+                    intent.putExtra("name", venues.get(position));
+                    startActivity(intent);
+                }
+            });
             return view;
         }
     }
