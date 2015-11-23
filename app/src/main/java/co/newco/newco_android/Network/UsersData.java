@@ -6,12 +6,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
-import co.newco.newco_android.Models.Artist;
 import co.newco.newco_android.Models.Session;
 import co.newco.newco_android.Models.User;
 import co.newco.newco_android.Models.UserSession;
@@ -84,14 +82,11 @@ public class UsersData {
                             List<Session> sessions = SessionData.getInstance().getSessions();
                             for (Session sess : sessions) {
                                 if (sess.getArtists() != null) {
-                                    for (Artist artist : sess.getArtists()) {
+                                    for (User artist : sess.getArtists()) {
                                         User user = userByUsername.get(artist.getUsername());
                                         if (user.getSessions() == null)
                                             user.setSessions(new ArrayList<Session>());
                                         user.getSessions().add(sess);
-                                        if (user.getSessions().size() > 1) {
-                                            Log.e("yep", "woo");
-                                        }
                                         if (!companies.contains(user)) {
                                             companies.add(user);
                                         }

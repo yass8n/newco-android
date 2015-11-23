@@ -31,9 +31,9 @@ public class Session{
     private String id;
     private String venue_id;
 
-    private ArrayList<Artist> artists;
-    private ArrayList<Speaker> speakers;
-    private ArrayList<Volunteer> volunteers;
+    private ArrayList<User> artists;
+    private ArrayList<User> speakers;
+    private ArrayList<User> volunteers;
 
     private String event_start_year;
     private String event_start_month;
@@ -226,27 +226,27 @@ public class Session{
         this.venue_id = venue_id;
     }
 
-    public ArrayList<Artist> getArtists() {
+    public ArrayList<User> getArtists() {
         return artists;
     }
 
-    public void setArtists(ArrayList<Artist> artists) {
+    public void setArtists(ArrayList<User> artists) {
         this.artists = artists;
     }
 
-    public ArrayList<Speaker> getSpeakers() {
+    public ArrayList<User> getSpeakers() {
         return speakers;
     }
 
-    public void setSpeakers(ArrayList<Speaker> speakers) {
+    public void setSpeakers(ArrayList<User> speakers) {
         this.speakers = speakers;
     }
 
-    public ArrayList<Volunteer> getVolunteers() {
+    public ArrayList<User> getVolunteers() {
         return volunteers;
     }
 
-    public void setVolunteers(ArrayList<Volunteer> volunteers) {
+    public void setVolunteers(ArrayList<User> volunteers) {
         this.volunteers = volunteers;
     }
 

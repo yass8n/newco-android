@@ -16,13 +16,10 @@ import java.util.List;
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.Interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Interfaces.StringResponseHandler;
-import co.newco.newco_android.Models.Artist;
 import co.newco.newco_android.Models.Session;
-import co.newco.newco_android.Models.Speaker;
 import co.newco.newco_android.Models.User;
 import co.newco.newco_android.Network.CurrentUserData;
 import co.newco.newco_android.Network.SessionData;
-import co.newco.newco_android.Network.UsersData;
 import co.newco.newco_android.R;
 import retrofit.Call;
 
@@ -159,16 +156,16 @@ public class SessionInfoActivity extends ActionBarActivity {
 
         LinearLayout companies = (LinearLayout) findViewById(R.id.sessionHostCompanies);
 
-        for(Artist artist : session.getArtists()){
+        for(User user : session.getArtists()){
             TextView name = new TextView(activity);
-            name.setText(artist.getName());
+            name.setText(user.getName());
             name.setTextColor(Color.parseColor("#000000"));
             companies.addView(name);
         }
 
         LinearLayout presenters = (LinearLayout) findViewById(R.id.sessionPresentersList);
 
-        for(Speaker speaker : session.getSpeakers()){
+        for(User speaker : session.getSpeakers()){
             TextView name = new TextView(activity);
             name.setText(speaker.getName());
             name.setTextColor(Color.parseColor("#000000"));
