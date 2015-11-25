@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -28,6 +29,7 @@ import retrofit.Call;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class SearchResultsActivity extends ActionBarActivity {
+    private ActionBarActivity activity;
     private List<Call> calls;
     private SessionData sessionData = SessionData.getInstance();
     private UsersData usersData = UsersData.getInstance();
@@ -37,9 +39,20 @@ public class SearchResultsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_results);
+        activity = this;
         calls = new ArrayList<>();
         Intent intent = getIntent();
         query = intent.getStringExtra("query").toLowerCase();
+        TextView header = (TextView) findViewById(R.id.header);
+        header.setText(query);
+
+        Button back = (Button) findViewById(R.id.btn_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 
@@ -56,8 +69,6 @@ public class SearchResultsActivity extends ActionBarActivity {
 
     @Override
     public void onResume() {
-
-
         super.onResume();
         calls.add(sessionData.getSessionData(new SimpleResponsehandler() {
             @Override
@@ -116,13 +127,17 @@ public class SearchResultsActivity extends ActionBarActivity {
         loading.setVisibility(View.GONE);
 
         LinearLayout venuesList = (LinearLayout) findViewById(R.id.venueslist);
+        venuesList.removeAllViews();
         LinearLayout presentersList = (LinearLayout) findViewById(R.id.presentersList);
+        presentersList.removeAllViews();
         LinearLayout companiesList = (LinearLayout) findViewById(R.id.companiesList);
+        companiesList.removeAllViews();
         LinearLayout attendeesList = (LinearLayout) findViewById(R.id.attendeesList);
+        attendeesList.removeAllViews();
         StickyListHeadersListView sessionsList = (StickyListHeadersListView) findViewById(R.id.sessionList);
 
         // search in venues
-        for(String venue : sessionData.getVenueByName().keySet()){
+        for(final String venue : sessionData.getVenueByName().keySet()){
             if(sessionData.getVenueByName().get(venue).get(0).getVenue().toLowerCase().contains(query)
                     || sessionData.getVenueByName().get(venue).get(0).getAddress().toLowerCase().contains(query)){
                 venues.add(venue);
@@ -130,11 +145,20 @@ public class SearchResultsActivity extends ActionBarActivity {
                 venuesList.addView(view);
                 TextView title = (TextView) view.findViewById(R.id.row_title);
                 title.setText(venue);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(activity, VenueInfoActivity.class);
+                        intent.putExtra("name", venue);
+                        startActivity(intent);
+                    }
+                });
+
             }
         }
 
         //search in presenters
-        for(User presenter : usersData.getSpeakers()){
+        for(final User presenter : usersData.getSpeakers()){
             if(presenter.getAbout().toLowerCase().contains(query) || presenter.getCompany().toLowerCase().contains(query) ||
                     presenter.getName().toLowerCase().contains(query)){
                 presenters.add(presenter);
@@ -142,11 +166,19 @@ public class SearchResultsActivity extends ActionBarActivity {
                 presentersList.addView(view);
                 TextView title = (TextView) view.findViewById(R.id.row_title);
                 title.setText(presenter.getName());
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(activity, UserInfoActivity.class);
+                        intent.putExtra("username", presenter.getUsername());
+                        startActivity(intent);
+                    }
+                });
             }
         }
 
         //search in companies
-        for(User company : usersData.getCompanies()){
+        for(final User company : usersData.getCompanies()){
             if(company.getAbout().toLowerCase().contains(query) || company.getCompany().toLowerCase().contains(query) ||
                     company.getName().toLowerCase().contains(query)){
                 companies.add(company);
@@ -154,11 +186,19 @@ public class SearchResultsActivity extends ActionBarActivity {
                 companiesList.addView(view);
                 TextView title = (TextView) view.findViewById(R.id.row_title);
                 title.setText(company.getName());
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(activity, UserInfoActivity.class);
+                        intent.putExtra("username", company.getUsername());
+                        startActivity(intent);
+                    }
+                });
             }
         }
 
         //search in attendees
-        for(User attendee : usersData.getAttendees()){
+        for(final User attendee : usersData.getAttendees()){
             if(attendee.getAbout().toLowerCase().contains(query) || attendee.getCompany().toLowerCase().contains(query) ||
                     attendee.getName().toLowerCase().contains(query)){
                 attendees.add(attendee);
@@ -166,6 +206,14 @@ public class SearchResultsActivity extends ActionBarActivity {
                 attendeesList.addView(view);
                 TextView title = (TextView) view.findViewById(R.id.row_title);
                 title.setText(attendee.getName());
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(activity, UserInfoActivity.class);
+                        intent.putExtra("username", attendee.getUsername());
+                        startActivity(intent);
+                    }
+                });
             }
         }
 
