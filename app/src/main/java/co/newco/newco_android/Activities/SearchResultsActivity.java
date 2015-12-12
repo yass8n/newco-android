@@ -1,29 +1,24 @@
-package co.newco.newco_android.Activities;
+package co.newco.newco_android.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import co.newco.newco_android.Adapters.SessionListAdapter;
-import co.newco.newco_android.AppController;
-import co.newco.newco_android.Interfaces.SimpleResponsehandler;
+import co.newco.newco_android.adapters.SessionListAdapter;
+import co.newco.newco_android.interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Models.Session;
 import co.newco.newco_android.Models.User;
-import co.newco.newco_android.Network.SessionData;
-import co.newco.newco_android.Network.UsersData;
+import co.newco.newco_android.network.SessionData;
+import co.newco.newco_android.network.UsersData;
 import co.newco.newco_android.R;
 import retrofit.Call;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;

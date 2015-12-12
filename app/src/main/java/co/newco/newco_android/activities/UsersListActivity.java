@@ -1,4 +1,4 @@
-package co.newco.newco_android.Activities;
+package co.newco.newco_android.activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,9 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import co.newco.newco_android.AppController;
-import co.newco.newco_android.Interfaces.SimpleResponsehandler;
-import co.newco.newco_android.Network.SessionData;
-import co.newco.newco_android.Network.UsersData;
+import co.newco.newco_android.interfaces.SimpleResponsehandler;
+import co.newco.newco_android.network.SessionData;
+import co.newco.newco_android.network.UsersData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.Models.User;
 import retrofit.Call;

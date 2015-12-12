@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.newco.newco_android.Network.SessionData;
+import co.newco.newco_android.network.SessionData;
 
 /**
  * Created by jayd on 10/13/15.

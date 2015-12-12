@@ -1,4 +1,4 @@
-package co.newco.newco_android.Network;
+package co.newco.newco_android.network;
 
 import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.RequestBody;

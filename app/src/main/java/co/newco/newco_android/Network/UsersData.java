@@ -1,4 +1,4 @@
-package co.newco.newco_android.Network;
+package co.newco.newco_android.network;
 
 import android.util.Log;
 
@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.Hashtable;
 import java.util.List;
 
-import co.newco.newco_android.Interfaces.SimpleResponsehandler;
+import co.newco.newco_android.interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Models.Session;
 import co.newco.newco_android.Models.User;
 import co.newco.newco_android.Models.UserSession;

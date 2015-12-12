@@ -1,4 +1,4 @@
-package co.newco.newco_android.Activities;
+package co.newco.newco_android.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,16 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-import co.newco.newco_android.Adapters.SessionListAdapter;
-import co.newco.newco_android.Interfaces.SimpleResponsehandler;
+import co.newco.newco_android.adapters.SessionListAdapter;
+import co.newco.newco_android.interfaces.SimpleResponsehandler;
 import co.newco.newco_android.Models.Session;
-import co.newco.newco_android.Network.SessionData;
+import co.newco.newco_android.network.SessionData;
 import co.newco.newco_android.R;
 import retrofit.Call;
-import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 public class VenueInfoActivity extends ActionBarActivity {

@@ -6,9 +6,9 @@ import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-import co.newco.newco_android.Network.RestClient;
-import co.newco.newco_android.Network.SessionData;
-import co.newco.newco_android.Network.UsersData;
+import co.newco.newco_android.network.RestClient;
+import co.newco.newco_android.network.SessionData;
+import co.newco.newco_android.network.UsersData;
 import co.newco.newco_android.Fragments.SliderListFragment;
 
 /**

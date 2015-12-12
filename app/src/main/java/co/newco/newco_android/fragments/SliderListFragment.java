@@ -26,14 +26,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import co.newco.newco_android.Activities.SearchResultsActivity;
-import co.newco.newco_android.Activities.UserInfoActivity;
-import co.newco.newco_android.Activities.VenueInfoActivity;
-import co.newco.newco_android.Activities.VenuesListActivity;
+import co.newco.newco_android.activities.SearchResultsActivity;
+import co.newco.newco_android.activities.VenuesListActivity;
 import co.newco.newco_android.AppController;
-import co.newco.newco_android.Network.SessionData;
+import co.newco.newco_android.network.SessionData;
 import co.newco.newco_android.R;
-import co.newco.newco_android.Activities.SessionTypeListActivity;
+import co.newco.newco_android.activities.SessionTypeListActivity;
 
 /**
  * Created by jayd on 10/22/15.

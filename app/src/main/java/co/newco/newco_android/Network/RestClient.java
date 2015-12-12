@@ -1,4 +1,4 @@
-package co.newco.newco_android.Network;
+package co.newco.newco_android.network;
 
 import com.squareup.okhttp.HttpUrl;
 import com.squareup.okhttp.Interceptor;
@@ -8,7 +8,7 @@ import com.squareup.okhttp.Response;
 
 import java.io.IOException;
 
-import co.newco.newco_android.Interfaces.RestAPI;
+import co.newco.newco_android.interfaces.RestAPI;
 import retrofit.Retrofit;
 import retrofit.GsonConverterFactory;
 

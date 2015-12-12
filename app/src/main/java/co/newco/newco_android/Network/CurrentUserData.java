@@ -1,12 +1,12 @@
-package co.newco.newco_android.Network;
+package co.newco.newco_android.network;
 
 import android.util.Log;
 
 import java.util.ArrayList;
 
 import co.newco.newco_android.AppController;
-import co.newco.newco_android.Interfaces.SimpleResponsehandler;
-import co.newco.newco_android.Interfaces.StringResponseHandler;
+import co.newco.newco_android.interfaces.SimpleResponsehandler;
+import co.newco.newco_android.interfaces.StringResponseHandler;
 import co.newco.newco_android.Models.User;
 import retrofit.Call;
 import retrofit.Callback;

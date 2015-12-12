@@ -11,10 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.CompanyProfileActivity"
-            android:label="@string/app_name" />
-        <activity
-            android:name=".Activities.SessionListActivity"
+            android:name=".activities.SessionListActivity"
             android:label="@string/title_activity_session_list">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,31 +21,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.UsersListActivity"
+            android:name=".activities.UsersListActivity"
             android:label="@string/title_activity_attendees_list" />
         <activity
-            android:name=".Activities.SessionTypeListActivity"
+            android:name=".activities.SessionTypeListActivity"
             android:label="@string/title_activity_session_type_list" />
         <activity
-            android:name=".Activities.DirectoryActivity"
+            android:name=".activities.DirectoryActivity"
             android:label="@string/title_activity_directory" />
         <activity
-            android:name=".Activities.SessionInfoActivity"
+            android:name=".activities.SessionInfoActivity"
             android:label="@string/title_activity_session_info" />
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".Activities.UserInfoActivity"
+            android:name=".activities.UserInfoActivity"
             android:label="@string/title_activity_user_info" />
         <activity
-            android:name=".Activities.VenueInfoActivity"
+            android:name=".activities.VenueInfoActivity"
             android:label="@string/title_activity_venue_info" />
         <activity
-            android:name=".Activities.VenuesListActivity"
+            android:name=".activities.VenuesListActivity"
             android:label="@string/title_activity_venues_list" />
         <activity
-            android:name=".Activities.SearchResultsActivity"
+            android:name=".activities.SearchResultsActivity"
             android:label="@string/title_activity_search_results"></activity>
     </application>
 

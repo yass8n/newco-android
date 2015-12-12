@@ -1,4 +1,4 @@
-package co.newco.newco_android.Adapters;
+package co.newco.newco_android.adapters;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -11,11 +11,10 @@ import android.widget.BaseAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.Collections;
 import java.util.List;
 
-import co.newco.newco_android.Activities.SessionInfoActivity;
-import co.newco.newco_android.Network.SessionData;
+import co.newco.newco_android.activities.SessionInfoActivity;
+import co.newco.newco_android.network.SessionData;
 import co.newco.newco_android.R;
 import co.newco.newco_android.Models.Session;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;

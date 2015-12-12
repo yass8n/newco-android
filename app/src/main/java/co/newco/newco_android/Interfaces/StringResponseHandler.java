@@ -1,4 +1,4 @@
-package co.newco.newco_android.Interfaces;
+package co.newco.newco_android.interfaces;
 
 /**
  * Created by jayd on 11/10/15.
