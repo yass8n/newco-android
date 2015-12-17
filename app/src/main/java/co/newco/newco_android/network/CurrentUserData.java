@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import co.newco.newco_android.AppController;
 import co.newco.newco_android.interfaces.SimpleResponsehandler;
 import co.newco.newco_android.interfaces.StringResponseHandler;
-import co.newco.newco_android.Models.User;
+import co.newco.newco_android.models.User;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;

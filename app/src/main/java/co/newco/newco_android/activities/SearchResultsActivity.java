@@ -15,8 +15,8 @@ import java.util.List;
 
 import co.newco.newco_android.adapters.SessionListAdapter;
 import co.newco.newco_android.interfaces.SimpleResponsehandler;
-import co.newco.newco_android.Models.Session;
-import co.newco.newco_android.Models.User;
+import co.newco.newco_android.models.Session;
+import co.newco.newco_android.models.User;
 import co.newco.newco_android.network.SessionData;
 import co.newco.newco_android.network.UsersData;
 import co.newco.newco_android.R;

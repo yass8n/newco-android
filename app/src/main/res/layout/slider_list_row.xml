@@ -32,6 +32,7 @@
         android:layout_alignParentBottom="false"
         android:layout_toRightOf="@+id/imageButton"
         android:layout_alignParentStart="false"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:textColor="#000" />
 
 </RelativeLayout>

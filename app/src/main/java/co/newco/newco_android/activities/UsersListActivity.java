@@ -24,7 +24,7 @@ import co.newco.newco_android.interfaces.SimpleResponsehandler;
 import co.newco.newco_android.network.SessionData;
 import co.newco.newco_android.network.UsersData;
 import co.newco.newco_android.R;
-import co.newco.newco_android.Models.User;
+import co.newco.newco_android.models.User;
 import retrofit.Call;
 
 public class UsersListActivity extends ActionBarActivity {

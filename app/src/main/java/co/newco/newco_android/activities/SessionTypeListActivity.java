@@ -20,7 +20,7 @@ import co.newco.newco_android.AppController;
 import co.newco.newco_android.interfaces.SimpleResponsehandler;
 import co.newco.newco_android.network.SessionData;
 import co.newco.newco_android.R;
-import co.newco.newco_android.Models.Session;
+import co.newco.newco_android.models.Session;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 
 

@@ -1,4 +1,4 @@
-package co.newco.newco_android.Models;
+package co.newco.newco_android.models;
 
 import java.lang.reflect.Method;
 import java.util.List;

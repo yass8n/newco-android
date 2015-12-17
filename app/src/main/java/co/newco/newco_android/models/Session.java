@@ -1,4 +1,4 @@
-package co.newco.newco_android.Models;
+package co.newco.newco_android.models;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -10,12 +10,16 @@ import java.util.Hashtable;
 import java.util.List;
 
 import co.newco.newco_android.interfaces.SimpleResponsehandler;
-import co.newco.newco_android.Models.Session;
-import co.newco.newco_android.Models.User;
+import co.newco.newco_android.models.Session;
+import co.newco.newco_android.models.User;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.Response;
 import retrofit.Retrofit;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by jayd on 10/23/15.
@@ -63,6 +67,23 @@ public class SessionData {
 
     public List<Session> getSessions() {
         return sessions;
+    }
+
+
+    public Observable getSessionDataObservable(final SimpleResponsehandler callback){
+        Observable sessionObservable;
+
+        if(sessions == null){
+            sessionObservable = RestClient.getInstance().get().listSessionsObservable()
+                    .subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread());
+        }
+        else{
+            sessionObservable = Observable.just(sessions);
+        }
+
+        return sessionObservable;
+
     }
 
 

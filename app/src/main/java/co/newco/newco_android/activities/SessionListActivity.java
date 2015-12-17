@@ -21,7 +21,7 @@ import co.newco.newco_android.interfaces.SimpleResponsehandler;
 import co.newco.newco_android.network.CurrentUserData;
 import co.newco.newco_android.network.SessionData;
 import co.newco.newco_android.R;
-import co.newco.newco_android.Models.Session;
+import co.newco.newco_android.models.Session;
 import retrofit.Call;
 import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
 

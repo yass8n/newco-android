@@ -44,17 +44,50 @@ public class SliderListFragment extends ListFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View list =  inflater.inflate(R.layout.slider_list, null);
-        //headerView = getLayoutInflater(savedInstanceState).inflate(R.layout.slider_list_header_row, null);
+
+        EditText search = (EditText) list.findViewById(R.id.et_search);
+        search.setBackgroundColor(Color.WHITE);
+        search.setTextColor(Color.BLACK);
+        search.setInputType(InputType.TYPE_CLASS_TEXT);
+        search.setSingleLine();
+        search.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                menu.toggle(false);
+                Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
+                intent.putExtra("query", v.getText().toString());
+                startActivity(intent);
+                return false;
+            }
+        });
+
+        TextView venue = (TextView) list.findViewById(R.id.tv_venue);
+
+        venue.setText("Venues");
+        venue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                menu.toggle(false);
+                Intent intent = new Intent(getActivity(), VenuesListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         return list;
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         SliderListAdapter adapter = new SliderListAdapter(getActivity());
 
-        //add venues button
-        adapter.add(new SliderItem("Search", "search"));
-        adapter.add(new SliderItem("Venues", "text"));
 
         //we assume we have this data
         cats = new ArrayList<String>(SessionData.getInstance().getColorsHash().keySet());
@@ -64,7 +97,7 @@ public class SliderListFragment extends ListFragment {
                 return lhs.compareToIgnoreCase(rhs);            }
         });
         for (int i = 0; i < cats.size(); i++) {
-            adapter.add(new SliderItem(cats.get(i), "cat"));
+            adapter.add(new SliderItem(cats.get(i)));
         }
         //if(headerView != null) getListView().addHeaderView(headerView);
 
@@ -77,9 +110,7 @@ public class SliderListFragment extends ListFragment {
 
     private class SliderItem {
         public String text;
-        public String type;
-        public SliderItem(String text, String type) {
-            this.type = type;
+        public SliderItem(String text) {
             this.text = text;
         }
     }
@@ -99,58 +130,21 @@ public class SliderListFragment extends ListFragment {
 
             ImageView circle = (ImageView) convertView.findViewById(R.id.imageButton);
             TextView title = (TextView) convertView.findViewById(R.id.row_title);
+            title.setText(item.text);
 
-            if(item.type == "search"){
-                title.setVisibility(View.GONE);
-
-                EditText search = new EditText(getActivity());
-                search.setBackgroundColor(Color.WHITE);
-                search.setTextColor(Color.BLACK);
-                search.setInputType(InputType.TYPE_CLASS_TEXT);
-                search.setSingleLine();
-                RelativeLayout row = (RelativeLayout) convertView.findViewById(R.id.listRow);
-                row.addView(search);
-                search.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
-                search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                    @Override
-                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                        menu.toggle();
-                        Intent intent = new Intent(getActivity(), SearchResultsActivity.class);
-                        intent.putExtra("query", v.getText().toString());
-                        startActivity(intent);
-                        return false;
-                    }
-                });
-
-            }
-            if(item.type == "text" || item.type == "cat"){
-                title.setText(item.text);
-            }
-            if(item.type == "cat") {
-                GradientDrawable background = (GradientDrawable) circle.getBackground();
-                background.setColor(Color.parseColor(SessionData.getInstance().getColorsHash().get(item.text)));
-            }
-            else{
-                circle.setVisibility(View.GONE);
-            }
+            GradientDrawable background = (GradientDrawable) circle.getBackground();
+            background.setColor(Color.parseColor(SessionData.getInstance().getColorsHash().get(item.text)));
 
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     menu.toggle();
-                    Intent intent = null;
-                    if (item.text == "Venues"){
-                        intent = new Intent(getActivity(), VenuesListActivity.class);
-                        startActivity(intent);
-                    }
-                    else if(item.type == "cat"){
-                        //close
-                        menu.showContent();
-                        AppController.getInstance().Toast("Session type:" + "\"" + item.text + "\"");
-                        intent = new Intent(getActivity(), SessionTypeListActivity.class);
-                        intent.putExtra("sessionType", item.text);
-                        startActivity(intent);
-                    }
+                    //close
+                    menu.showContent();
+                    AppController.getInstance().Toast("Session type:" + "\"" + item.text + "\"");
+                    Intent intent = new Intent(getActivity(), SessionTypeListActivity.class);
+                    intent.putExtra("sessionType", item.text);
+                    startActivity(intent);
                 }
             });
             return convertView;
